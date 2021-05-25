@@ -13,7 +13,7 @@ function App() {
         <p className="left-bar">
           <img src={logo} alt="avator" className="avator mr-8 inline-block vertical-middle"/>
           <span className="mr-8 inline-block vertical-middle">beehash 的博客空间</span>
-          <span className="inline-block vertical-middle">码龄：{codeAge}</span>
+          <span className="inline-block vertical-middle">码龄：{codeAge} 年</span>
         </p>
         <div className="right-bar">
           
