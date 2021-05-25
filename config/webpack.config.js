@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const path = require('path');
@@ -157,7 +157,7 @@ module.exports = function (webpackEnv) {
     }
     return loaders;
   };
-
+  console.log(24324434);
   return {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
@@ -334,6 +334,7 @@ module.exports = function (webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        '@': path.resolve(__dirname, 'src'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
