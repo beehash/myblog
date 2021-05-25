@@ -2,11 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+// import {Provider} from 'react-redux';
 import reportWebVitals from './reportWebVitals';
+import { CursorSpecialEffects } from './utils/cursor.js';
+import { Route } from "react-router";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+
+const cursorSpecialEffects = new CursorSpecialEffects()
+cursorSpecialEffects.init()
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <Provider store={store}> */}
+      <Router>
+        <Switch>
+          <Route exact path="/" component={App}></Route>
+        </Switch>
+      </Router>
+    {/* </Provider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
