@@ -4,9 +4,6 @@ import './statics/sass/App.scss';
 import HeaderApp from './components/business/Header';
 
 function App() {
-
-  
-
   return (
     <div className="App full_gradient js-full-gradient state-full state-complete">
       {/* header */}
