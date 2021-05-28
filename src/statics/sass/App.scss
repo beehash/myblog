@@ -1,173 +1,54 @@
-*{
-  margin: 0;
-  padding: 0;
-}
-.App {
-  left: -1178px;
-  top: -1194px;
-  text-align: center;
-  color: #343434;
-  font-size: 14px;
-  background-image: linear-gradient(to top, rgb(255, 241, 235) 0%, rgb(172, 224, 249) 100%);
-}
-.inner-box{
-  width: 1100px;
-  min-height: 100vh;
-  margin: 0 auto;
-  margin-top: 100px;
-}
-.content{
-  min-height: 40vh;
-  background-color: #f8f5f1;
-  box-shadow: 1px 1px 20px #87a7b3;
-}
-.center-block{
-  width: 1100px;
-  margin: 0 auto;
-}
-.inline-block{
-  display: inline-block;
-}
-.inline{
-  display: inline;
-}
-.vertical-middle{
-  vertical-align: middle;
-}
-.block{
-  display: block;
-}
-.App-link {
-  color: #61dafb;
-}
+@import './varible.scss';
+@import './base.scss';
+@import './home.scss';
 
-/* 总体的渐变效果 */
-.full_gradient {
-  z-index: 5000;
-  position: fixed;
-  height: 3000px;
-  width: 3000px;
-  left: 0;
-  top: 0;
-  border-radius: 50%;
-  transform: scale(0);
-  transform-origin: center;
-  transition: transform 0.7s cubic-bezier(0.47, 0.04, 0.22, 0.92);
-  background-color: #86939e;
-  cursor: url(../images/panda.svg), crosshair;
-}
-.full_gradient.state-complete {
-  transition: transform 0.7s cubic-bezier(0.47, 0.04, 0.22, 0.92), height 0.2s ease, width 0.2s ease;
-  transform: none;
-  border-radius: 0;
-  height: 100vh !important;
-  width: 100vw !important;
-  left: 0 !important;
-  top: 0 !important;
-}
 
-/* 旋转logo效果 */
-.logo-box{
-  position: absolute;
-  top: 78px;
-  left: 78px;
-  width: 300px;
-  height: 300px;
-  padding: 12px;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    width: 100%;
-    height: 100%;
-  }
-}
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+// .mr-8{
+//   margin-right: 8px;
+// }
+// .pl-8{
+//   padding-left: 8px;
+// }
 
-.banner{
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  background-color: #a2cbdd;
-  /* background-image: linear-gradient(to top, rgb(253, 219, 146) 0%, rgb(209, 253, 255) 100%);  */
-  box-shadow: 3px 3px 16px #e8ffef;
-}
-.banner.full_gradient.state-complete{
-  height: 680px !important;
-}
-.view-box {
-  position: absolute;
-  top: 70px;
-  right: 300px;
-  width: 500px;
-  height: 500px;
-  background-color: #ffffff;
-  box-shadow: 3px 3px 18px #e8ecef;
-}
-.left-view {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 380px;
-  right: 790px;
-  width: 300px;
-  height: 150px;
-  color: #ffffff;
-  font-size: 20px;
-  background-color: #000000;
-  border-radius: 75px 8px 8px 75px;
-  box-shadow: -2px 1px 6px #1b1a17;
-}
-.left-view p{
-  width: 100%;
-}
-.right-view {
-  position: absolute;
-  top: 100px;
-  right: 210px;
-  width: 100px;
-  min-height: 150px;
-  background-color: transparent
-}
-.list li {
-  width: 100%;
-  text-align: left;
-  list-style-type: none;
-}
-.list-item{
-  display: inline-block;
-  width: 38px;
-  height: 24px;
-  margin: 4px 0;
-  text-align: center;
-  line-height: 24px;
-  color: transparent;
-  font-size: 14px;
-  background-color: #ac0d0d;
-  border-radius: 4px 12px 12px 4px;
-  text-decoration: none;
-}
-.list-item:hover {
-  width: 100%;
-  color: #f0c929;
-}
-.mr-8{
-  margin-right: 8px;
-}
-.header{
-  display: flex;
-  justify-content: space-between;
+@each $item in $margin {
+  .ml-#{$item} {
+    margin-left: #{$item}px;
+  }
+  .mr-#{$item} {
+    margin-right: #{$item}px;
+  }
+  .mt-#{$item} {
+    margin-top: #{$item}px;
+  }
+  .mb-#{$item} {
+    margin-bottom: #{$item}px;
+  }
+  .pl-#{$item} {
+    padding-left: #{$item}px;
+  }
+  .pr-#{$item} {
+    padding-right: #{$item}px;
+  }
+  .pt-#{$item} {
+    padding-top: #{$item}px;
+  }
+  .pb-#{$item} {
+    padding-bottom: #{$item}px;
+  }
+  .mx-#{$item} {
+    margin-left: #{$item}px;
+    margin-right: #{$item}px;
+  }
+  .my-#{$item} {
+    margin-top: #{$item}px;
+    margin-bottom: #{$item}px;
+  }
+  .px-#{$item} {
+    padding-left: #{$item}px;
+    padding-right: #{$item}px;
+  }
+  .py-#{$item} {
+    padding-top: #{$item}px;
+    padding-bottom: #{$item}px;
+  }
 }

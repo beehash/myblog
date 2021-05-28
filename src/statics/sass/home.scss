@@ -1,0 +1,97 @@
+
+/* 旋转logo效果 */
+.logo-box{
+  position: absolute;
+  top: 78px;
+  left: 78px;
+  width: 300px;
+  height: 300px;
+  padding: 12px;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    width: 100%;
+    height: 100%;
+  }
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.banner{
+  height: 600px;
+  /* background-image: linear-gradient(to top, rgb(253, 219, 146) 0%, rgb(209, 253, 255) 100%);  */
+}
+.banner.full_gradient.state-complete{
+  height: 680px !important;
+}
+.view-box {
+  position: absolute;
+  top: 70px;
+  right: 300px;
+  width: 500px;
+  height: 500px;
+  background-color: #ffffff;
+  box-shadow: 3px 3px 18px #e8ecef;
+}
+.left-view {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 440px;
+  right: 780px;
+  width: 200px;
+  height: 100px;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 50px 8px 8px 50px;
+  box-shadow: -2px 1px 6px #1b1a17;
+}
+.left-view p{
+  width: 100%;
+}
+.right-view {
+  position: absolute;
+  top: 100px;
+  right: 210px;
+  width: 100px;
+  min-height: 150px;
+  background-color: transparent
+}
+.list li {
+  width: 100%;
+  text-align: left;
+  list-style-type: none;
+}
+.list-item{
+  display: inline-block;
+  width: 38px;
+  height: 24px;
+  margin: 4px 0;
+  text-align: center;
+  line-height: 24px;
+  color: transparent;
+  font-size: 14px;
+  background-color: #ac0d0d;
+  border-radius: 4px 12px 12px 4px;
+  text-decoration: none;
+}
+.list-item:hover {
+  width: 100%;
+  color: #f0c929;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,100 @@
+
+*{
+  margin: 0;
+  padding: 0;
+}
+.App {
+  left: -1178px;
+  top: -1194px;
+  text-align: center;
+  color: #343434;
+  font-size: 14px;
+  background-image: linear-gradient(to top, rgb(255, 241, 235) 0%, rgb(172, 224, 249) 100%);
+}
+.inner-box{
+  width: 1100px;
+  min-height: 100vh;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.content{
+  min-height: 40vh;
+  background-color: #f8f5f1;
+  box-shadow: 1px 1px 20px #87a7b3;
+}
+.center-block{
+  width: 1100px;
+  margin: 0 auto;
+}
+.inline-block{
+  display: inline-block;
+}
+.inline{
+  display: inline;
+}
+.vertical-middle{
+  vertical-align: middle;
+}
+.block{
+  display: block;
+}
+.App-link {
+  color: #61dafb;
+}
+.pos-relative{
+  position: relative;
+  top: 0;
+  left: 0;
+}
+/* 总体的渐变效果 */
+.full_gradient {
+  z-index: 5000;
+  position: fixed;
+  height: 3000px;
+  width: 3000px;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 0.7s cubic-bezier(0.47, 0.04, 0.22, 0.92);
+  background-color: #86939e;
+  cursor: url(../images/panda.svg), crosshair;
+}
+.full_gradient.state-complete {
+  transition: transform 0.7s cubic-bezier(0.47, 0.04, 0.22, 0.92), height 0.2s ease, width 0.2s ease;
+  transform: none;
+  border-radius: 0;
+  height: 100vh !important;
+  width: 100vw !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+.circle{
+  border-radius: 100%;
+}
+.base-button{
+  display: inline-block;
+  height: 28px;
+  padding: 0 8px;
+  color: #343434;
+  line-height: 28px;
+  background-color: #61dafb;
+  letter-spacing: 1px;
+  outline: 0px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.default-button{
+  background-color: transparent;
+  border: 1px solid #d1d9d9;
+}
+.text-left{
+  text-align: left;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
