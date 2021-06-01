@@ -3,6 +3,9 @@
   margin: 0;
   padding: 0;
 }
+ul{
+  list-style-type: none;
+}
 .App {
   left: -1178px;
   top: -1194px;
@@ -97,4 +100,46 @@
 }
 .text-right{
   text-align: right;
+}
+.fold-box{
+  display: flex;
+  & .text{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: justify;
+    line-height: 24px;
+  }
+  & .text::before{
+    content: '';
+    float: right;
+    width: 0;
+    height: 100%;
+    margin-top: -20px;
+  }
+  .btn{
+    float: right;
+    clear: both;
+    height: 20px;
+    padding: 1px 4px;
+    line-height: 20px;
+    color: #233e8b;
+  }
+  .btn::after{
+    content: '展开';
+  }
+  .exp:checked+.text .btn::after{
+    content: '收起';
+  }
+  .exp:checked+.text .btn::before{
+    visibility: hidden;
+  }
+  .exp:checked+.text{
+    -webkit-line-clamp: 9999;
+    max-height: none;
+  }
+  .exp{
+    visibility: hidden;
+  }
 }

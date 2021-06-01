@@ -1,8 +1,8 @@
-import React, {BaseSyntheticEvent, useState} from 'react';
+import React, {BaseSyntheticEvent, useState, useEffect} from 'react';
 import logo from '@/statics/images/logo.svg';
 import '@/statics/sass/App.scss';
 import styles from '@/statics/sass/home.module.scss';
-import Banner from '@/components/business/Banner';
+import userApi from '@/apis/user'; 
 
 export default function Header () {
   const codeAge:number = new Date().getFullYear() - 2018;
@@ -26,27 +26,37 @@ export default function Header () {
     
     const inverseColor = `#${(255-red).toString(16)}${(255-green).toString(16)}${(255-blue).toString(16)}`;
 
-    styleId.innerHTML = `.theme{color: ${inverseColor};}
-                        .theme-bg{background-color: ${theme}}
-                        .base-button{color: ${theme}}
-                        .primary-button{color: ${inverseColor};background-color: ${theme}}`
+    styleId.innerText = `.theme{color: ${inverseColor};}
+                        .theme-bg{background-color: ${color}}
+                        .base-button{color: ${color}}
+                        .primary-button{color: ${inverseColor};background-color: ${color}}`
   }
+
+  function getUser() {
+    userApi.getUser({name: 'aminsey'}).then((res: {name: string}) => {
+      console.log(res);
+    });
+  }
+
+  useEffect(() => {
+    getUser();
+  });
+
   return (
     <div className="center-block header mt-8">
-        <p className="left-bar">
-          <span className={`${styles.avator} mr-8`}><img src={logo} alt="avator"/></span>
-          <span className="mr-8 inline-block vertical-middle theme">beehash 的博客空间</span>
-          <span className="inline-block vertical-middle theme">码龄：{codeAge} 年</span>
-        </p>
-        <div className={styles['right-bar']}>
-          <span className="mr-8">
-            <label className="mr-8 theme">皮肤</label>
-            <input type="color" value={theme} onChange={handleThemeChange}/>
-          </span>
-          <button className="base-button primary-button mr-8">写文章</button>
-          <button className="base-button default-button">登录</button>
-        </div>
-        <Banner/>
+      <p className="left-bar">
+        <span className={`${styles.avator} mr-8`}><img src={logo} alt="avator"/></span>
+        <span className="mr-8 inline-block vertical-middle theme">beehash 的博客空间</span>
+        <span className="inline-block vertical-middle theme">码龄：{codeAge} 年</span>
+      </p>
+      <div className={styles['right-bar']}>
+        <span className="mr-8">
+          <label className="mr-8 theme">皮肤</label>
+          <input type="color" value={theme} onChange={handleThemeChange}/>
+        </span>
+        <button className="base-button primary-button mr-8">写文章</button>
+        <button className="base-button default-button">登录</button>
       </div>
+    </div>
   )
 }

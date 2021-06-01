@@ -16,3 +16,11 @@
   width: 300px;
   padding-top: 80px;
 }
+.navBar{
+  & ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
