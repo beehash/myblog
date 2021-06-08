@@ -17,10 +17,47 @@
   padding-top: 80px;
 }
 .navBar{
+  height: 48px;
+  line-height: 48px;
+  background-color: #f0f0f0;
   & ul{
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+  }
+}
+// tag-view
+.tag-view {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  min-height: 150px;
+  background-color: transparent;
+  transform: rotate(270deg) translate(-42px);
+  .tag-list {
+    & li {
+      width: 100%;
+      text-align: left;
+      list-style-type: none;
+    }
+    & .list-item{
+      display: inline-block;
+      width: 42px;
+      height: 24px;
+      margin: 4px 0;
+      text-align: center;
+      line-height: 24px;
+      color: transparent;
+      font-size: 14px;
+      background-color: #ac0d0d;
+      border-radius: 4px 12px 12px 4px;
+      text-decoration: none;
+    }
+    & .list-item:hover {
+      width: 100%;
+      color: #f0c929;
+    }
   }
 }

@@ -1,26 +1,25 @@
 import React from 'react';
+import { Route } from "react-router";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import '@/statics/sass/App.scss';
-import Header from './components/business/Header';
-import Banner from './components/business/Banner';
-import Navbar from '@/components/business/Navbar';
-
+import Header from '@/components/business/Header';
+import Home from '@/pages/home';
+import CreateNew from '@/pages/createNew';
 
 function App() {
-
   return (
-    <div className="App full_gradient js-full-gradient state-full state-complete">
+    <Router>
+      <div className="App">
+      <div className="main-gradient full_gradient js-full-gradient state-full state-complete"></div>
       {/* header */}
       <Header/>
-      {/* banner */}
-      <Banner/>
-      {/* navBar */}
-      <Navbar/>
-      {/* Content */}
-      <div className="inner-box">
-        <div className="content theme-bg">
-        </div>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        {/* <Route exact path="home" component={Home}/> */}
+        <Route exact path="editor" component={CreateNew}/>
+      </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
 

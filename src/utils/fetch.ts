@@ -12,10 +12,18 @@ interface BlogResponse <T>{
 }
 
 function responseInterceptorUse(response: AxiosResponse) {
-  if(response.status === 200) {
+  console.log('response', response);
+  if(response.status >= 200 && response.status < 300) {
     return response.data.data;
   } else if(response.status > 200 && response.status <500) {
     return response.data.data;
+  } else if(response.status === 500) {
+    return {
+      success: false,
+      code: 500,
+      message: '服务器错误',
+      errMessage: response.data,
+    }
   }
 }
 function responseInterceptor (target: Obj, name: string) {
@@ -33,7 +41,7 @@ class fetch {
   @requestInterceptor
   @responseInterceptor
   private static fetchInstance: AxiosInstance = axios.create({
-    timeout: 1000,
+    timeout: 3000000,
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
     },
@@ -42,11 +50,14 @@ class fetch {
     }
   });
 
-  static get<T=any, R=BlogResponse<T>>(url: string, params: any): Promise<R> {
+  static get<T=any, R=BlogResponse<T>>(url: string, params?: any): Promise<R> {
     return this.fetchInstance.get(url, {params});
   }
-  static post<T=any, R=BlogResponse<T>>(url: string, params: any): Promise<R> {
+  static post<T=any, R=BlogResponse<T>>(url: string, params?: any): Promise<R> {
     return this.fetchInstance.post(url, params);
+  }
+  static head<T=any, R=BlogResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
+    return this.fetchInstance.head(url, config);
   }
 }
 

@@ -2,59 +2,32 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 ul{
   list-style-type: none;
 }
+.theme{color: #343434;}
+.theme-bg{background-color: #f0f0f0}
+.base-button{color:#343434}
+.primary-button{color: #ffffff;background-color: #233e8b}
 .App {
-  left: -1178px;
-  top: -1194px;
-  text-align: center;
   color: #343434;
   font-size: 14px;
-  background-image: linear-gradient(to top, rgb(255, 241, 235) 0%, rgb(172, 224, 249) 100%);
 }
-.inner-box{
-  width: 1100px;
-  min-height: 100vh;
-  margin: 0 auto;
-  margin-top: 100px;
+.cursor{
+  cursor: url(../images/panda.svg), crosshair;
 }
-.content{
-  min-height: 40vh;
-  background-color: #f8f5f1;
-  box-shadow: 1px 1px 20px #87a7b3;
+.main-gradient{
+  background-image: radial-gradient(#fff1eb, #ace0f9 100%);
 }
-.center-block{
-  width: 1100px;
-  margin: 0 auto;
-}
-.inline-block{
-  display: inline-block;
-}
-.inline{
-  display: inline;
-}
-.vertical-middle{
-  vertical-align: middle;
-}
-.block{
-  display: block;
-}
-.App-link {
-  color: #61dafb;
-}
-.pos-relative{
-  position: relative;
-  top: 0;
-  left: 0;
-}
+
 /* 总体的渐变效果 */
 .full_gradient {
-  z-index: 5000;
+  z-index: -1;
   position: fixed;
-  height: 3000px;
-  width: 3000px;
+  height: 100vw !important;
+  width: 100vh !important;
   left: 0;
   top: 0;
   border-radius: 50%;
@@ -62,20 +35,23 @@ ul{
   transform-origin: center;
   transition: transform 0.7s cubic-bezier(0.47, 0.04, 0.22, 0.92);
   background-color: #86939e;
-  cursor: url(../images/panda.svg), crosshair;
+  &.state-complete{
+    transition: transform 0.7s cubic-bezier(0.47, 0.04, 0.22, 0.92), height 0.2s ease, width 0.2s ease;
+    transform: none;
+    border-radius: 0;
+    height: 100vh !important;
+    width: 100vw !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
 }
-.full_gradient.state-complete {
-  transition: transform 0.7s cubic-bezier(0.47, 0.04, 0.22, 0.92), height 0.2s ease, width 0.2s ease;
-  transform: none;
-  border-radius: 0;
-  height: 100vh !important;
-  width: 100vw !important;
-  left: 0 !important;
-  top: 0 !important;
-}
+
+/* 圆形块状效果 */
 .circle{
   border-radius: 100%;
 }
+
+/* 按钮效果 */
 .base-button{
   display: inline-block;
   height: 28px;
@@ -92,6 +68,13 @@ ul{
   background-color: transparent;
   border: 1px solid #d1d9d9;
 }
+.text-button{
+  color: #343434;
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+
+/* 文字效果 */
 .text-left{
   text-align: left;
 }
@@ -101,6 +84,11 @@ ul{
 .text-right{
   text-align: right;
 }
+.text-justify{
+  text-align: justify;
+}
+
+/* 展开折叠效果 */
 .fold-box{
   display: flex;
   & .text{
@@ -141,5 +129,67 @@ ul{
   }
   .exp{
     visibility: hidden;
+    width: 0;
+  }
+}
+
+/* 基础效果 */
+.center-block{
+  width: 1100px;
+  margin: 0 auto;
+}
+.inline-block{
+  display: inline-block;
+}
+.inline{
+  display: inline;
+}
+.block{
+  display: block;
+}
+.vertical-middle{
+  vertical-align: middle;
+}
+.pos-relative{
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+/* 文章标题 */
+.essay-title{
+  line-height: 48px;
+}
+
+/* 设置滚动条样式 */
+::-webkit-scrollbar{
+  width: 2px;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track{
+  background-color: #deedf0;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb{
+  width: 2px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: #343434;
+}
+
+/* 更多 */
+.more-box{
+  display: flex;
+  & .text{
+    display: -webkit-box;
+    overflow: hidden;
+    text-align: justify;
+    line-height: 24px;
+  }
+  .btn{
+    height: 20px;
+    padding: 1px 4px;
+    line-height: 20px;
+    color: #233e8b;
   }
 }

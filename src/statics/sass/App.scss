@@ -3,13 +3,6 @@
 @import './home.scss';
 
 
-// .mr-8{
-//   margin-right: 8px;
-// }
-// .pl-8{
-//   padding-left: 8px;
-// }
-
 @each $item in $margin {
   .ml-#{$item} {
     margin-left: #{$item}px;
@@ -50,5 +43,11 @@
   .py-#{$item} {
     padding-top: #{$item}px;
     padding-bottom: #{$item}px;
+  }
+  .p-#{$item} {
+    padding: #{$item}px;
+  }
+  .m-#{$item} {
+    margin: #{$item}px;
   }
 }
