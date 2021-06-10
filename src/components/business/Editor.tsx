@@ -34,19 +34,20 @@ export default function Editor(props: any) {
 
   return (
     <div className={styles.editor+' w-full'}>
+      {/* tooBar */}
       <div className={styles.toolBar}>
         <ul>
           {generateToolBar()}
         </ul>
       </div>
 
-        {/* 文本输入框 */}
-        <textarea value={props.textc} className={styles.textArea} onChange={props['editor-change']}/>
-        
-        {/* editor内容 */}
-        <div className={styles['editor-content']}>
-          <div className={styles['editor']}></div>
-        </div>
+      {/* 文本输入框 */}
+      <textarea value={props.textc} className={styles.textArea} onChange={props['editor-change']}/>
+      
+      {/* editor内容 */}
+      <div className={styles['editor-content']}>
+        <div className={styles['editor']}></div>
+      </div>
     </div>
   );
 }

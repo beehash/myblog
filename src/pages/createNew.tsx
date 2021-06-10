@@ -1,6 +1,7 @@
 import React,{useState, BaseSyntheticEvent} from 'react';
 import Editor from '@/components/business/Editor';
 import Previewer from '@/components/business/Previewer';
+import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
 
 function CreateNew() {
@@ -18,19 +19,22 @@ function CreateNew() {
   }
 
   return (
-    <div className="editor">
-      <h1><br/>dgadsgsfsdg</h1>
-      <div className="w-full">
+    <div className={styles.editor+' mt-56'}>
+      <div className={styles['editor-header']+' w-full boxflex header'}>
         <input type="text" value={title}
-          className="editor-title"
-          onChange={(e) => setTitle(e.target.value)}/>
+          placeholder="请输入标题"
+          className={styles['editor-title']+' pl-8'}
+          onChange={(e) => setTitle(e.target.value)} />
+        <div className={styles['editor-buttons']+' mr-8'}>
+          <button className="base-button primary-button">保 存</button>
+        </div>
       </div>
-      <div className="editor-box boxflex mt-8 p-8">
-        <Editor textc={textc} editor-change={handleChange}/>
-        <Previewer htmlc={htmlc}/>
+      <div className={styles['editor-box']+' boxflex mt-8 p-8'}>
+        <Editor textc={textc} editor-change={handleChange} />
+        <Previewer htmlc={htmlc} />
       </div>
     </div>
-  )
+  );
 }
 
 export default CreateNew;

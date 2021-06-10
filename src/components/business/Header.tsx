@@ -6,7 +6,7 @@ import styles from '@/statics/sass/home.module.scss';
 
 export default function Header () {
   const codeAge:number = new Date().getFullYear() - 2018;
-  const [theme, setTheme] = useState('#ffffff');
+  const [theme, setTheme] = useState('#125d98');
 
   function handleThemeChange (event: BaseSyntheticEvent) {
     const color: string = event.target.value;
@@ -31,7 +31,8 @@ export default function Header () {
                           background-color: ${color}
                         }
                         .default-button{color: ${inverseColor}}
-                        .primary-button{color: ${inverseColor};background-color: ${color}}`
+                        .base-button.primary-button{color: ${inverseColor};background-color: ${color}}
+                        .base-button.text-button{color: ${inverseColor}}`
   }
 
   return (

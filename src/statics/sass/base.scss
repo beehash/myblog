@@ -7,10 +7,10 @@
 ul{
   list-style-type: none;
 }
-.theme{color: #343434;}
-.theme-bg{background-color: #f0f0f0}
-.base-button{color:#343434}
-.primary-button{color: #ffffff;background-color: #233e8b}
+.theme{color: #eda268;}
+.theme-bg{background-color: #125d98}
+.base-button{color:#eda268}
+.base-button.primary-button{color: #eda268;background-color: #125d98}
 .App {
   color: #343434;
   font-size: 14px;
@@ -65,20 +65,20 @@ ul{
   display: inline-block;
   height: 28px;
   padding: 0 8px;
-  color: #343434;
+  color: #eda268;
   line-height: 28px;
-  background-color: #61dafb;
+  background-color: #125d98;
   letter-spacing: 1px;
   outline: 0px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
-.default-button{
+.base-button.default-button{
   background-color: transparent;
   border: 1px solid #d1d9d9;
 }
-.text-button{
-  color: #343434;
+.base-button.text-button{
+  color: #eda268;
   border: 1px solid transparent;
   background-color: transparent;
 }

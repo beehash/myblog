@@ -1,16 +1,36 @@
 .editor{
   .textArea{
-    // visibility: hidden;
     width: 100%;
-    min-height: 80vh;
-    line-height: 52px;
+    height: calc(100% - 32px);
+    line-height: 36px;
     border: 1px solid transparent;
     outline: none;
     resize: none;
   }
+  .editor-header{
+    background-color: #ffffff;
+  }
+  .editor-title{
+    width: 90%;
+    height: 48px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 48px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    outline: none;
+  }
+  .editor-box{
+    background-color: #ffffff;
+    height: calc(100vh - 178px);
+  }
+  .editor-buttons{
+    height: 48px;
+    line-height: 48px;
+  }
 }
 .previewer{
-  line-height: 52px;
+  line-height: 36px;
   border-left: 1px solid #cccccc; 
 }
 .toolBar{
