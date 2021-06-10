@@ -553,6 +553,13 @@ module.exports = function (webpackEnv) {
             },
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
+            {
+              test: /\.md$/,
+              use: [
+                {loader: 'html-loader'},
+                {loader: 'markdown-loader', options: {}}
+              ]
+            }
           ],
         },
       ],

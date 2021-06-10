@@ -51,6 +51,15 @@ ul{
   border-radius: 100%;
 }
 
+/* 常用宽度 */
+.w-full{
+  width: 100%;
+}
+/* 常用弹性盒子布局 */
+.boxflex{
+  display: flex;
+  justify-content: space-between;
+}
 /* 按钮效果 */
 .base-button{
   display: inline-block;

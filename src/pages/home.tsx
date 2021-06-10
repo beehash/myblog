@@ -5,7 +5,7 @@ import EssayList from '@/components/business/EssayList';
 
 export default function Home() {
   return (
-    <div>
+    <div className="home">
       {/* banner */}
       <Banner/>
       {/* navBar */}

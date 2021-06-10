@@ -47,7 +47,7 @@ export default function Header () {
           <label className="mr-8 theme">皮肤</label>
           <input type="color" value={theme} onChange={handleThemeChange}/>
         </span>
-        <button className="base-button default-button mr-8"><Link to="editor">写文章</Link></button>
+        <Link to="/editor"><button className="base-button default-button mr-8">写文章</button></Link>
         <button className="base-button text-button">登录</button>
       </div>
       </div>
