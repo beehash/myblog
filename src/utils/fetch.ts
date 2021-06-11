@@ -56,6 +56,9 @@ class fetch {
   static post<T=any, R=BlogResponse<T>>(url: string, params?: any): Promise<R> {
     return this.fetchInstance.post(url, params);
   }
+  static put<T=any, R=BlogResponse<T>>(url: string, params?: any): Promise<R> {
+    return this.fetchInstance.put(url, params);
+  }
   static head<T=any, R=BlogResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
     return this.fetchInstance.head(url, config);
   }

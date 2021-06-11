@@ -42,7 +42,7 @@ export default function Editor(props: any) {
       </div>
 
       {/* 文本输入框 */}
-      <textarea value={props.textc} className={styles.textArea} onChange={props['editor-change']}/>
+      <textarea value={props.textc} className={styles.textArea+' pr-8'} onChange={props['editor-change']}/>
       
       {/* editor内容 */}
       <div className={styles['editor-content']}>

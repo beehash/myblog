@@ -3,6 +3,7 @@ import Editor from '@/components/business/Editor';
 import Previewer from '@/components/business/Previewer';
 import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
+import articleApi from '@/apis/article';
 
 function CreateNew() {
   const [htmlc, setHtmlc] = useState('');
@@ -12,10 +13,15 @@ function CreateNew() {
   const converter = new showdown.Converter();
   
   function handleChange(e: BaseSyntheticEvent) {
-    console.log(e);
     setTextc(e.target.value);
     const html = converter.makeHtml(e.target.value);
     setHtmlc(html);
+  }
+
+  function save(e: BaseSyntheticEvent) {
+    articleApi.addArticle({content: textc, title}).then((res) => {
+      console.log('addArticle', res);
+    });
   }
 
   return (
@@ -26,7 +32,7 @@ function CreateNew() {
           className={styles['editor-title']+' pl-8'}
           onChange={(e) => setTitle(e.target.value)} />
         <div className={styles['editor-buttons']+' mr-8'}>
-          <button className="base-button primary-button">保 存</button>
+          <button className="base-button primary-button" onClick={save}>保 存</button>
         </div>
       </div>
       <div className={styles['editor-box']+' boxflex mt-8 p-8'}>
