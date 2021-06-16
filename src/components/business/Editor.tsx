@@ -33,7 +33,7 @@ export default function Editor(props: any) {
   }
 
   return (
-    <div className={styles.editor+' w-full'}>
+    <div className={styles.editor}>
       {/* tooBar */}
       <div className={styles.toolBar}>
         <ul>

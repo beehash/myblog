@@ -173,6 +173,7 @@ ul{
 /* 设置滚动条样式 */
 ::-webkit-scrollbar{
   width: 2px;
+  height: 2px;
   border-radius: 2px;
 }
 ::-webkit-scrollbar-track{

@@ -1,4 +1,5 @@
 .editor{
+  width: 50%;
   .textArea{
     width: 100%;
     height: calc(100% - 32px);
@@ -6,7 +7,33 @@
     border: 1px solid transparent;
     outline: none;
     resize: none;
+    overflow-y: auto;
   }
+}
+.previewer {
+  width: 50%;
+  line-height: 36px;
+  word-break: break-all;
+  border-left: 1px solid #cccccc; 
+  .html-previewer {
+    height: calc(100% - 32px);
+    overflow: auto;
+  }
+}
+.toolBar{
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  & ul{
+    display: flex;
+    & li{
+      padding: 2px 4px;
+      line-height: 28px;
+    }
+  }
+}
+.create-new{
+  width: 100%;
   .editor-header{
     background-color: #ffffff;
   }
@@ -20,29 +47,12 @@
     border-radius: 2px;
     outline: none;
   }
-  .editor-box{
-    background-color: #ffffff;
-    height: calc(100vh - 178px);
-  }
   .editor-buttons{
     height: 48px;
     line-height: 48px;
   }
-}
-.previewer{
-  line-height: 36px;
-  word-break: break-all;
-  border-left: 1px solid #cccccc; 
-}
-.toolBar{
-  width: 100%;
-  height: 32px;
-  line-height: 32px;
-  & ul{
-    display: flex;
-    & li{
-      padding: 2px 4px;
-      line-height: 28px;
-    }
+  .editor-box{
+    background-color: #ffffff;
+    height: calc(100vh - 178px);
   }
 }

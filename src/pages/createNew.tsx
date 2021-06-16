@@ -10,7 +10,10 @@ function CreateNew() {
   const [textc, setTextc] = useState('');
   const [title, setTitle] = useState('');
 
-  const converter = new showdown.Converter();
+  const converter = new showdown.Converter({
+    omitExtraWLInCodeBlocks: true,
+    ghCodeBlocks: true,
+  });
   
   function handleChange(e: BaseSyntheticEvent) {
     setTextc(e.target.value);
@@ -25,7 +28,7 @@ function CreateNew() {
   }
 
   return (
-    <div className={styles.editor+' mt-56'}>
+    <div className={styles['create-new']+' mt-56'}>
       <div className={styles['editor-header']+' w-full boxflex header'}>
         <input type="text" value={title}
           placeholder="请输入标题"
