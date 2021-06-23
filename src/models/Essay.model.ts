@@ -12,7 +12,7 @@ export interface Essay {
   liker: string;
 }
 export const tagTypes = ['文章', '算法', '随笔', '面试题', '笔记', '工具'];
-export interface Article {
+export interface ArticleMode {
   id: number;
   essayId: string;
   content: string;

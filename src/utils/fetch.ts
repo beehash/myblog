@@ -1,8 +1,5 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 
-interface Obj {
-  [key: string]: any;
-}
 interface BlogResponse <T>{
   code: number;
   data: T;
@@ -12,7 +9,6 @@ interface BlogResponse <T>{
 }
 
 function responseInterceptorUse(response: AxiosResponse) {
-  console.log('response', response);
   if(response.status >= 200 && response.status < 300) {
     return response.data.data;
   } else if(response.status > 200 && response.status <500) {
@@ -26,6 +22,7 @@ function responseInterceptorUse(response: AxiosResponse) {
     }
   }
 }
+
 function responseInterceptor (target: Obj, name: string) {
   target[name].interceptors.response.use(responseInterceptorUse, (error: string) => {throw new Error(error);})
 }
@@ -33,6 +30,7 @@ function responseInterceptor (target: Obj, name: string) {
 function requestInterceptorUse (config: AxiosRequestConfig) {
   return config;
 }
+
 function requestInterceptor(target: Obj, name: string) {
   target[name].interceptors.request.use(requestInterceptorUse, (error: any) => { throw new Error(error) });
 }

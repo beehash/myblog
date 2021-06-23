@@ -3,3 +3,4 @@ declare global {
     [key: string]: any;
   }
 }
+export {}
