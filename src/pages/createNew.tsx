@@ -1,28 +1,46 @@
-import React,{useState, BaseSyntheticEvent} from 'react';
+import React,{ useState, BaseSyntheticEvent } from 'react';
+import { useSelector } from 'react-redux'
 import Editor from '@/components/business/Editor';
 import Previewer from '@/components/business/Previewer';
 import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
 import articleApi from '@/apis/article';
 
-function CreateNew() {
+function CreateNew(props: any) {
   const [htmlc, setHtmlc] = useState('');
   const [textc, setTextc] = useState('');
   const [title, setTitle] = useState('');
+  let textsf = '';
+  // const [summary, setSummary] = useState('');
+  const user = useSelector((state: any) => {
+    return state.user;
+  });
 
   const converter = new showdown.Converter({
     omitExtraWLInCodeBlocks: true,
     ghCodeBlocks: true,
+    requireSpaceBeforeHeadingText: true,
+    rawHeaderId: true,
   });
   
   function handleChange(e: BaseSyntheticEvent) {
     setTextc(e.target.value);
     const html = converter.makeHtml(e.target.value);
+    console.log(textsf)
+    
     setHtmlc(html);
   }
 
   function save(e: BaseSyntheticEvent) {
-    articleApi.addArticle({content: textc, title}).then((res) => {
+    console.log('text', textsf);
+    const params = {
+      content: textc,
+      title,
+      author: user.name,
+      summary: textc.substring(0, 120),
+    }
+
+    articleApi.addArticle(params).then((res) => {
       console.log('addArticle', res);
     });
   }

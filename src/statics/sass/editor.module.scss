@@ -19,6 +19,26 @@
     height: calc(100% - 32px);
     overflow: auto;
   }
+  & ul{
+    padding-left: 20px;
+    list-style-type: disc;
+  }
+  code {
+    display: block;
+    padding: 15px 12px;
+    font-size: 12px;
+    color: #333;
+    word-break: normal;
+    background-color: #f8f8f8;
+    overflow-x: auto;
+  }
+  blockquote{
+    border-left: 4px solid #c8c8c8;
+    background-color: #f8f8f8;
+    & p{
+      padding-left: 8px;
+    }
+  }
 }
 .toolBar{
   width: 100%;
