@@ -204,6 +204,10 @@ ul{
   }
 }
 /* Icon  */
+svg{
+  display: inline-block;
+  vertical-align: sub;
+}
 .base-icon{
   display: inline-block;
   height: 28px;

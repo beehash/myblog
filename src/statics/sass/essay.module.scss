@@ -1,11 +1,18 @@
 .essay-item{
   width: 100%;
   border-radius: 8px;
+  background-color: #ffffff;
   .essay-summary{
     height: 60px;
     line-height: 20px;
   }
   .essay-item-footer{
     height: 28px;
+    line-height: 28px;
+    color: #343434;
+    font-size: 12px;
+    & .infos{
+      color: #A2B29F;
+    }
   }
 }

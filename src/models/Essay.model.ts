@@ -6,6 +6,7 @@ export interface Essay {
   summary: string;
   createTime: string;
   publishTime: string;
+  status: number;
   author: string;
   browser: number;
   like: number;
