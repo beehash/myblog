@@ -36,7 +36,7 @@ export default function Header () {
   }
 
   return (
-    <div className="theme-bg p-12">
+    <div className={styles['fix-header'] + ' theme-bg p-12'}>
       <div className="header center-block">
         <p className="left-bar">
         <span className={`${styles.avator} mr-8`}><img src={logo} alt="avator"/></span>

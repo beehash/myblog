@@ -16,6 +16,7 @@ function App() {
           <div className="main-gradient full_gradient js-full-gradient state-full state-complete"></div>
           {/* header */}
           <Header/>
+          <div className="fill-box"></div>
           <div className="center-block">
             <Switch>
               <Route exact path="/" component={Home} />

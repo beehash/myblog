@@ -11,7 +11,7 @@ export default function Home() {
       {/* navBar */}
       <Navbar/>
       {/* content */}
-      <div className="content center-block">
+      <div className="content center-block essay-content">
         <EssayList/>
       </div>
     </div>

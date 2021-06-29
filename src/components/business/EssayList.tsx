@@ -4,7 +4,7 @@ import ArticleApi from '@/apis/article';
 import styles from '@/statics/sass/essay.module.scss';
 import Icon from '@/components/base/Icon';
 const Icons = [
-  {name: 'acclaim', color: '#A2B29F', text: '点赞量', key: 'like'},
+  {name: 'acclaim', color: '#A2B29F', text: '点赞量', key: 'likes'},
   {name: 'browsers', color: '#A2B29F', text: '浏览量', key: 'browser'},
   {name: 'transmit', color: '#A2B29F', text: '转发量', key: 'trans'},
   {name: 'comment', color: '#A2B29F', text: '评论数', key: 'comments'}

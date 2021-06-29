@@ -56,6 +56,7 @@ export default function Banner () {
           2018年，Chrome、Safari、Firefox 完成了对 ESM 的支持。
         </MoreBox>
       </div>
+      <div className={`${styles.next}`}>这是一个向下的箭头</div>
     </div>
   );
 }
