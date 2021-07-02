@@ -7,6 +7,10 @@
 ul{
   list-style-type: none;
 }
+a{color: #343434;text-decoration: none;}
+a:link{color: #343434;text-decoration: none;}
+a:active{color: #233e8b;text-decoration: none;}
+a:visited{color: #343434;text-decoration: none;}
 .theme{color: #eda268;}
 .theme-bg{background-color: #125d98}
 .base-button{color:#eda268}
@@ -213,4 +217,40 @@ svg{
   height: 28px;
   line-height: 28px;
   padding: 2px 4px;
+}
+.previewer {
+  width: 50%;
+  line-height: 36px;
+  word-break: break-all;
+  border-left: 1px solid #cccccc; 
+  .html-previewer {
+    height: calc(100% - 32px);
+    overflow: auto;
+  }
+  & ul{
+    padding-left: 20px;
+    list-style-type: disc;
+  }
+  h1,h2,h3 {
+    line-height: 56px;
+  }
+  h4,h5,h6 {
+    line-height: 32px;
+  }
+  code {
+    display: block;
+    padding: 15px 12px;
+    font-size: 12px;
+    color: #333;
+    word-break: normal;
+    background-color: #f8f8f8;
+    overflow-x: auto;
+  }
+  blockquote{
+    border-left: 4px solid #c8c8c8;
+    background-color: #f8f8f8;
+    & p{
+      padding-left: 8px;
+    }
+  }
 }

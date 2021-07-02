@@ -10,11 +10,13 @@ export interface Essay {
   author: string;
   browser: number;
   like: number;
+  currentLikeStatus: boolean;
   liker: string;
 }
 export const tagTypes = ['文章', '算法', '随笔', '面试题', '笔记', '工具'];
-export interface ArticleMode {
+export interface ArticleCator {
   id: number;
   essayId: string;
   content: string;
+  title: string;
 }

@@ -7,6 +7,7 @@ import '@/statics/sass/App.scss';
 import Header from '@/components/business/Header';
 import Home from '@/pages/home';
 import CreateNew from '@/pages/createNew';
+import ArticleDetail from '@/pages/article-detail';
 
 function App() {
   return (
@@ -17,11 +18,12 @@ function App() {
           {/* header */}
           <Header/>
           <div className="fill-box"></div>
-          <div className="center-block">
+          <div>
             <Switch>
               <Route exact path="/" component={Home} />
               {/* <Route exact path="home" component={Home}/> */}
               <Route exact path="/editor" component={CreateNew} />
+              <Route exact path="/detail/:articleId" component={ArticleDetail} />
             </Switch>
           </div>
         </div>

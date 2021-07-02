@@ -26,13 +26,10 @@ function CreateNew(props: any) {
   function handleChange(e: BaseSyntheticEvent) {
     setTextc(e.target.value);
     const html = converter.makeHtml(e.target.value);
-    console.log(textsf)
-    
     setHtmlc(html);
   }
 
   function save(e: BaseSyntheticEvent) {
-    console.log('text', textsf);
     const params = {
       content: textc,
       title,
@@ -46,7 +43,8 @@ function CreateNew(props: any) {
   }
 
   return (
-    <div className={styles['create-new']+' mt-56'}>
+    <div className="center-block">
+      <div className={styles['create-new']+' mt-56 center-block'}>
       <div className={styles['editor-header']+' w-full boxflex header'}>
         <input type="text" value={title}
           placeholder="请输入标题"
@@ -60,6 +58,7 @@ function CreateNew(props: any) {
         <Editor textc={textc} editor-change={handleChange} />
         <Previewer htmlc={htmlc} />
       </div>
+    </div>
     </div>
   );
 }
