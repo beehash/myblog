@@ -2,6 +2,7 @@ import React,{ useState, BaseSyntheticEvent } from 'react';
 import { useSelector } from 'react-redux'
 import Editor from '@/components/business/Editor';
 import Previewer from '@/components/business/Previewer';
+import Modal from '@/components/base/Modal';
 import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
 import articleApi from '@/apis/article';
@@ -10,8 +11,7 @@ function CreateNew(props: any) {
   const [htmlc, setHtmlc] = useState('');
   const [textc, setTextc] = useState('');
   const [title, setTitle] = useState('');
-  let textsf = '';
-  // const [summary, setSummary] = useState('');
+
   const user = useSelector((state: any) => {
     return state.user;
   });
@@ -59,6 +59,9 @@ function CreateNew(props: any) {
         <Previewer htmlc={htmlc} />
       </div>
     </div>
+      <Modal visible={true} title="发布设置">
+        文章内容设置
+      </Modal>
     </div>
   );
 }

@@ -19,7 +19,6 @@ export default function ArticleDetail(props: {id: string}) {
   });
 
   function getArticleById() {
-    // console.log(params)
     ArticleApi.getArticleById({id: params.articleId || 'sn1622627657778800'}).then((res) => {
       const html = converter.makeHtml(res.content);
       console.log(html);
