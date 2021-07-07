@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import { useScrollToTop } from '@/hooks/scrollTop';
 import ArticleApi from '@/apis/article';
 import banner from '@/statics/images/banner.jpeg';
 import showdown from 'showdown';
@@ -8,6 +9,7 @@ import styles from '@/statics/sass/article-detail.module.scss';
 export default function ArticleDetail(props: {id: string}) {
   const [htmlc, setHtmlc] = useState('');
   const [title, setTitle] = useState('');
+  useScrollToTop();
 
   const params: {articleId: string} = useParams();
 
@@ -21,7 +23,6 @@ export default function ArticleDetail(props: {id: string}) {
   function getArticleById() {
     ArticleApi.getArticleById({id: params.articleId || 'sn1622627657778800'}).then((res) => {
       const html = converter.makeHtml(res.content);
-      console.log(html);
       setTitle(res.title);
       setHtmlc(html);
     });

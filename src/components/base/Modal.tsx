@@ -15,19 +15,21 @@ const defaultOptions = {
 
 export default function Modal(props: any=defaultOptions) {
   const modal = useRef(null);
+
   useEffect(() => {
-    console.log(props);
-    // concealTemplate();
+    props.setVisible(props.visible);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.visible]);
 
-  return (
+  return props.visible ? (
     <Portal className={styles['modal-mask']}>
       <div className={styles['modal-box']} ref={modal} style={{width: props.width, height: props.height}}>
         {/* 头部 */}
         <div className="header">
           <p className={styles.title}>{props.title}</p>
-          <span className="close"><Icon name="close" color="#343434"/></span>
+          <span className="close" onClick={() => props.setVisible(false)}>
+            <Icon name="close" color="#343434"/>
+          </span>
         </div>
         {/* 主体 */}
         <div className={styles.body}>
@@ -40,6 +42,6 @@ export default function Modal(props: any=defaultOptions) {
         </div>}
       </div>
     </Portal>
-  )
+  ): null;
 }
 Modal.defaultProps = defaultOptions;

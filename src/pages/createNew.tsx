@@ -11,6 +11,7 @@ function CreateNew(props: any) {
   const [htmlc, setHtmlc] = useState('');
   const [textc, setTextc] = useState('');
   const [title, setTitle] = useState('');
+  const [visible, setVisible] = useState(false);
 
   const user = useSelector((state: any) => {
     return state.user;
@@ -30,13 +31,16 @@ function CreateNew(props: any) {
   }
 
   function save(e: BaseSyntheticEvent) {
+    setVisible(true);
+    console.log(visible);
     const params = {
       content: textc,
       title,
       author: user.name,
       summary: textc.substring(0, 120),
     }
-
+    if(!params.title || !params.content) return;
+    
     articleApi.addArticle(params).then((res) => {
       console.log('addArticle', res);
     });
@@ -59,9 +63,9 @@ function CreateNew(props: any) {
         <Previewer htmlc={htmlc} />
       </div>
     </div>
-      <Modal visible={true} title="发布设置">
-        文章内容设置
-      </Modal>
+    <Modal title="发布设置" visible={visible} setVisible={setVisible}>
+      文章内容设置
+    </Modal>
     </div>
   );
 }

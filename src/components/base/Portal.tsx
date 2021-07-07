@@ -1,9 +1,9 @@
 import {useEffect} from 'react'
 import ReactDOM from 'react-dom';
 
-export default function Portal(props: any) {
+export default function Portal({children, className}: any) {
   const mask = document.createElement('div');
-  mask.className=props.className;
+  mask.className=className;
   
   useEffect(() => {
     document.body.appendChild(mask);
@@ -13,7 +13,7 @@ export default function Portal(props: any) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return ReactDOM.createPortal(
-    props.children,
+    children,
     mask
   );
 }
