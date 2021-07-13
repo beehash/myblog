@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CursorSpecialEffects } from './utils/cursor.js';
 
+const mask = document.createElement('div');
+mask.id='modal-root';
+
+
 const cursorSpecialEffects = new CursorSpecialEffects();
 cursorSpecialEffects.init();
 document.body.className = 'cursor';
@@ -15,6 +19,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+document.body.appendChild(mask);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

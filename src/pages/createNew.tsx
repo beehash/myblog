@@ -1,8 +1,10 @@
-import React,{ useState, BaseSyntheticEvent } from 'react';
+import React,{ useState, useEffect, BaseSyntheticEvent } from 'react';
 import { useSelector } from 'react-redux'
 import Editor from '@/components/business/Editor';
 import Previewer from '@/components/business/Previewer';
 import Modal from '@/components/base/Modal';
+import TextArea from '@/components/base/TextArea';
+import Checkbox from '@/components/base/Checkbox';
 import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
 import articleApi from '@/apis/article';
@@ -12,6 +14,10 @@ function CreateNew(props: any) {
   const [textc, setTextc] = useState('');
   const [title, setTitle] = useState('');
   const [visible, setVisible] = useState(false);
+  const [formData, setFormData] = useState<{summary: string}>({summary: ''});
+
+  useEffect(() => {
+  }, [formData]);
 
   const user = useSelector((state: any) => {
     return state.user;
@@ -32,7 +38,6 @@ function CreateNew(props: any) {
 
   function save(e: BaseSyntheticEvent) {
     setVisible(true);
-    console.log(visible);
     const params = {
       content: textc,
       title,
@@ -44,6 +49,17 @@ function CreateNew(props: any) {
     articleApi.addArticle(params).then((res) => {
       console.log('addArticle', res);
     });
+  }
+
+  function handleFormChange ({field, value}: FormModel) {
+    setFormData({
+      ...formData,
+      [field]: value,
+    });
+  }
+
+  function onConfirm () {
+
   }
 
   return (
@@ -63,8 +79,19 @@ function CreateNew(props: any) {
         <Previewer htmlc={htmlc} />
       </div>
     </div>
-    <Modal title="发布设置" visible={visible} setVisible={setVisible}>
-      文章内容设置
+    <Modal title="发布设置" visible={visible}
+      close={() => setVisible(false)}
+      onConfirm={onConfirm}>
+      <TextArea value={formData.summary}
+        field="summary"
+        labelWidth={70}
+        maxLength={200}
+        labelText="文章简介"
+        onChange={(model: FormModel) => handleFormChange(model)} />
+      <Checkbox
+        field="publish"
+        labelText="公开"
+        onChange={(model: FormModel) => handleFormChange(model)} />
     </Modal>
     </div>
   );

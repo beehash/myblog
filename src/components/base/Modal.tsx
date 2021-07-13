@@ -17,17 +17,17 @@ export default function Modal(props: any=defaultOptions) {
   const modal = useRef(null);
 
   useEffect(() => {
-    props.setVisible(props.visible);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.visible]);
+  }, []);
 
-  return props.visible ? (
-    <Portal className={styles['modal-mask']}>
+  if(!props.visible) return null;
+  return (
+    <Portal className={styles['modal-mask']} visible={props.visible}>
       <div className={styles['modal-box']} ref={modal} style={{width: props.width, height: props.height}}>
         {/* 头部 */}
-        <div className="header">
+        <div className={styles.header}>
           <p className={styles.title}>{props.title}</p>
-          <span className="close" onClick={() => props.setVisible(false)}>
+          <span className="close" onClick={() => props.close()}>
             <Icon name="close" color="#343434"/>
           </span>
         </div>
@@ -36,12 +36,12 @@ export default function Modal(props: any=defaultOptions) {
           {props.children}
         </div>
         {/* 底部 */}
-        {!props.concealFooter && <div className="footer">
-          <button className="base-button primary-button">确定</button>
-          {!props.cancelable && <button className="base-button default-button">取消</button>}
+        {!props.concealFooter && <div className={styles.footer + ' text-center'}>
+          <button className="base-button primary-button mr-16" onClick={props.onConfirm}>确定</button>
+          {!props.cancelable && <button className="base-button default-button" onClick={() => props.close()}>取消</button>}
         </div>}
       </div>
     </Portal>
-  ): null;
+  );
 }
 Modal.defaultProps = defaultOptions;

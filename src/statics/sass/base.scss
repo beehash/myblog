@@ -210,13 +210,12 @@ a:visited{color: #343434;text-decoration: none;}
 /* Icon  */
 svg{
   display: inline-block;
-  vertical-align: sub;
+  vertical-align: baseline;
 }
 .base-icon{
   display: inline-block;
   height: 28px;
   line-height: 28px;
-  padding: 2px 4px;
 }
 .previewer {
   width: 50%;
