@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
 import ReactDOM from 'react-dom';
 
-export default function Portal({visible, children, className}: any) {
+export default function Portal({visible, children, className, rootId}: any) {
   const [target, setTarget] = useState<HTMLElement | null>();
-  let container = document.getElementById('modal-root');
+  let container = document.getElementById(rootId);
 
   useEffect(() => {
     (container as HTMLElement).className=className as string;

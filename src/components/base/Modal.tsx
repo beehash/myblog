@@ -1,5 +1,6 @@
 import React, {useRef, useEffect} from 'react';
 import Portal from './Portal';
+import { createRoot } from '@/utils/index';
 import Icon from '@/components/base/Icon';
 import styles from '@/statics/sass/modal.module.scss';
 
@@ -17,12 +18,12 @@ export default function Modal(props: any=defaultOptions) {
   const modal = useRef(null);
 
   useEffect(() => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    createRoot('modal-root');
   }, []);
 
   if(!props.visible) return null;
   return (
-    <Portal className={styles['modal-mask']} visible={props.visible}>
+    <Portal rootId="modal-root" className={styles['modal-mask']} visible={props.visible}>
       <div className={styles['modal-box']} ref={modal} style={{width: props.width, height: props.height}}>
         {/* 头部 */}
         <div className={styles.header}>

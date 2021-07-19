@@ -2,7 +2,7 @@ import { Essay, ArticleCator } from '@/models/Essay.model';
 import fetch from '../utils/fetch';
 
 class Article {
-  static getDailyRecommendArticle(id: number): Promise<Essay> {
+  static getDailyRecommendArticle(id: number): Promise<ArticleCator> {
     return fetch.get('/api/article/today', {id});
   }
   static addArticle(params: {content: string, title: string}): Promise<ArticleCator & Essay> {

@@ -7,7 +7,7 @@ export default function TextArea(props: any) {
   }
 
   return (
-    <div className={styles['form-item']}>
+    <div className={styles['form-item'] + ' clearfix'}>
       {props.required && <span className={styles.required}>*</span>}
       <label className={styles['form-label']+ ' ' + styles['form-label-area']}>
         <span style={{width: props.labelWidth + 'px'}}
@@ -15,9 +15,10 @@ export default function TextArea(props: any) {
         </span>
         <textarea maxLength={props.maxLength} value={props.value}
           className={styles['form-control']}
-          onChange={(e) => handleChange(e.target.value)} />
+          onChange={(e) => handleChange(e.target.value)}
+          style={{width: props.width}}/>
       </label>
-      <span className={styles.prompt}>({props.value.length}/{props.maxLength})</span>
+      {props.maxLength && <span className={styles.prompt}>({props.value.length}/{props.maxLength})</span>}
     </div>
   );
 }

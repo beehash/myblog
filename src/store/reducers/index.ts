@@ -1,9 +1,29 @@
 import type { AnyAction } from 'redux';
 const GET_USER = 'GET_USER';
-// const userstate = {
-//   type: GET_USER,
-//   user: 'beehash'
-// };
+
+function Theme(state: any = { color: '#125d98', inColor: '#233e8b'}, action: AnyAction) {
+  console.log('reducers theme', state, action);
+  switch (action.type) {
+    case 'SET_THEME':
+      return {
+        ...state,
+        theme: {
+          ...state.theme,
+          color: action.color
+        },
+      };
+    case 'SET_INTHEME': 
+      return {
+        ...state,
+        theme: {
+          ...state.theme,
+          inColor: action.inColor
+        },
+      };
+    default:
+      return state;
+  }
+}
 
 function User(state: any = {name: 'beehash'}, action: AnyAction) {
   switch (action.type) {
@@ -22,4 +42,5 @@ function ArticleDetail (state: any = {id: '67'}, action: AnyAction) {
       return state;
   }
 }
-export { User, ArticleDetail };
+
+export { User, ArticleDetail, Theme };

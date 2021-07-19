@@ -45,5 +45,5 @@ export default function ArticleDetail(props: {id: string}) {
         </div>
       </div>
     </div>
-  )
+  );
 }

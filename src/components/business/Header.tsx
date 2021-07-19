@@ -1,4 +1,5 @@
 import React, {BaseSyntheticEvent, useState} from 'react';
+import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import logo from '@/statics/images/logo.svg';
 import '@/statics/sass/App.scss';
@@ -7,6 +8,7 @@ import styles from '@/statics/sass/home.module.scss';
 export default function Header () {
   const codeAge:number = new Date().getFullYear() - 2018;
   const [theme, setTheme] = useState('#125d98');
+  const dispatch = useDispatch()
 
   function handleThemeChange (event: BaseSyntheticEvent) {
     const color: string = event.target.value;
@@ -24,6 +26,7 @@ export default function Header () {
     const blue = parseInt(color.slice(5, 7), 16);
     
     const inverseColor = `#${(255-red).toString(16)}${(255-green).toString(16)}${(255-blue).toString(16)}`;
+    dispatch({ type: 'SET_THEME', color, inColor: inverseColor});
     styleId.innerText = `.theme{color: ${inverseColor};}
                         .theme-bg{background-color: ${color}}
                         .base-button{color: ${inverseColor}}
