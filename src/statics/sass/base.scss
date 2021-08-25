@@ -209,14 +209,14 @@ a:visited{color: #343434;text-decoration: none;}
   }
 }
 /* Icon  */
-svg{
-  display: inline-block;
-  vertical-align: baseline;
-}
 .base-icon{
   display: inline-block;
   height: 28px;
   line-height: 28px;
+  svg{
+    display: inline-block;
+    vertical-align: text-bottom;
+  }
 }
 .previewer {
   width: 50%;

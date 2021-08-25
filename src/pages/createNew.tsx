@@ -5,18 +5,29 @@ import Previewer from '@/components/business/Previewer';
 import Modal from '@/components/base/Modal';
 import TextArea from '@/components/base/TextArea';
 import Checkbox from '@/components/base/Checkbox';
+import RadioGroup from '@/components/base/RadioGroup';
+import CheckboxGroup from '@/components/base/CheckboxGroup';
+import Radio from '@/components/base/Radio';
 import Message from '@/utils/message';
 import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
 import articleApi from '@/apis/article';
+const radioGroup = [{label: '苹果', value: 1}, {label: '梨子', value: 2}, {label: '香蕉', value: 3}];
 
+interface articleForm {
+  summary: string;
+  publish: boolean;
+  saveDraft: boolean;
+  essayTag: string;
+  articleType: [];
+}
 function CreateNew(props: any) {
   // useState
   const [htmlc, setHtmlc] = useState('');
   const [textc, setTextc] = useState('');
   const [title, setTitle] = useState('');
   const [visible, setVisible] = useState(false);
-  const [formData, setFormData] = useState<{summary: string, publish: boolean}>({summary: '', publish: true});
+  const [formData, setFormData] = useState<articleForm>({summary: '', publish: false, saveDraft: false, essayTag: '1', articleType: []});
 
   // useEffect
   useEffect(() => {}, [formData]);
@@ -104,11 +115,34 @@ function CreateNew(props: any) {
             labelText="文章简介"
             onChange={(model: FormModel) => handleFormChange(model)} />
         </div>
+
         {/* checkbox */}
         <Checkbox value={formData.publish}
+          className="mr-16"
           field="publish"
+          labelWidth={70}
           labelText="公开"
           onChange={(model: FormModel) => handleFormChange(model)} />
+        
+        {/* Radio */}
+        <Checkbox value={formData.saveDraft}
+          field="saveDraft"
+          labelWidth={70}
+          labelText="存为草稿"
+          onChange={(model: FormModel) => handleFormChange(model)} />
+
+        {/* RadioGroup */}
+        <RadioGroup value={formData.essayTag}
+          radioGroup={radioGroup}
+          field="essayTag"
+          labelText="文章标签"
+          onChange={(model: FormModel) => handleFormChange(model)}/>
+        {/* checkboxGroup */}
+        <CheckboxGroup value={formData.articleType}
+          checkboxGroup={radioGroup}
+          field="articleType"
+          labelText="文章类型"
+          onChange={(model: FormModel) => handleFormChange(model)}/>
       </Modal>
     </div>
   );

@@ -4,22 +4,20 @@ import styles from '@/statics/sass/form.module.scss';
 import Icon from '@/components/base/Icon';
 
 export default function Checkbox(props: any) {
-  const [, setValue] = useState(false);
   const theme = useSelector((state: any) => {
     return state.theme;
   });
 
   function handleChange(e: BaseSyntheticEvent) {
     props.onChange({value: e.target.checked, field: props.field});
-    setValue(e.target.value);
   }
 
   return (
-    <div className={styles['form-item']+ ' ' + styles['checkbox']}>
+    <div className={styles['form-item']+ ' '+ styles.labelauto+ ' '+ props.className}>
     {props.required && <span className={styles.required}>*</span>}
     <label className={styles['form-label']}>
-      <span className={styles.labelText+' pr-16'}
-        style={{width: props.labelWidth + 'px'}}>
+      <span className={styles.labelText+' pr-4'}
+        style={props.labelWidth? {width: props.labelWidth + 'px'}: {}}>
         { props.labelText }
       </span>
       <span className={styles.checkbox}
@@ -27,8 +25,8 @@ export default function Checkbox(props: any) {
         {props.value && <Icon name="checked" color="#ffffff"
           className={props.value ? styles.checked : ''} />}
       </span>
-      <input type="checkbox" className={styles['original-checkbox']}
-        value={props.value} onChange={handleChange} />
+      <input type="checkbox" className={styles['original']}
+        checked={props.value} onChange={handleChange} />
     </label>
   </div>
   )
