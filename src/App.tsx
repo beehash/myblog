@@ -8,15 +8,18 @@ import Header from '@/components/business/Header';
 import Home from '@/pages/home';
 import CreateNew from '@/pages/createNew';
 import ArticleDetail from '@/pages/article-detail';
+import Loading from '@/components/base/Loading';
 
 function App() {
+  // const loading = true;
   return (
     <Provider store={store}>
       <Router>
         <div className="App">
-          <div className="main-gradient full_gradient js-full-gradient state-full state-complete"></div>
+          {/* <div className="main-gradient full_gradient js-full-gradient state-full state-complete"></div> */}
           {/* header */}
           <Header/>
+          <Loading />
           <div className="fill-box"></div>
           <div>
             <Switch>

@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useState, useEffect } from 'react';
+import React, { BaseSyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
 import styles from '@/statics/sass/form.module.scss';
 
@@ -8,7 +8,6 @@ export default function Radio(props: any) {
   });
 
   function handleChange(e: BaseSyntheticEvent) {
-    console.log('radio', e.target.checked);
     props.onChange({value: e.target.checked, field: props.field});
   }
 

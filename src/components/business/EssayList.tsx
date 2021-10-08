@@ -1,9 +1,12 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import {Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Essay } from '@/models/Essay.model';
 import ArticleApi from '@/apis/article'; 
+import { timeParser } from '@/utils';
 import styles from '@/statics/sass/essay.module.scss';
 import Icon from '@/components/base/Icon';
+
 const Icons: IconCator[] = [
   {name: 'acclaim', color: '#A2B29F', text: '点赞量', key: 'likes'},
   {name: 'browsers', color: '#A2B29F', text: '浏览量', key: 'browser'},
@@ -19,9 +22,12 @@ interface IconCator {
 
 export default function EssayList() {
   const [list, setList] = useState<Essay[]>([]);
+  const dispatch = useDispatch();
 
   const getArticleList = () => {
+    dispatch({type: 'SETLOADING', loading: true});
     ArticleApi.getArticles({size: 10}).then((data) => {
+      dispatch({type: 'SETLOADING', loading: false});
       setList(data);
     });
   };
@@ -49,13 +55,13 @@ export default function EssayList() {
   function generateListTemplate() {
     return list.length > 0 && list.map((item: Essay, index) => {
       return (
-      <Link to={{pathname: '/detail/'+item.essayId}} className="mr-12" key={index}>
+      <Link to={{pathname: '/detail/'+item.essayId}} className="block" key={index}>
         <li className={`${styles['essay-item']} p-12 my-8`} key={item.essayId}>
           <h3 className="text-left essay-title">{ item.title }</h3>
           <p className={'text-justify ' + styles['essay-summary']}>{ item.summary }</p>
           <div className={styles['essay-item-footer']+' boxflex mt-16'}>
             <div className={`${styles.infos}`}>
-              <span>{item.author} 发布于 {item.publishTime} </span>
+              <span>{item.author} 发布于 {timeParser(item.publishTime)} </span>
               <span></span>
             </div>
             <div className="icons">{ generateIcons(item, index) }</div> 

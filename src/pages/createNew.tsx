@@ -7,7 +7,6 @@ import TextArea from '@/components/base/TextArea';
 import Checkbox from '@/components/base/Checkbox';
 import RadioGroup from '@/components/base/RadioGroup';
 import CheckboxGroup from '@/components/base/CheckboxGroup';
-import Radio from '@/components/base/Radio';
 import Message from '@/utils/message';
 import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
@@ -18,16 +17,24 @@ interface articleForm {
   summary: string;
   publish: boolean;
   saveDraft: boolean;
-  essayTag: string;
-  articleType: [];
+  essayTag: number;
+  articleType: number[];
 }
+const formDataStatic = {
+  summary: '',
+  publish: false,
+  saveDraft: false,
+  essayTag: 1,
+  articleType: [],
+};
+
 function CreateNew(props: any) {
   // useState
   const [htmlc, setHtmlc] = useState('');
   const [textc, setTextc] = useState('');
   const [title, setTitle] = useState('');
   const [visible, setVisible] = useState(false);
-  const [formData, setFormData] = useState<articleForm>({summary: '', publish: false, saveDraft: false, essayTag: '1', articleType: []});
+  const [formData, setFormData] = useState<articleForm>({...formDataStatic});
 
   // useEffect
   useEffect(() => {}, [formData]);
@@ -55,13 +62,16 @@ function CreateNew(props: any) {
   // 保存
   function save() {
     const params = {
+      ...formData,
       content: textc,
       title,
-      author: user.name,
-      publish: formData.publish,
-      summary: formData.summary,
-    }
-    if(!params.title || !params.content) return;
+      author: user.name, 
+    };
+
+    if(!params.title || !params.content || !params.summary) {
+      Message.warning('请填入标题、内容和简介！');
+      return;
+    };
     
     articleApi.addArticle(params).then((res) => {
       console.log('addArticle', res);
@@ -74,12 +84,6 @@ function CreateNew(props: any) {
       ...formData,
       [field]: value,
     });
-  }
-
-  // 确认
-  function onConfirm () {
-    Message.info('nihao');
-    save();
   }
 
   return (
@@ -96,7 +100,7 @@ function CreateNew(props: any) {
               onClick={() => setVisible(true)}>保 存</button>
           </div>
         </div>
-        <div className={styles['editor-box']+' boxflex mt-8 p-8'}>
+        <div className={styles['editor-box']+' boxflex mt-8'}>
           <Editor textc={textc} editor-change={handleChange} />
           <Previewer htmlc={htmlc} />
         </div>
@@ -104,7 +108,7 @@ function CreateNew(props: any) {
       {/* 发布设置 */}
       <Modal title="发布设置" visible={visible}
         close={() => setVisible(false)}
-        onConfirm={onConfirm}>
+        onConfirm={save}>
         {/* 简介 */}
         <div className="row">
           <TextArea value={formData.summary}

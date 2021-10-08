@@ -21,3 +21,28 @@ export function singleton<T>(Target: SingletonConstructor<T>) {
     return new Target(...args);
   }
 }
+
+export function timeParser(time: number | string, format: string= 'YYYY-mm-dd HH : ii : ss ww') {
+  const dateTime = new Date(time);
+  const formatParser = {
+    YYYY: dateTime.getFullYear(),
+    mm: dateTime.getMonth() + 1,
+    dd: dateTime.getDate(),
+    HH: dateTime.getHours(),
+    ii: dateTime.getMinutes(),
+    ss: dateTime.getSeconds(),
+    ww: dateTime.getDay(),
+  }
+
+  const result = format.replace(/(YYYY|mm|dd|HH|ii|ss|ww)/g, (result, key: string) => {
+    const value = (formatParser as Obj)[key] || '00';
+    if(result === 'ww') {
+      return '星期'+['日','一', '二', '三', '四', '五', '六'][value];
+    }
+    if(result.length > 0 && value < 10) {
+      return '0'+value;
+    }
+    return value;
+  });
+  return result;
+}

@@ -1,6 +1,6 @@
 import { singleton } from '@/utils/index';
 import icons from '@/utils/icons';
-
+import styles from '@/statics/sass/modal.module.scss';
 
 export interface MessageOption {
   msg: string;
@@ -44,7 +44,14 @@ class Message {
   // 信息提示弹窗
   info(msg: string) {
     (this.root as HTMLElement).style.display = 'block';
-    (this.root as HTMLElement).innerHTML=`<span class='msg-box msg-info'>${icons.info}<span>${msg}</span></span>`;
+    (this.root as HTMLElement).innerHTML=`<span class="${styles['msg-box']} msg-info"><span class="${styles['base-icon']}">${icons.info}</span><span>${msg}</span></span>`;
+    setTimeout(() => {
+      (this.root as HTMLElement).style.display = 'none';
+    }, 1000);
+  }
+  warning(msg: string) {
+    (this.root as HTMLElement).style.display = 'block';
+    (this.root as HTMLElement).innerHTML=`<span class="${styles['msg-box']} msg-info"><span class="${styles['base-icon']}">${icons.warning}</span><span>${msg}</span></span>`;
     setTimeout(() => {
       (this.root as HTMLElement).style.display = 'none';
     }, 1000);

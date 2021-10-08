@@ -34,3 +34,33 @@
     }
   }
 }
+
+.msg-box {
+  padding: 4px 48px;
+  .base-icon{
+    height: 28px;
+    line-height: 28px;
+    margin-top: -4px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+}
+.loading-mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 34;
+  .loading-box{
+    position: absolute;
+    top: calc(50% - 80px);
+    left: calc( 50% - 80px);
+    width: 160px;
+    height: 160px;
+    // background-color: rgba(55, 55, 55, 0.1);
+    border-radius: 8px;
+    z-index: 35;
+  }
+}

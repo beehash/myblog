@@ -25,6 +25,7 @@ export default function Banner () {
 
   useEffect(() => {
     getDailyRecommendArticle();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,7 +1,6 @@
 import type { AnyAction } from 'redux';
-const GET_USER = 'GET_USER';
 
-function Theme(state: any = { color: '#125d98', inColor: '#233e8b'}, action: AnyAction) {
+export function theme(state: any = { color: '#125d98', inColor: '#233e8b'}, action: AnyAction) {
   switch (action.type) {
     case 'SET_THEME':
       return {
@@ -23,23 +22,11 @@ function Theme(state: any = { color: '#125d98', inColor: '#233e8b'}, action: Any
       return state;
   }
 }
-
-function User(state: any = {name: 'beehash'}, action: AnyAction) {
+export function user(state: any = {name: 'beehash'}, action: AnyAction) {
   switch (action.type) {
-    case GET_USER:
+    case 'GET_USER':
       return action.user;
     default:
       return state;
   }
 }
-
-function ArticleDetail (state: any = {id: '67'}, action: AnyAction) {
-  switch(action.type) {
-    case 'GET_ID':
-      return state.id;
-    default:
-      return state;
-  }
-}
-
-export { User, ArticleDetail, Theme };

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import logo from '@/statics/images/logo.svg';
 import '@/statics/sass/App.scss';
 import styles from '@/statics/sass/home.module.scss';
+import NavBar from '@/components/business/Navbar';
 
 export default function Header () {
   const codeAge:number = new Date().getFullYear() - 2018;
@@ -40,21 +41,22 @@ export default function Header () {
 
   return (
     <div className={styles['fix-header'] + ' theme-bg p-12'}>
-      <div className="header center-block">
-        <p className="left-bar">
-        <span className={`${styles.avator} mr-8`}><img src={logo} alt="avator"/></span>
-        <span className="mr-8 inline-block vertical-middle theme">beehash 的博客空间</span>
-        <span className="inline-block vertical-middle theme">码龄：{codeAge} 年</span>
-      </p>
+      <div className="header center-block boxflex flexalign-center">
+        <div className="left-bar boxflex flexalign-center">
+        <Link to="/"><span className={`${styles.avator} mr-8`}><img src={logo} alt="avator"/></span></Link>
+        {/* <span className="mr-8 inline-block vertical-middle theme">beehash 的博客空间</span>
+        <span className="inline-block vertical-middle theme">码龄：{codeAge} 年</span> */}
+        <NavBar />
+      </div>
         <div className={styles['right-bar']+' mt-6'}>
-        <span className="mr-8 mt-4">
+        {/* <span className="mr-8 mt-4">
           <label className="mr-8 theme">皮肤</label>
           <input type="color" value={theme} onChange={handleThemeChange}/>
-        </span>
+        </span> */}
         <Link to="/editor"><button className="base-button default-button mr-8">写文章</button></Link>
         <button className="base-button text-button">登录</button>
       </div>
       </div>
     </div>
-  )
+  );
 }

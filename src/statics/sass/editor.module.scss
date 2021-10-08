@@ -1,5 +1,6 @@
 .editor{
   width: 50%;
+  padding: 8px;
   .textArea{
     width: 100%;
     height: calc(100% - 32px);
@@ -44,6 +45,7 @@
   width: 100%;
   height: 32px;
   line-height: 32px;
+  border-bottom: 1px solid #cccccc;
   & ul{
     display: flex;
     & li{
@@ -54,6 +56,7 @@
 }
 .create-new{
   width: 100%;
+  margin-top: 36px;
   .editor-header{
     background-color: #ffffff;
   }
@@ -74,5 +77,6 @@
   .editor-box{
     background-color: #ffffff;
     height: calc(100vh - 178px);
+    border: 1px solid #cccccc;
   }
 }

@@ -10,7 +10,7 @@ export default function RadioGroup(props: any) {
         { props.labelText }
       </span>
       {props.radioGroup.map((item: {value: string | number, label: string}, index: number) => {
-        return (<Radio key={index} value={props.value == item.value}
+        return (<Radio key={index} value={props.value === item.value}
           option={item.value}
           field={props.field}
           labelText={item.label}

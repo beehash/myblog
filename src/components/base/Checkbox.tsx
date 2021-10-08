@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useState } from 'react';
+import React, { BaseSyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
 import styles from '@/statics/sass/form.module.scss';
 import Icon from '@/components/base/Icon';

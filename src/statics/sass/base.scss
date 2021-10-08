@@ -64,6 +64,9 @@ a:visited{color: #343434;text-decoration: none;}
   display: flex;
   justify-content: space-between;
 }
+.flexalign-center{
+  align-items: center;
+}
 /* 按钮效果 */
 .base-button{
   display: inline-block;
@@ -276,4 +279,20 @@ a:visited{color: #343434;text-decoration: none;}
   display: inline-block;
   width: 14px;
   height: 14px;
+}
+.base-icon.loading{
+  height: auto;
+  line-height: initial;
+  margin-top: 30px;
+  margin-left: 30px;
+  animation: loadingrotate 1.2s infinite;
+  transition: linear;
+}
+@keyframes loadingrotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
 }

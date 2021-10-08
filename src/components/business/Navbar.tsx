@@ -27,7 +27,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className={styles.navBar + ' center-block'}>
+    <div className={styles.navBar+ ' theme'}>
       <ul>
         {generateNavList()}
       </ul>

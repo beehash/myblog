@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-// import useModel from '@/hooks/model';
 import styles from '@/statics/sass/form.module.scss';
 
 export default function Input(props: any) {

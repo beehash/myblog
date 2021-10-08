@@ -19,12 +19,16 @@
 .navBar{
   height: 48px;
   line-height: 48px;
-  background-color: #f0f0f0;
+  // background-color: #f0f0f0;
   & ul{
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    & li{
+      width: 160px;
+      text-align: center;
+    }
   }
 }
 // tag-view
