@@ -35,15 +35,17 @@ export default function ArticleDetail(props: {id: string}) {
 
   return (
     <div className={styles['article-detail']}>
+      <div className="repeat-bg star"></div>
       {/* <div className={styles['banner']}>
         <img src={banner} alt="article banner"></img>
       </div> */}
-      <h1 className="text-center theme my-24">{title}</h1>
+      <h1 className="text-center theme py-24">{title}</h1>
       <div className={styles.content+' center-block'}>
         <div className={styles.previewer + ' previewer'}>
           <div className={styles['html-previewer']} dangerouslySetInnerHTML={{__html: htmlc}}></div>
         </div>
       </div>
+      <div className="repeat-bg flower1"></div>
     </div>
   );
 }
