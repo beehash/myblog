@@ -22,7 +22,7 @@ export function singleton<T>(Target: SingletonConstructor<T>) {
   }
 }
 
-export function timeParser(time: number | string, format: string= 'YYYY-mm-dd HH : ii : ss ww') {
+export function timeParser(time: number | string, format: string= 'YYYY-mm-dd HH : ii : ss') {
   const dateTime = new Date(time);
   const formatParser = {
     YYYY: dateTime.getFullYear(),

@@ -9,6 +9,8 @@ import Home from '@/pages/home';
 import CreateNew from '@/pages/createNew';
 import ArticleDetail from '@/pages/article-detail';
 import Loading from '@/components/base/Loading';
+import Theme from '@/components/base/Theme';
+import GirlNav from '@/components/business/GirlNav';
 
 function App() {
   // const loading = true;
@@ -20,8 +22,9 @@ function App() {
           {/* header */}
           <Header/>
           <Loading />
-          <div className="fill-box"></div>
-          <div>
+          <Theme />
+          <GirlNav/>
+          <div className="container center-block">
             <Switch>
               <Route exact path="/" component={Home} />
               {/* <Route exact path="home" component={Home}/> */}

@@ -7,7 +7,6 @@ export default function Input(props: any) {
     props.onChange({field: props.field, value});
     setValue(value);
   }
-  console.log(props.labelText);
 
   return (
     <div className={styles['form-item']}>

@@ -40,7 +40,7 @@ export default function Header () {
   }
 
   return (
-    <div className={styles['fix-header'] + ' theme-bg p-12'}>
+    <div className={styles['fix-header'] + ' p-12'}>
       <div className="header center-block boxflex flexalign-center">
         <div className="left-bar boxflex flexalign-center">
         <Link to="/"><span className={`${styles.avator} mr-8`}><img src={logo} alt="avator"/></span></Link>

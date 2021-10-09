@@ -25,7 +25,7 @@ export default function Radio(props: any) {
             style={props.value ? {backgroundColor: theme.color}: {}} />}
         </span>
         <input type="radio" name={props.field} className={styles['original']}
-          checked={props.value} onChange={handleChange} onClick={() => {console.log(333333)}}/>
+          checked={props.value} onChange={handleChange}/>
       </label>
     </div>
   )

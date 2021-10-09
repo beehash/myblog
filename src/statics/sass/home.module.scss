@@ -70,7 +70,9 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 37;
+  color: #343434;
+  background: #FBF4E9;
+  z-index: 35;
 }
 .next{
   position: absolute;
@@ -86,4 +88,50 @@
   line-height: 24px;
   background-color: #ffffff;
   border: 1px solid #f0f0f0;
+}
+.side-bar{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 330px;
+  color: #ffffff;
+  background-color: rgba(51,71,86, 0.8);
+  transition: transform 1s;
+  box-sizing: border-box;
+  z-index: 36;
+  &.visible{
+    transform: translateX(0px);
+  }
+  &.hidden{
+    transform: translateX(330px);
+  }
+  .side-header{
+    height: 48px;
+    line-height: 48px;
+    .title{
+      padding-left: 12px;
+      font-size: 16px;
+      color: #F0A500;
+      font-weight: 800;
+    }
+    img{
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      vertical-align: middle;
+    }
+  }
+  .personal-info{
+    line-height: 48px;
+    .label{
+      display: inline-block;
+      width: 80px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .value{
+      font-size: 14px;
+    }
+  }
 }
