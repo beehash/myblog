@@ -53,7 +53,7 @@ export default function EssayList() {
     if(!type) return '';
     
     if(list.length > 0){
-      return (list.length > 0 && (
+      return (
         <ul>
           {list.map((item: Essay, index) => {
             return (
@@ -72,7 +72,7 @@ export default function EssayList() {
             </Link>);
           })}
         </ul>
-      )) || '';
+      );
     } else {
       return (
         <div className="essay-none text-center">
