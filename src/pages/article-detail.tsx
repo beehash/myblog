@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { useScrollToTop } from '@/hooks/scrollTop';
 import ArticleApi from '@/apis/article';
-import banner from '@/statics/images/banner.jpeg';
 import showdown from 'showdown';
 import styles from '@/statics/sass/article-detail.module.scss';
 
@@ -36,9 +35,6 @@ export default function ArticleDetail(props: {id: string}) {
   return (
     <div className={styles['article-detail']}>
       <div className="repeat-bg star"></div>
-      {/* <div className={styles['banner']}>
-        <img src={banner} alt="article banner"></img>
-      </div> */}
       <h1 className="text-center theme py-24">{title}</h1>
       <div className={styles.content+' center-block'}>
         <div className={styles.previewer + ' previewer'}>

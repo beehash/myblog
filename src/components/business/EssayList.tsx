@@ -35,6 +35,7 @@ export default function EssayList() {
 
   useEffect(() => {
     getArticleList();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function generateIcons (info: Obj, index: number) {
@@ -49,8 +50,10 @@ export default function EssayList() {
   }
 
   function generateListTemplate(type: boolean = false) {
-    if(list.length > 0 || !type){
-      return (
+    if(!type) return '';
+    
+    if(list.length > 0){
+      return (list.length > 0 && (
         <ul>
           {list.map((item: Essay, index) => {
             return (
@@ -69,7 +72,7 @@ export default function EssayList() {
             </Link>);
           })}
         </ul>
-      );
+      )) || '';
     } else {
       return (
         <div className="essay-none text-center">

@@ -21,7 +21,7 @@ export default function Loading(props: any) {
       rootId="loading-root"
       visible={loading}>
       <div className={styles['loading-box']}>
-        <Icon name="loading" className="loading" color={theme.color} width={100} height={100}/>
+        <Icon name="loading" className="loading" color="#78ecff4c" width={100} height={100}/>
       </div>
     </Portal>
   );
