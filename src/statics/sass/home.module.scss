@@ -135,3 +135,14 @@
     }
   }
 }
+.essay-content{
+  min-height: calc(100vh - 60px);
+  background-color: #ffffff;
+  .footer {
+    padding-top: 170px;
+  }
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+}

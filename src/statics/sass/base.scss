@@ -27,7 +27,75 @@ a:visited{color: #343434;text-decoration: none;}
 .main-gradient{
   background-image: radial-gradient(#fff1eb, #ace0f9 100%);
 }
-
+.container{
+  padding-top: 72px;
+}
+/* 旋转logo效果 */
+.logo-box{
+  position: absolute;
+  top: -100px;
+  left: 55px;
+  width: 300px;
+  height: 300px;
+  padding: 12px;
+  z-index: 33;
+}
+/* 运动的logo效果 */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.banner{
+  height: calc(100vh - 112px);
+  /* background-image: linear-gradient(to top, rgb(253, 219, 146) 0%, rgb(209, 253, 255) 100%);  */
+  &.full_gradient.state-complete{
+    height: 680px !important;
+  }
+}
+.view-box {
+  position: absolute;
+  bottom: 138px;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  z-index: 30;
+  .pole-box{
+    position: absolute;
+    top: 0;
+    left: 180px;
+    width: 50px;
+    height: 500px;
+    background-color: #ffffff;
+    border-radius: 25px 25px 3px 3px;
+    box-shadow: 3px 3px 18px #e8ecef;
+    z-index: 32;
+  }
+  .left-view {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 100px;
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 50px 8px 8px 50px;
+    box-shadow: -2px 1px 6px #1b1a17;
+  }
+  .left-view p{
+    width: 100%;
+  }
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 /* 总体的渐变效果 */
 .full_gradient {
   z-index: -1;
@@ -69,6 +137,7 @@ a:visited{color: #343434;text-decoration: none;}
 .flexalign-center{
   align-items: center;
 }
+
 /* 按钮效果 */
 .base-button{
   display: inline-block;
@@ -175,11 +244,6 @@ a:visited{color: #343434;text-decoration: none;}
   position: relative;
   top: 0;
   left: 0;
-}
-
-/* 文章标题 */
-.essay-title{
-  line-height: 48px;
 }
 
 /* 设置滚动条样式 */
@@ -365,7 +429,6 @@ a:visited{color: #343434;text-decoration: none;}
 .fade-in{
   opacity: 0;
   transition: opacity 2s;
-  // animation: fadein 2s ease-in;
 }
 @keyframes fadein {
   from {
@@ -378,7 +441,6 @@ a:visited{color: #343434;text-decoration: none;}
 .fade-out{
   opacity: 1;
   transition: opacity 2s;
-  // animation: fadeout 2s ease-out;
 }
 @keyframes fadeout{
   from {

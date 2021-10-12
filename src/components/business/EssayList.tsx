@@ -72,7 +72,7 @@ export default function EssayList() {
           return (
           <Link to={{pathname: '/detail/'+item.essayId}} className="block" key={index}>
             <li className={`${styles['essay-item']} p-12`} key={item.essayId}>
-              <h3 className="text-left essay-title">{ item.title }</h3>
+              <h3 className={'text-left ' + styles['essay-title']}>{ item.title }</h3>
               <p className={'text-justify ' + styles['essay-summary']}>{ item.summary }</p>
               <div className={styles['essay-item-footer']+' boxflex mt-16'}>
                 <div className={`${styles.infos}`}>
