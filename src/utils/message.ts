@@ -56,6 +56,13 @@ class Message {
       (this.root as HTMLElement).style.display = 'none';
     }, 1000);
   }
+  error(msg: string) {
+    (this.root as HTMLElement).style.display = 'block';
+    (this.root as HTMLElement).innerHTML=`<span class="${styles['msg-box']} msg-info"><span class="${styles['base-icon']}">${icons.error}</span><span>${msg}</span></span>`;
+    setTimeout(() => {
+      (this.root as HTMLElement).style.display = 'none';
+    }, 1000);
+  }
 
 }
 

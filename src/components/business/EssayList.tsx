@@ -22,21 +22,27 @@ interface IconCator {
 
 export default function EssayList() {
   const [list, setList] = useState<Essay[]>([]);
+  const [updated, setUpdated] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const getArticleList = () => {
     dispatch({type: 'SETLOADING', loading: true});
     ArticleApi.getArticles({size: 10}).then((data) => {
+      setUpdated(true);
       dispatch({type: 'SETLOADING', loading: false});
       setList(data);
-      generateListTemplate(true);
     });
   };
 
+  
   useEffect(() => {
     getArticleList();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    generateListTemplate();
+  }, [list]);
 
   function generateIcons (info: Obj, index: number) {
     return Icons.map((icon, index2) => {
@@ -49,39 +55,37 @@ export default function EssayList() {
     });
   }
 
-  function generateListTemplate(type: boolean = false) {
-    if(!type) return '';
-    
-    if(list.length > 0){
-      return (
-        <ul>
-          {list.map((item: Essay, index) => {
-            return (
-            <Link to={{pathname: '/detail/'+item.essayId}} className="block" key={index}>
-              <li className={`${styles['essay-item']} p-12`} key={item.essayId}>
-                <h3 className="text-left essay-title">{ item.title }</h3>
-                <p className={'text-justify ' + styles['essay-summary']}>{ item.summary }</p>
-                <div className={styles['essay-item-footer']+' boxflex mt-16'}>
-                  <div className={`${styles.infos}`}>
-                    <span>{item.author} 发布于 {timeParser(item.publishTime)} </span>
-                    <span></span>
-                  </div>
-                  <div className="icons">{ generateIcons(item, index) }</div> 
-                </div>
-              </li>
-            </Link>);
-          })}
-        </ul>
-      );
-    } else {
+  function generateListTemplate() {
+    if((!updated)) return '';
+    if(!list || !list.length) {
       return (
         <div className="essay-none text-center">
           <div className="none-data mx-auto mt-48"></div>
           <span className="text-none">暂无数据</span>
         </div>
-        )
+      );
     }
-    
+
+    return (
+      <ul>
+        {list.map((item: Essay, index) => {
+          return (
+          <Link to={{pathname: '/detail/'+item.essayId}} className="block" key={index}>
+            <li className={`${styles['essay-item']} p-12`} key={item.essayId}>
+              <h3 className="text-left essay-title">{ item.title }</h3>
+              <p className={'text-justify ' + styles['essay-summary']}>{ item.summary }</p>
+              <div className={styles['essay-item-footer']+' boxflex mt-16'}>
+                <div className={`${styles.infos}`}>
+                  <span>{item.author} 发布于 {timeParser(item.publishTime)} </span>
+                  <span></span>
+                </div>
+                <div className="icons">{ generateIcons(item, index) }</div> 
+              </div>
+            </li>
+          </Link>);
+        })}
+      </ul>
+    );
   }
 
   return (

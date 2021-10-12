@@ -1,49 +1,89 @@
+const innerWidth = window.innerWidth;
+const innerHeight = window.innerHeight;
 class DragUtil {
-  constructor(el: HTMLElement) {
-    this.el = el;
-    this.bind('mousedown', this.el, this.dragStart);
-  }
-  el: HTMLElement;
+  el: HTMLElement = null as unknown as HTMLElement;
   startX: number = 0;
   startY: number = 0;
   offsetLeft: number = 0;
   offsetTop: number = 0;
-  bind(eventName: string, el: HTMLElement, callback: Function) {
-    const that = this;
-    el.addEventListener(eventName, callback.bind(that) || that, false);
+  mousedownFired: boolean = false;
+  startTime: number = 0;
+  clientX: number = 0;
+  clientY: number = 0;
+  init(el: HTMLElement) {
+    this.el = el;
+    this.clientX = innerWidth - el.clientWidth;
+    this.clientY = innerHeight - el.clientHeight;
+    this.bind('mousedown', this.el);
   }
-  unbind(eventName: string, el: HTMLElement, callback: Function) {
+  handleEvent(event: Event) {
     const that = this;
-    el.removeEventListener(eventName, callback.bind(that) || that, false);
+    switch(event.type) {
+      case 'mousedown':
+        that.dragStart(event);
+        break;
+      case 'mousemove':
+        that.dragMove(event);
+        break;
+      case 'mouseup':
+        that.dragEnd(event);
+        break;
+      default:
+        that.dragStart(event);
+    }
   }
-  dragStart = (e: any) => {
+  bind(eventName: string, el: HTMLElement, callback?: EventListenerOrEventListenerObject) {
     const that = this;
+    el.addEventListener(eventName, callback || that);
+  }
+  unbind(eventName: string, el: HTMLElement, callback?: EventListenerOrEventListenerObject) {
+    const that = this;
+    el.removeEventListener(eventName, callback || that);
+  }
+  dragStart(e: any) {
     e.preventDefault();
     e.stopPropagation();
-
+    this.startTime = window.performance.now();
     this.offsetLeft = this.el.offsetLeft;
     this.offsetTop = this.el.offsetTop;
     this.startX = e.x;
     this.startY = e.y;
-    this.bind('mousemove', that.el, that.dragMove);
-    this.bind('mouseup', that.el, that.dragEnd);
+    this.bind('mousemove', this.el);
+    this.bind('mouseup', this.el);
   }
-  dragMove = (e: any) => {
+  dragMove(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    this.el.style.left = e.x - (this.startX - this.offsetLeft) + 'px';
-    this.el.style.top = e.y - (this.startY - this.offsetTop) + 'px';
+
+    let offsetLeft = e.x - (this.startX - this.offsetLeft);
+    let offsetTop = e.y - (this.startY - this.offsetTop);
+    offsetLeft = offsetLeft <= 0 ? 0 : offsetLeft >= this.clientX ? this.clientX : offsetLeft;
+    offsetTop = offsetTop <= 0 ? 0 : offsetTop >= this.clientY ? this.clientY : offsetTop;
+
+    this.el.style.left = offsetLeft + 'px';
+    this.el.style.top = offsetTop + 'px';
   }
-  dragEnd= (e: any) => {
+  dragEnd(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    const that = this;
+    const during = window.performance.now() - this.startTime;
 
-    this.el.style.left = e.x - (this.startX - this.offsetLeft) + 'px';
-    this.el.style.top = e.y - (this.startY - this.offsetTop) + 'px';
+    if(during > 50) {
+      this.mousedownFired = true;
+    }
+    let offsetLeft = e.x - (this.startX - this.offsetLeft);
+    let offsetTop = e.y - (this.startY - this.offsetTop);
+    offsetLeft = offsetLeft <= 0 ? 0 : offsetLeft >= this.clientX ? this.clientX : offsetLeft;
+    offsetTop = offsetTop <= 0 ? 0 : offsetTop >= this.clientY ? this.clientY : offsetTop;
 
-    this.unbind('mousemove', that.el, that.dragMove);
-    this.unbind('mouseup', that.el, that.dragEnd);
+    this.el.style.left = offsetLeft + 'px';
+    this.el.style.top = offsetTop + 'px';
+
+    this.unbind('mousemove', this.el);
+    this.unbind('mouseup', this.el);
+  }
+ closeMounsedownFire = () => {
+    this.mousedownFired = false;
   }
 }
 export default DragUtil;

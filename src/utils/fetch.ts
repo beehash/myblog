@@ -1,4 +1,5 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
+import Message from '@/utils/message';
 
 interface BlogResponse <T>{
   code: number;
@@ -9,17 +10,17 @@ interface BlogResponse <T>{
 }
 
 function responseInterceptorUse(response: AxiosResponse) {
+  
   if(response.status >= 200 && response.status < 300) {
-    return response.data.data;
+    const data = response.data;
+    if(data.success) return response.data.data;
+    else Message.error(data.message);
   } else if(response.status > 200 && response.status <500) {
-    return response.data.data;
+    const data = response.data;
+    if(data.success) return response.data.data;
+    else Message.error(data.message);
   } else if(response.status === 500) {
-    return {
-      success: false,
-      code: 500,
-      message: '服务器错误',
-      errMessage: response.data,
-    }
+    Message.error('服务器错误');
   }
 }
 

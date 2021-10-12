@@ -5,19 +5,29 @@ import DragUtil from '@/utils/drag';
 
 export default function GirlNav() {
   const [navShow, setnavShow] = useState(false);
+  const drag = new DragUtil();
   const girlRef = useRef(null);
 
   useEffect(() => {
-    new DragUtil(girlRef.current as unknown as HTMLElement);
+    drag.init(girlRef.current as unknown as HTMLElement);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+  function girlClick() {
+    if(drag.mousedownFired) {
+      drag.closeMounsedownFire();
+      return;
+    }
+    setnavShow(!navShow);
+  }
+
   return (
     <div className="girl-nav">
-      <div className="girl" ref={girlRef}>
-        <img src={girl} alt="girl" onClick={(e) => setnavShow(!navShow)} />
+      <div className="girl" ref={girlRef} onClick={girlClick} >
+        <img src={girl} alt="girl" />
       </div>
-      {/* <Transition visible={navShow} transName="transrtl"> */}
-      <SideBar visible={navShow}/>
-      {/* </Transition> */}
+      <SideBar visible={navShow} />
     </div>
   )
 }
