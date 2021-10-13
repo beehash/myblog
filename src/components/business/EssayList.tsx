@@ -59,7 +59,7 @@ export default function EssayList() {
     if((!updated)) return '';
     if(!list || !list.length) {
       return (
-        <div className="essay-none text-center">
+        <div className="blank-none text-center">
           <div className="none-data mx-auto mt-48"></div>
           <span className="text-none">暂无数据</span>
         </div>

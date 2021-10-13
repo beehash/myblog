@@ -1,5 +1,6 @@
 const innerWidth = window.innerWidth;
 const innerHeight = window.innerHeight;
+let startTime = 0;
 class DragUtil {
   el: HTMLElement = null as unknown as HTMLElement;
   startX: number = 0;
@@ -7,7 +8,6 @@ class DragUtil {
   offsetLeft: number = 0;
   offsetTop: number = 0;
   mousedownFired: boolean = false;
-  startTime: number = 0;
   clientX: number = 0;
   clientY: number = 0;
   init(el: HTMLElement) {
@@ -43,7 +43,7 @@ class DragUtil {
   dragStart(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    this.startTime = window.performance.now();
+    startTime = window.performance.now();
     this.offsetLeft = this.el.offsetLeft;
     this.offsetTop = this.el.offsetTop;
     this.startX = e.x;
@@ -66,8 +66,9 @@ class DragUtil {
   dragEnd(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    const during = window.performance.now() - this.startTime;
+    const during = window.performance.now() - startTime;
 
+    console.log(during);
     if(during > 50) {
       this.mousedownFired = true;
     }

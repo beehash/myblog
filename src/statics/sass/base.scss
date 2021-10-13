@@ -467,6 +467,17 @@ a:visited{color: #343434;text-decoration: none;}
   height: 20px;
   background-image: url('../images/star.svg');
 }
+.reed{
+  height: 170px;
+  background-image: url('../images/reed.svg');
+  background-size: 20% 100%;
+}
+.reed-offset{
+  margin-left: -44px;
+}
+.repeat-reed{
+  margin-top: -170px;
+}
 .homebg-pic{
   position: absolute;
   top: 0px;
@@ -491,4 +502,21 @@ a:visited{color: #343434;text-decoration: none;}
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../images/nonedata.svg');
+}
+.base-bg{
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.girl1{
+  background-image: url(../images/girl1.svg);
+}
+.girl2{
+  background-image: url(../images/girl2.svg);
+}
+.flex-value{
+  flex: 1;
+}
+.blank-none{
+  padding: 64px;
 }

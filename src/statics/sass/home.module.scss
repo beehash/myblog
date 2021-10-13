@@ -140,6 +140,22 @@
   background-color: #ffffff;
   .footer {
     padding-top: 170px;
+    overflow: hidden;
+  }
+  .content{  
+    .poem{
+      width: 680px;
+    }
+    .sentence {
+      line-height: 24px;
+    }
+    .title{
+      font-weight: 600;
+    }
+    .author{
+      vertical-align: top;
+      color: #9c9c9c;
+    }
   }
 }
 .header{
