@@ -1,6 +1,6 @@
 import React from 'react';
 import Radio from './Radio';
-import styles from '@/statics/sass/form.module.scss';
+import styles from '@/statics/sass/component.module.scss';
 
 export default function RadioGroup(props: any) {
   return (

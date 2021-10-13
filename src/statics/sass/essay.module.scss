@@ -1,21 +1,27 @@
-.essay-item{
-  width: 100%;
-  border-bottom: 1px dashed #cccccc;
-  background-color: #ffffff;
-  .essay-summary{
-    height: 60px;
-    line-height: 20px;
-  }
-  .essay-title{
-    line-height: 48px;
-  }
-  .essay-item-footer{
-    height: 28px;
-    line-height: 28px;
-    color: #343434;
-    font-size: 12px;
-    & .infos{
-      color: #A2B29F;
+.essay{
+  .essayList{
+    height: calc(100vh - 276px);
+    overflow-y: scroll;
+    .essay-item{
+      width: 100%;
+      border-bottom: 1px dashed #cccccc;
+      background-color: #ffffff;
+      .essay-summary{
+        height: 60px;
+        line-height: 20px;
+      }
+      .essay-title{
+        line-height: 48px;
+      }
+      .essay-item-footer{
+        height: 28px;
+        line-height: 28px;
+        color: #343434;
+        font-size: 12px;
+        & .infos{
+          color: #A2B29F;
+        }
+      }
     }
   }
 }

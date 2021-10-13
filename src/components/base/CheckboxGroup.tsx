@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkbox from './Checkbox';
-import styles from '@/statics/sass/form.module.scss';
+import styles from '@/statics/sass/component.module.scss';
 
 export default function CheckboxGroup(props: any) {
 

@@ -6,6 +6,7 @@ import ArticleApi from '@/apis/article';
 import { timeParser } from '@/utils';
 import styles from '@/statics/sass/essay.module.scss';
 import Icon from '@/components/base/Icon';
+import Pagenation from '@/components/base/Pagenation';
 
 const Icons: IconCator[] = [
   {name: 'acclaim', color: '#A2B29F', text: '点赞量', key: 'likes'},
@@ -22,8 +23,11 @@ interface IconCator {
 
 export default function EssayList() {
   const [list, setList] = useState<Essay[]>([]);
+  const [current, setCurrent] = useState<number>(1);
   const [updated, setUpdated] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const pageSize = 3;
+  const total = 10;
 
   const getArticleList = () => {
     dispatch({type: 'SETLOADING', loading: true});
@@ -34,7 +38,6 @@ export default function EssayList() {
     });
   };
 
-  
   useEffect(() => {
     getArticleList();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -87,10 +90,21 @@ export default function EssayList() {
       </ul>
     );
   }
+  function handleChange(type: string) {
+    console.log(type, current);
+    // setCurrent(current);
+  }
 
   return (
-    <div className="essayList">
-      {generateListTemplate()}
+    <div className={styles.essay + ' clearfix'}>
+      <div className={styles.essayList}>
+        {generateListTemplate()}
+      </div>
+      <Pagenation
+        pageSize={pageSize}
+        current={current}
+        total={total}
+        change={handleChange} />
     </div>
   );
 }

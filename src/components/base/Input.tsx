@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles from '@/statics/sass/form.module.scss';
+import styles from '@/statics/sass/component.module.scss';
 
 export default function Input(props: any) {
   const [, setValue] = useState('');

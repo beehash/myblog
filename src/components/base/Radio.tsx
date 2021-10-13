@@ -1,6 +1,6 @@
 import React, { BaseSyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
-import styles from '@/statics/sass/form.module.scss';
+import styles from '@/statics/sass/component.module.scss';
 
 export default function Radio(props: any) {
   const theme = useSelector((state: any) => {
