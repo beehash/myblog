@@ -1,6 +1,6 @@
 import React, { BaseSyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
-import styles from '@/statics/sass/form.module.scss';
+import styles from '@/statics/sass/component.module.scss';
 import Icon from '@/components/base/Icon';
 
 export default function Checkbox(props: any) {
