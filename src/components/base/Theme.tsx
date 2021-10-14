@@ -29,13 +29,15 @@ export default function Loading(props: any) {
                         .intheme{
                           color: ${inverseColor}
                         }
+                        .theme-border: {border: 1px solid ${color}}
+                        .intheme-border: {border: 1px solid #{inverseColor}}
                         .intheme-bg{background-color: ${inverseColor}}
                         .base-button{color: ${inverseColor}}
                         ::-webkit-scrollbar-thumb{
                           background-color: ${color}
                         }
-                        .default-button{color: ${inverseColor}}
-                        .base-button.primary-button{color: ${inverseColor};background-color: ${color}}
+                        .base-button.default-button{border-color: ${inverseColor}; color: ${color}}
+                        .base-button.primary-button{color: ${inverseColor};background-color: ${color}; border-color: ${color}}
                         .base-button.text-button{color: ${inverseColor}}`
   }
   

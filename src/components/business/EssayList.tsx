@@ -28,7 +28,7 @@ interface PagenationCator{
 }
 export default function EssayList() {
   const [list, setList] = useState<Essay[]>([]);
-  const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 3, currentPage: 1, total: 10});
+  const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 10, currentPage: 1, total: 20});
   const [updated, setUpdated] = useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -38,7 +38,7 @@ export default function EssayList() {
     ArticleApi.getArticles(others).then((data) => {
       setUpdated(true);
       dispatch({type: 'SETLOADING', loading: false});
-      setPagenation({...pagenation, total: (data && data.length) || 1});
+      // setPagenation({...pagenation, total: (data && data.length) || 1});
       setList(data);
     });
   };
@@ -103,6 +103,7 @@ export default function EssayList() {
         {generateListTemplate()}
       </div>
       <Pagenation
+        className='mr-16'
         pageSize={pagenation.pageSize}
         current={pagenation.currentPage}
         total={pagenation.total}

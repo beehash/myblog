@@ -11,10 +11,28 @@ a{color: #343434;text-decoration: none;}
 a:link{color: #343434;text-decoration: none;}
 a:active{color: #233e8b;text-decoration: none;}
 a:visited{color: #343434;text-decoration: none;}
+/* theme 样式 */
 .theme{color: #eda268;}
 .theme-bg{background-color: #125d98}
-.base-button{color:#eda268}
-.base-button.primary-button{color: #eda268;background-color: #125d98}
+.theme{color: 125d98;}
+.theme-bg{background-color: #125d98}
+.intheme{
+  color: #eda268;
+}
+.intheme-bg{background-color: #eda268;}
+.theme-border{
+  border: 1px solid #125d98;
+} 
+.intheme-border{border: 1px solid #eda268;}
+::-webkit-scrollbar-thumb{
+  background-color: #125d98;
+}
+.base-button{color: #125d98; border: 1px solid #125d98;}
+.base-button.default-button{border-color: #eda268; color: #125d98;}
+.base-button.text-button{color: #125d98}
+.base-button.primary-button{color: #eda268;background-color: #125d98;border-color: #125d98;}
+
+/* APP */
 .App {
   color: #343434;
   font-size: 14px;
@@ -173,6 +191,12 @@ a:visited{color: #343434;text-decoration: none;}
 }
 .text-justify{
   text-align: justify;
+}
+.text-grey1{
+  color: #666666;
+}
+.text-grey2{
+  color: #999999;
 }
 
 /* 展开折叠效果 */

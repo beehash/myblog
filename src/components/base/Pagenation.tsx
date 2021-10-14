@@ -2,18 +2,22 @@ import React from 'react';
 import Icon from './Icon';
 import styles from '@/statics/sass/component.module.scss';
 
-export default function Pagenation({pageSize, current, total, change}: any) {
+export default function Pagenation({pageSize, current, total, change, className}: any) {
   const size = Math.ceil(total / pageSize);
+  console.log(total, pageSize, size);
   function generateTemplate() {
     const listTemplate = [];
     for(let i = 0; i < size; i++){
-      listTemplate.push(<span className={styles['page-btn']} key={i} onClick={() => change('page', i+1)}>{i+1}</span>);
+      listTemplate.push(<span className={styles['page-btn'] + ' text-grey1 ' + (i + 1 === current ? 'base-button primary-button' : styles.link)}
+        key={i} onClick={() => change('page', i+1)}>
+        {i+1}</span>
+      );
     }
     return listTemplate;
   }
 
   return (
-    <div className={styles.pagenation + ' mt-16 '}>
+    <div className={styles.pagenation + ' mt-16 ' + className}>
       <span className={styles['page-btn'] + ' mx-4 ' + (current === 1 ? 'disabled' : '')}
         onClick={() => current !== 1 && change('prev', current + 1)}>
         <Icon className={styles['left-btn']}
