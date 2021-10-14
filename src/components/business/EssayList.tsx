@@ -104,6 +104,7 @@ export default function EssayList() {
         pageSize={pageSize}
         current={current}
         total={total}
+        setCurrent={setCurrent}
         change={handleChange} />
     </div>
   );
