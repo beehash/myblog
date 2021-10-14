@@ -21,19 +21,24 @@ interface IconCator {
   key: string;
 }
 
+interface PagenationCator{
+  pageSize: number;
+  total: number;
+  currentPage: number;
+}
 export default function EssayList() {
   const [list, setList] = useState<Essay[]>([]);
-  const [current, setCurrent] = useState<number>(1);
+  const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 3, currentPage: 1, total: 10});
   const [updated, setUpdated] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const pageSize = 3;
-  const total = 10;
 
   const getArticleList = () => {
     dispatch({type: 'SETLOADING', loading: true});
-    ArticleApi.getArticles({size: 10}).then((data) => {
+    const {total, ...others} = pagenation;
+    ArticleApi.getArticles(others).then((data) => {
       setUpdated(true);
       dispatch({type: 'SETLOADING', loading: false});
+      setPagenation({...pagenation, total: (data && data.length) || 1});
       setList(data);
     });
   };
@@ -45,6 +50,7 @@ export default function EssayList() {
 
   useEffect(() => {
     generateListTemplate();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
 
   function generateIcons (info: Obj, index: number) {
@@ -90,10 +96,6 @@ export default function EssayList() {
       </ul>
     );
   }
-  function handleChange(type: string) {
-    console.log(type, current);
-    // setCurrent(current);
-  }
 
   return (
     <div className={styles.essay + ' clearfix'}>
@@ -101,11 +103,10 @@ export default function EssayList() {
         {generateListTemplate()}
       </div>
       <Pagenation
-        pageSize={pageSize}
-        current={current}
-        total={total}
-        setCurrent={setCurrent}
-        change={handleChange} />
+        pageSize={pagenation.pageSize}
+        current={pagenation.currentPage}
+        total={pagenation.total}
+        change={(type: string, currentPage: number) => (setPagenation({...pagenation, currentPage}), getArticleList())} />
     </div>
   );
 }
