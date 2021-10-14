@@ -3,19 +3,22 @@ import styles from '@/statics/sass/home.module.scss';
 
 export default function Navbar() {
   const navList = [{
-    id: 1,
+    id:1,
+    title: '推荐',
+  },{
+    id: 2,
     title: 'Vue'
   }, {
-    id: 2,
+    id: 3,
     title: 'React',
   }, {
-    id: 3,
+    id: 4,
     title: 'Javascript'
   }, {
-    id: 4,
+    id: 5,
     title: '小程序'
   }, {
-    id: 5,
+    id: 6,
     title: '工具类'
   }];
 

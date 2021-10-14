@@ -4,7 +4,6 @@ import styles from '@/statics/sass/component.module.scss';
 
 export default function Pagenation({pageSize, current, total, change, className}: any) {
   const size = Math.ceil(total / pageSize);
-  console.log(total, pageSize, size);
   function generateTemplate() {
     const listTemplate = [];
     for(let i = 0; i < size; i++){

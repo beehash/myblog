@@ -11,28 +11,35 @@ import ArticleDetail from '@/pages/article-detail';
 import Loading from '@/components/base/Loading';
 import Theme from '@/components/base/Theme';
 import GirlNav from '@/components/business/GirlNav';
+import Manage from '@/manage/pages/manage';
 
 function App() {
-  // const loading = true;
   return (
     <Provider store={store}>
       <Router>
-        <div className="App">
-          {/* <div className="main-gradient full_gradient js-full-gradient state-full state-complete"></div> */}
-          {/* header */}
-          <Header/>
-          <Loading />
-          <Theme />
-          <GirlNav/>
-          <div className="container center-block">
+        {/* <div className="main-gradient full_gradient js-full-gradient state-full state-complete"></div> */}
+        <Loading />
+        <Theme />
+        <GirlNav/>
+        <Switch>
+          {/* FRONT-END */}
+          <Route exact path="/">
             <Switch>
-              <Route exact path="/" component={Home} />
-              {/* <Route exact path="home" component={Home}/> */}
-              <Route exact path="/editor" component={CreateNew} />
-              <Route exact path="/detail/:articleId" component={ArticleDetail} />
+              {/* APP */}
+              <div className="App">
+                {/* header */}
+                <Header/>
+                <div className="container center-block">
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/editor" component={CreateNew} />
+                  <Route exact path="/detail/:articleId" component={ArticleDetail} />
+                </div>
+              </div>
             </Switch>
-          </div>
-        </div>
+          </Route>
+          {/* MANAGE */}
+          <Route exact path="/manage" component={Manage} />
+        </Switch>
       </Router>
     </Provider>
   );
