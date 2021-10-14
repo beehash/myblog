@@ -28,6 +28,6 @@ export default function Checkbox(props: any) {
       <input type="checkbox" className={styles['original']}
         checked={props.value} onChange={handleChange} />
     </label>
-  </div>
-  )
+    </div>
+  );
 }

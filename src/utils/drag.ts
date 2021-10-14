@@ -1,3 +1,5 @@
+// import {useState, useEffect} from 'react';
+
 const innerWidth = window.innerWidth;
 const innerHeight = window.innerHeight;
 let startTime = 0;
@@ -14,7 +16,7 @@ class DragUtil {
     this.el = el;
     this.clientX = innerWidth - el.clientWidth;
     this.clientY = innerHeight - el.clientHeight;
-    this.bind('mousedown', this.el);
+    this.bind('mousedown', el);
   }
   handleEvent(event: Event) {
     const that = this;
@@ -68,10 +70,10 @@ class DragUtil {
     e.stopPropagation();
     const during = window.performance.now() - startTime;
 
-    console.log(during);
-    if(during > 50) {
+    if(during > 300) {
       this.mousedownFired = true;
     }
+
     let offsetLeft = e.x - (this.startX - this.offsetLeft);
     let offsetTop = e.y - (this.startY - this.offsetTop);
     offsetLeft = offsetLeft <= 0 ? 0 : offsetLeft >= this.clientX ? this.clientX : offsetLeft;
@@ -83,8 +85,21 @@ class DragUtil {
     this.unbind('mousemove', this.el);
     this.unbind('mouseup', this.el);
   }
- closeMounsedownFire = () => {
+  closeMousedownFire = () => {
     this.mousedownFired = false;
   }
+  distroy = () => {
+    this.unbind('mousedown', this.el);
+    this.unbind('mousemove', this.el);
+    this.unbind('mouseup', this.el);
+    this.startX = 0;
+    this.startY = 0;
+    this.offsetLeft = 0;
+    this.offsetTop = 0;
+    this.mousedownFired = false;
+    this.clientX = 0;
+    this.clientY = 0;
+  }
 }
+
 export default DragUtil;

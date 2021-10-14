@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, BaseSyntheticEvent} from 'react';
 import girl from '@/statics/images/girl.svg';
 import SideBar from './SideBar';
 import DragUtil from '@/utils/drag';
@@ -10,13 +10,16 @@ export default function GirlNav() {
 
   useEffect(() => {
     drag.init(girlRef.current as unknown as HTMLElement);
+    return () => {
+      drag.distroy();
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [drag.closeMousedownFire]);
 
 
-  function girlClick() {
+  function girlClick(event: BaseSyntheticEvent) {
     if(drag.mousedownFired) {
-      drag.closeMounsedownFire();
+      drag.closeMousedownFire();
       return;
     }
     setnavShow(!navShow);
