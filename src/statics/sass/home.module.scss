@@ -17,16 +17,17 @@
   }
 }
 .navBar{
+  width: 900px;
   height: 48px;
   line-height: 48px;
-  // background-color: #f0f0f0;
   & ul{
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     & li{
-      width: 160px;
+      padding-left: 24px;
+      padding-right: 24px;
       text-align: center;
     }
   }

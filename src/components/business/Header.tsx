@@ -14,7 +14,7 @@ export default function Header () {
         <NavBar />
       </div>
         <div className={styles['right-bar']+' mt-6'}>
-        <Link to="/editor"><button className="base-button default-button mr-8">写文章</button></Link>
+        <button className="base-button default-button mr-8"><Link to="/editor" className="clear-default-link-style">写文章</Link></button>
         <button className="base-button text-button">登录</button>
       </div>
       </div>

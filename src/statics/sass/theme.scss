@@ -1,0 +1,18 @@
+/* theme 样式 */
+.theme{color: #125d98;}
+.theme-bg{background-color: #125d98}
+.intheme{
+  color: #eda268;
+}
+.intheme-bg{background-color: #eda268;}
+.theme-border{
+  border: 1px solid #125d98;
+} 
+.intheme-border{border: 1px solid #eda268;}
+::-webkit-scrollbar-thumb{
+  background-color: #125d98;
+}
+.base-button{color: #125d98; border: 1px solid #125d98;}
+.base-button.default-button{border-color: #eda268; color: #125d98;}
+.base-button.text-button{color: #125d98}
+.base-button.primary-button{color: #eda268;background-color: #125d98;border-color: #125d98;}

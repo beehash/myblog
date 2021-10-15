@@ -38,7 +38,7 @@ export default function Loading(props: any) {
                         }
                         .base-button.default-button{border-color: ${inverseColor}; color: ${color}}
                         .base-button.primary-button{color: ${inverseColor};background-color: ${color}; border-color: ${color}}
-                        .base-button.text-button{color: ${inverseColor}}`
+                        .base-button.text-button{color: ${color}}`
   }
   
   return (
