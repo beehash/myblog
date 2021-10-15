@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from '@/statics/sass/component.module.scss';
 
-export default function TextArea(props: any) {
+export default function TextArea({className = '',...props}: any) {
   function handleChange (value: any) {
     props.onChange({field: props.field, value});
   }
 
   return (
-    <div className={styles['form-item'] + ' clearfix'}>
+    <div className={styles['form-item'] + ' clearfix ' + className}>
       {props.required && <span className={styles.required}>*</span>}
       <label className={styles['form-label']+ ' ' + styles['form-label-area']}>
         <span style={{width: props.labelWidth + 'px'}}

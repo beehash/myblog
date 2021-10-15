@@ -11,7 +11,8 @@ import Message from '@/utils/message';
 import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
 import articleApi from '@/apis/article';
-const radioGroup = [{label: '苹果', value: 1}, {label: '梨子', value: 2}, {label: '香蕉', value: 3}];
+import configService from '@/services/config.service';
+// const radioGroup = [{label: '苹果', value: 1}, {label: '梨子', value: 2}, {label: '香蕉', value: 3}];
 
 interface articleForm {
   summary: string;
@@ -25,7 +26,7 @@ const formDataStatic = {
   publish: false,
   saveDraft: false,
   essayTag: 1,
-  articleType: [],
+  articleType: [1],
 };
 
 function CreateNew(props: any) {
@@ -122,7 +123,7 @@ function CreateNew(props: any) {
 
         {/* checkbox */}
         <Checkbox value={formData.publish}
-          className="mr-16"
+          className="mr-32"
           field="publish"
           labelWidth={70}
           labelText="公开"
@@ -137,15 +138,20 @@ function CreateNew(props: any) {
 
         {/* RadioGroup */}
         <RadioGroup value={formData.essayTag}
-          radioGroup={radioGroup}
+          radioGroup={configService.tagType}
           field="essayTag"
           labelText="文章标签"
-          onChange={(model: FormModel) => handleFormChange(model)}/>
+          labelKey="name"
+          valueKey="id"
+          onChange={(model: FormModel) => handleFormChange(model)} />
+
         {/* checkboxGroup */}
         <CheckboxGroup value={formData.articleType}
-          checkboxGroup={radioGroup}
+          checkboxGroup={configService.articleType}
           field="articleType"
           labelText="文章类型"
+          labelKey="name"
+          valueKey="id"
           onChange={(model: FormModel) => handleFormChange(model)}/>
       </Modal>
     </div>

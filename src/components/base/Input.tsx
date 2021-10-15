@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from '@/statics/sass/component.module.scss';
 
-export default function Input(props: any) {
+export default function Input({className = '', ...props}: any) {
   const [, setValue] = useState('');
   function handleChange (value: any) {  
     props.onChange({field: props.field, value});
@@ -9,7 +9,7 @@ export default function Input(props: any) {
   }
 
   return (
-    <div className={styles['form-item']}>
+    <div className={styles['form-item'] + ' ' + className}>
       {props.required && <span className={styles.required}>*</span>}
       <label className={styles['form-label']}>
         <span className={styles.labelText+' pr-16'}

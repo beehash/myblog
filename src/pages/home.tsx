@@ -1,5 +1,4 @@
 import React from 'react';
-// import Banner from '@/components/business/Banner';
 import EssayList from '@/components/business/EssayList';
 import Icon from '@/components/base/Icon';
 import styles from '@/statics/sass/home.module.scss';
@@ -10,7 +9,7 @@ export default function Home() {
       <div className={`content ${styles['essay-content']} pos-relative`}>
         <h3 className="px-8 py-32">首页推荐 <Icon name="heart" color="#FB3640"/></h3>
         <div className="homebg-pic"></div>
-        <EssayList/>
+        <EssayList />
         <div className={styles.footer}>
           <div className={styles.content+ ' px-32 boxflex'}>
             <div className="leftpic base-bg girl1 flex-value"></div>

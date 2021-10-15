@@ -4,10 +4,9 @@ import styles from '@/statics/sass/home.module.scss';
 import configService from '@/services/config.service';
 
 export default function Navbar() {
-
   // 生成 navlist
   function generateNavList () {
-    return configService.tagTypes.map((item: {id: number, path: string, name: string}) =>(
+    return configService.tagType.map((item: {id: number, path: string, name: string}) =>(
       <li key={item.id}><Link to={item.path}>{item.name}</Link></li>
     ));
   }

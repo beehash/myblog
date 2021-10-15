@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styles from '@/statics/sass/component.module.scss';
 import Icon from '@/components/base/Icon';
 
-export default function Checkbox(props: any) {
+export default function Checkbox({className = '', ...props}: any) {
   const theme = useSelector((state: any) => {
     return state.theme;
   });
@@ -13,7 +13,7 @@ export default function Checkbox(props: any) {
   }
 
   return (
-    <div className={styles['form-item']+ ' '+ styles.labelauto+ ' '+ props.className}>
+    <div className={styles['form-item']+ ' '+ styles.labelauto+ ' '+ className}>
     {props.required && <span className={styles.required}>*</span>}
     <label className={styles['form-label']}>
       <span className={styles.labelText+' pr-4'}
