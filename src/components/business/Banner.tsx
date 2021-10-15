@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '@/statics/images/logo.svg';
 import styles from '@/statics/sass/home.module.scss';
-import { tagTypes, ArticleCator } from '@/models/Essay.model';
+import { ArticleCator } from '@/models/Essay.model';
 import showdown from 'showdown';
 import articleApi from '@/apis/article';
 
@@ -38,7 +38,7 @@ export default function Banner () {
         <div className={styles['tag-view']}>
           <ul className={styles['tag-list']}>
             {
-              tagTypes.map((item, index) =>(
+              [].map((item, index) =>(
                 <li key={index}>
                   <span className={styles['list-item']}>{item}</span>
                 </li>

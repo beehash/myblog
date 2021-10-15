@@ -7,7 +7,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
-  "proxy": "http://localhost:3003",
+  "proxy": "http://www.myserver.com:3003",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
