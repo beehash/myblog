@@ -5,9 +5,10 @@ interface stateInit {
 const rootStateInit = {
   loading: false,
 }
+
 export default function rootState (state: stateInit = rootStateInit, action: AnyAction) {
   switch(action.type) {
-    case 'SETLOADING': 
+    case 'SETLOADING':
       return {...state, loading: action.loading};
     default:
       return state;

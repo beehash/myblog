@@ -1,9 +1,12 @@
 const payloads = {
+  rootState: {
+    loading: false,
+  },
   user: {
     name: 'beehash',
   },
   article: {
-    id: '55',
+    id: 55,
   },
   theme: {
     color: '#125d98',
