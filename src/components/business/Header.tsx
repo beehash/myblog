@@ -10,11 +10,15 @@ export default function Header () {
     <div className={styles['fix-header'] + ' p-12'}>
       <div className={`${styles['header']} center-block boxflex flexalign-center}`}>
         <div className="left-bar boxflex flexalign-center">
-        <Link to="/"><span className={`${styles.avator} mr-8`}><img src={logo} alt="avator"/></span></Link>
+        <Link to="/"><span className={`${styles.avator} mr-8`}>
+          <img src={logo} alt="avator"/></span>
+        </Link>
         <NavBar />
       </div>
         <div className={styles['right-bar']+' mt-6'}>
-        <button className="base-button default-button mr-8"><Link to="/editor" className="clear-default-link-style">写文章</Link></button>
+        <button className="base-button default-button mr-8">
+          <Link to="/editor" className="clear-default-link-style">写文章</Link>
+        </button>
         <button className="base-button text-button">登录</button>
       </div>
       </div>

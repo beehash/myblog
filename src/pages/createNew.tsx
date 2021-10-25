@@ -12,7 +12,6 @@ import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
 import articleApi from '@/apis/article';
 import configService from '@/services/config.service';
-// const radioGroup = [{label: '苹果', value: 1}, {label: '梨子', value: 2}, {label: '香蕉', value: 3}];
 
 interface articleForm {
   summary: string;
@@ -38,7 +37,9 @@ function CreateNew(props: any) {
   const [formData, setFormData] = useState<articleForm>({...formDataStatic});
 
   // useEffect
-  useEffect(() => {}, [formData]);
+  useEffect(() => {
+    console.log(32222);
+  }, [formData]);
 
   // user
   const user = useSelector((state: any) => {
@@ -128,7 +129,7 @@ function CreateNew(props: any) {
           labelWidth={70}
           labelText="公开"
           onChange={(model: FormModel) => handleFormChange(model)} />
-        
+
         {/* Radio */}
         <Checkbox value={formData.saveDraft}
           field="saveDraft"

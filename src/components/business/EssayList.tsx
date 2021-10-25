@@ -14,6 +14,7 @@ const Icons: IconCator[] = [
   {name: 'transmit', color: '#A2B29F', text: '转发量', key: 'trans'},
   {name: 'comment', color: '#A2B29F', text: '评论数', key: 'comments'}
 ];
+
 interface IconCator {
   name: string;
   color: string;
@@ -26,43 +27,32 @@ interface PagenationCator{
   total: number;
   currentPage: number;
 }
+
 export default function EssayList() {
   const [list, setList] = useState<Essay[]>([]);
   const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 10, currentPage: 1, total: 20});
   const [updated, setUpdated] = useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const getArticleList = () => {
+  const getArticleList = async () => {
     dispatch({type: 'SETLOADING', loading: true});
     const {total, ...others} = pagenation;
-    ArticleApi.getArticles(others).then((data) => {
-      setUpdated(true);
-      dispatch({type: 'SETLOADING', loading: false});
-      // setPagenation({...pagenation, total: (data && data.length) || 1});
-      setList(data);
-    });
+    const list = await ArticleApi.getArticles(others).then((data) => data);
+    // setPagenation({...pagenation, total: (data && data.length) || 1});
+    setList(list);
+    dispatch({type: 'SETLOADING', loading: false});
+    setUpdated(true);
   };
 
   useEffect(() => {
     getArticleList();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return (setUpdated(false), setList([]))
+  }, [pagenation.currentPage]);
 
   useEffect(() => {
     generateListTemplate();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
-
-  function generateIcons (info: Obj, index: number) {
-    return Icons.map((icon, index2) => {
-      return (
-        <span key={index2} className="inline-block mr-8">
-          <Icon name={icon.name} className="mr-4" color={icon.color}></Icon>
-          {icon.text}({info[icon.key]})
-        </span>
-      );
-    });
-  }
 
   function generateListTemplate() {
     if((!updated)) return '';
@@ -97,6 +87,17 @@ export default function EssayList() {
     );
   }
 
+  function generateIcons (info: Obj, index: number) {
+    return Icons.map((icon, index2) => {
+      return (
+        <span key={index2} className="inline-block mr-8">
+          <Icon name={icon.name} className="mr-4" color={icon.color}></Icon>
+          {icon.text}({info[icon.key]})
+        </span>
+      );
+    });
+  }
+
   return (
     <div className={styles.essay + ' clearfix'}>
       <div className={styles.essayList}>
@@ -107,7 +108,7 @@ export default function EssayList() {
         pageSize={pagenation.pageSize}
         current={pagenation.currentPage}
         total={pagenation.total}
-        change={(type: string, currentPage: number) => (setPagenation({...pagenation, currentPage}), getArticleList())} />
+        change={(type: string, currentPage: number) => (setPagenation({...pagenation, currentPage}))} />
     </div>
   );
 }

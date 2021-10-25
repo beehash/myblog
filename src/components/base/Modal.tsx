@@ -18,13 +18,16 @@ export default function Modal(props: any=defaultOptions) {
   const modal = useRef(null);
 
   useEffect(() => {
-    createRoot('modal-root');
-  }, []);
+    if(props.visible) {
+      createRoot('modal-root');
+    }
+  }, [props.visible]);
 
-  if(!props.visible) return null;
-  return (
+  // if(!props.visible) return null;
+  return props.visible ? (
     <Portal rootId="modal-root" className={styles['modal-mask']} visible={props.visible}>
-      <div className={styles['modal-box']} ref={modal} style={{width: props.width, height: props.height}}>
+      <div className={styles['modal-box']} ref={modal}
+        style={{width: props.width, height: props.height}}>
         {/* 头部 */}
         <div className={styles.header}>
           <p className={styles.title}>{props.title}</p>
@@ -43,6 +46,7 @@ export default function Modal(props: any=defaultOptions) {
         </div>}
       </div>
     </Portal>
-  );
+  ) : (<div></div>);
 }
+
 Modal.defaultProps = defaultOptions;

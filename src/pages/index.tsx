@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from "react-router";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import '@/statics/sass/App.scss';
 import Header from '@/components/business/Header';
 import Home from '@/pages/home';
@@ -22,9 +23,13 @@ export default function Index() {
       <Header />
       {/* container */}
       <div className="container center-block">
-        <Route exact path="/" component={Home} />
-        <Route exact path="/editor" component={CreateNew} />
-        <Route exact path="/detail/:articleId" component={ArticleDetail} />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/editor" component={CreateNew} />
+          <Route exact path="/detail/:articleId" component={ArticleDetail} />
+        </Switch>
+      </Router>
       </div>
     </div>
   )
