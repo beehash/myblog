@@ -1,3 +1,4 @@
+import { Action } from 'redux';
 declare global {
   interface Obj {
     [key: string]: any;
@@ -6,5 +7,10 @@ declare global {
     field: string;
     value: any;
   }
+
+  interface SagaActionState<T> extends Action {
+    params: T;
+  }
+  
 }
 export {}

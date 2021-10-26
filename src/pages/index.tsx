@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route } from "react-router";
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import '@/statics/sass/App.scss';
 import Header from '@/components/business/Header';
@@ -11,6 +12,11 @@ import Theme from '@/components/base/Theme';
 import GirlNav from '@/components/business/GirlNav';
 
 export default function Index() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({type: 'GET_USER', params: {name: 'beehash'}});
+  }, []);
+
   return (
     <div className="App">
       {/* Loading */}
@@ -23,13 +29,13 @@ export default function Index() {
       <Header />
       {/* container */}
       <div className="container center-block">
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/editor" component={CreateNew} />
-          <Route exact path="/detail/:articleId" component={ArticleDetail} />
-        </Switch>
-      </Router>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/editor" component={CreateNew} />
+            <Route exact path="/detail/:articleId" component={ArticleDetail} />
+          </Switch>
+        </Router>
       </div>
     </div>
   )

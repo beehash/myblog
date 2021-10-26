@@ -22,9 +22,10 @@ export function theme(state: any = { color: '#125d98', inColor: '#233e8b'}, acti
       return state;
   }
 }
+
 export function user(state: any = {name: 'beehash'}, action: AnyAction) {
   switch (action.type) {
-    case 'GET_USER':
+    case 'SET_USER':
       return action.user;
     default:
       return state;
