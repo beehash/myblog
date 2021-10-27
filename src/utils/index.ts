@@ -46,3 +46,7 @@ export function timeParser(time: number | string, format: string= 'YYYY-mm-dd HH
   });
   return result;
 }
+
+export function filterRoutes(permission: string[]) {
+  
+} 
