@@ -1,5 +1,4 @@
 import { Action } from 'redux';
-import {Component, FunctionComponent} from 'react';
 declare global {
   interface Obj {
     [key: string]: any;
@@ -13,12 +12,20 @@ declare global {
     params: T;
   }
 
+  interface MetaConfig {
+    title?: string;
+    permission?: string[];
+  }
   interface RouteConfig {
     path: string;
     name: string;
-    meta: MetaConfig;
+    meta?: MetaConfig;
     component: () => import(FunctionComponent);
     children?: routeConfig[];
+  }
+
+  interface MetaConfig {
+    title: string;
   }
   
 }

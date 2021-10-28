@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { useSelector } from 'react-redux';
 import { Route } from "react-router";
+// import {generateRoutes} from '@/utils';
 
 export default function Authroute({path, component, ...rest}: any) {
-  const permission = useSelector((state: any) => state.user.permission);
+  const routes = useSelector((state: any) => state.routeState);
+  // console.log(routes);
 
-  return (<Route path={path} component={component} {...rest}></Route>);
+  return (
+    <Fragment>
+      <Route path={path} component={component} {...rest}></Route>
+    </Fragment>
+  );
 }

@@ -1,3 +1,4 @@
+import { constantRoutes, AsyncRoutes, manageRoutes } from "@/router";
 export function createRoot(rootId: string) {
   const el = document.createElement('div');
   el.id = rootId;
@@ -47,6 +48,25 @@ export function timeParser(time: number | string, format: string= 'YYYY-mm-dd HH
   return result;
 }
 
-export function filterRoutes(permission: string[]) {
-  
-} 
+function hasPermission(item: RouteConfig, permissions: string[]) {
+
+}
+
+function filterRoutes(routes: RouteConfig[], permissions: string[]): RouteConfig[] {
+  // console.log(permissions);
+  routes.filter((item) => hasPermission(item, permissions));
+  return [];
+}
+function filterAdminRoutes(routes: RouteConfig[], permissions: string[]): RouteConfig[] {
+  // console.log('admin', permissions)
+  routes.filter((item) => hasPermission(item, permissions));
+  return []
+}
+export function generateRoutes(permission: string[], adminpermission: string[]) {
+  let adminRoutes: RouteConfig[] = [];
+  if(adminpermission.length > 0) {
+    adminRoutes = filterAdminRoutes(manageRoutes, adminpermission);
+  }
+  const routes = filterRoutes(AsyncRoutes, permission);
+  return constantRoutes.concat(routes, adminRoutes);
+}

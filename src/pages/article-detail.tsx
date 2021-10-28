@@ -30,7 +30,7 @@ export default function ArticleDetail(props: {id: string}) {
   useEffect(() => {
     getArticleById();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <div className={styles['article-detail']}>

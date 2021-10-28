@@ -1,5 +1,5 @@
 import type { AnyAction } from 'redux';
-import {filterRoutes} from '@/utils'
+import {generateRoutes} from '@/utils'
 interface stateInit {
   loading: boolean;
 }
@@ -16,10 +16,10 @@ export default function rootState (state: stateInit = rootStateInit, action: Any
   }
 }
 
-export function routeState (state: routeConfig, action: AnyAction) {
+export function routeState (state: RouteConfig[] = [], action: AnyAction) {
   switch(action.type) {
     case 'SET_ROUTE':
-      const routes = filterRoutes(action.user);
+      const routes = generateRoutes(action.user.permission, action.user.adminpermission);
       return routes;
     default:
       return state;

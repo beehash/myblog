@@ -2,6 +2,7 @@ const payloads = {
   rootState: {
     loading: false,
   },
+  routeState: [],
   user: {
     name: 'beehash',
   },
