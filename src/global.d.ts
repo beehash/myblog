@@ -1,4 +1,6 @@
+import { FunctionComponent } from 'react';
 import { Action } from 'redux';
+import { Module } from 'webpack';
 declare global {
   interface Obj {
     [key: string]: any;
@@ -20,9 +22,11 @@ declare global {
     path: string;
     name: string;
     meta?: MetaConfig;
-    component: () => import(FunctionComponent);
+    component: AsyncComponent;
     children?: routeConfig[];
   }
+
+  type AsyncComponent = () => import(JSX.Element);
 
   interface MetaConfig {
     title: string;

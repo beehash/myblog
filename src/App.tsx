@@ -13,9 +13,9 @@ function App() {
         {/* <div className="main-gradient full_gradient js-full-gradient state-full state-complete"></div> */}
         <Switch>
           {/* MANAGE */}
-          <Authroute path="/manage" component={Manage}/>
+          <Authroute path="/manage" component={Manage} />
           {/* FRONT-END */}
-          <Authroute path="/" component={Index}/>
+          <Authroute path="/" component={Index} />
         </Switch>
       </Router>
     </Provider>

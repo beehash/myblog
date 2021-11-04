@@ -1,4 +1,5 @@
 import { constantRoutes, AsyncRoutes, manageRoutes } from "@/router";
+
 export function createRoot(rootId: string) {
   const el = document.createElement('div');
   el.id = rootId;
@@ -48,25 +49,33 @@ export function timeParser(time: number | string, format: string= 'YYYY-mm-dd HH
   return result;
 }
 
-function hasPermission(item: RouteConfig, permissions: string[]) {
-
+function hasPermission(myPermission = ['*'], permissions: string[]) {
+  const result = permissions.some(item => (myPermission.indexOf('*') > -1 || myPermission.includes(item)));
+  return result;
 }
 
-function filterRoutes(routes: RouteConfig[], permissions: string[]): RouteConfig[] {
-  // console.log(permissions);
-  routes.filter((item) => hasPermission(item, permissions));
-  return [];
+function filterRoutes(routes: RouteConfig[], permissions: string[], genroutes: RouteConfig[]) {
+  for(let item of routes) {
+      const { children, ...route } = item;
+      if(!children) {
+        if(hasPermission(item?.meta?.permission, permissions)){
+          !genroutes[genroutes.length - 1].children
+          && (genroutes[genroutes.length - 1].children = []);
+          genroutes[genroutes.length - 1].children?.push(item);
+        }
+      } else {
+        genroutes.push(route);
+        filterRoutes(children, permissions, genroutes);
+      }
+  }
 }
-function filterAdminRoutes(routes: RouteConfig[], permissions: string[]): RouteConfig[] {
-  // console.log('admin', permissions)
-  routes.filter((item) => hasPermission(item, permissions));
-  return []
-}
-export function generateRoutes(permission: string[], adminpermission: string[]) {
+
+export function generateRoutes(permission: string[], adminpermission: string[]): RouteConfig[] {
   let adminRoutes: RouteConfig[] = [];
   if(adminpermission.length > 0) {
-    adminRoutes = filterAdminRoutes(manageRoutes, adminpermission);
+    filterRoutes(manageRoutes, adminpermission, adminRoutes);
   }
-  const routes = filterRoutes(AsyncRoutes, permission);
+  const routes: RouteConfig[] = [];
+  filterRoutes(AsyncRoutes, permission, routes);
   return constantRoutes.concat(routes, adminRoutes);
 }
