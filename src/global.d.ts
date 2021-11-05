@@ -22,11 +22,9 @@ declare global {
     path: string;
     name: string;
     meta?: MetaConfig;
-    component: AsyncComponent;
+    component: LazyExoticComponent<FunctionComponent>;
     children?: routeConfig[];
   }
-
-  type AsyncComponent = () => import(JSX.Element);
 
   interface MetaConfig {
     title: string;

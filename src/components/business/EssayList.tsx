@@ -34,20 +34,18 @@ export default function EssayList() {
   const [updated, setUpdated] = useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const getArticleList = async () => {
-    dispatch({type: 'SETLOADING', loading: true});
-    const {total, ...others} = pagenation;
-    const list = await ArticleApi.getArticles(others).then((data) => data);
-    // setPagenation({...pagenation, total: (data && data.length) || 1});
-    setList(list);
-    dispatch({type: 'SETLOADING', loading: false});
-    setUpdated(true);
-  };
-
   useEffect(() => {
-    getArticleList();
+    (async () => {
+      dispatch({type: 'SETLOADING', loading: true});
+      const {total, ...others} = pagenation;
+      const list = await ArticleApi.getArticles(others).then((data) => data);
+      // setPagenation({...pagenation, total: (data && data.length) || 1});
+      setList(list);
+      dispatch({type: 'SETLOADING', loading: false});
+      setUpdated(true);
+    })();
     return (setUpdated(false), setList([]))
-  }, [pagenation.currentPage]);
+  }, [pagenation, dispatch]);
 
   useEffect(() => {
     generateListTemplate();
@@ -69,7 +67,7 @@ export default function EssayList() {
       <ul>
         {list.map((item: Essay, index) => {
           return (
-          <Link to={{pathname: '/detail/'+item.essayId}} className="block" key={index}>
+          <Link to={{pathname: '/article/detail/'+item.essayId}} className="block" key={index}>
             <li className={`${styles['essay-item']} p-12`} key={item.essayId}>
               <h3 className={'text-left ' + styles['essay-title']}>{ item.title }</h3>
               <p className={'text-justify ' + styles['essay-summary']}>{ item.summary }</p>

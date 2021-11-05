@@ -1,18 +1,19 @@
+import {lazy} from 'react';
 const manageRoutes: RouteConfig[] = [{
   path: '/manage',
   name: 'articleDetail',
   meta: {title: '后台管理系统', permission: ['index:view']},
-  component: () => import('@/manage/pages/manage'),
+  component: lazy(() => import('@/manage/pages/manage')),
   children: [{
     path: '/',
     name: 'Manage.Index',
     meta: {title: '首页', permission: ['index:view']},
-    component: () => import('@/manage/pages/index'),
+    component: lazy(() => import('@/manage/pages/index')),
   }, {
     path: '/user',
     name: 'Manage.User',
     meta: {title: '用户管理', permission: ['user:view']},
-    component: () => import('@/manage/pages/user'),
+    component: lazy(() => import('@/manage/pages/user')),
   }]
 }];
 
