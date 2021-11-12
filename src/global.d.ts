@@ -21,6 +21,7 @@ declare global {
   interface RouteConfig {
     path: string;
     name: string;
+    exact?: boolean;
     meta?: MetaConfig;
     component: LazyExoticComponent<FunctionComponent>;
     children?: routeConfig[];
@@ -28,7 +29,18 @@ declare global {
 
   interface MetaConfig {
     title: string;
+    permission?: string[];
   }
+
+  interface BlogResp <T>{
+    success: boolean;
+    code: number;
+    data?: T;
+    message: string;
+    errCode: number;
+    errMessage: string;
+  }
+  type BlogResponse<T> = AxiosResponse<BlogResp<T>>;
   
 }
 export {}

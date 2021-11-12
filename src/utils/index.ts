@@ -77,5 +77,5 @@ export function generateRoutes(permission: string[], adminpermission: string[]):
   }
   const routes: RouteConfig[] = [];
   filterRoutes(AsyncRoutes, permission, routes);
-  return constantRoutes.concat(routes, adminRoutes);
+  return routes.concat(adminRoutes, constantRoutes);
 }

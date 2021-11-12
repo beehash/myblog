@@ -7,11 +7,13 @@ const manageRoutes: RouteConfig[] = [{
   children: [{
     path: '/',
     name: 'Manage.Index',
+    exact: true,
     meta: {title: '首页', permission: ['index:view']},
     component: lazy(() => import('@/manage/pages/index')),
   }, {
     path: '/user',
     name: 'Manage.User',
+    exact: true,
     meta: {title: '用户管理', permission: ['user:view']},
     component: lazy(() => import('@/manage/pages/user')),
   }]

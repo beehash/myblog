@@ -1,26 +1,26 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import Message from '@/utils/message';
 
-interface BlogResponse <T>{
-  code: number;
-  data: T;
-  message: string;
-  errCode: number;
-  errMessage: string;
-}
 
-function responseInterceptorUse(response: AxiosResponse) {
-  
+
+function responseInterceptorUse(response: AxiosResponse<BlogResp<any>>) {
   if(response.status >= 200 && response.status < 300) {
     const data = response.data;
-    if(data.success) return response.data.data;
-    else Message.error(data.message);
+    if(!data.success) {
+      Message.error(data.message);
+      return {success: false, message: data.message}
+    }
+    return response.data.data;
   } else if(response.status > 200 && response.status <500) {
     const data = response.data;
-    if(data.success) return response.data.data;
-    else Message.error(data.message);
+    if(!data.success) {
+      Message.error(data.message);
+      return {success: false, message: data.message}
+    }
+    return response.data.data;
   } else if(response.status === 500) {
     Message.error('服务器错误');
+    return {success: false, message: '服务器错误'};
   }
 }
 

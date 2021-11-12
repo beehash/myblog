@@ -7,7 +7,7 @@ import NavBar from '@/components/business/Navbar';
 
 export default function Header () {
   return (
-    <div className={styles['fix-header'] + ' p-12'}>
+    <div className={styles['fix-header'] + ' center-block p-12'}>
       <div className={`${styles['header']} center-block boxflex flexalign-center}`}>
         <div className="left-bar boxflex flexalign-center">
         <Link to="/"><span className={`${styles.avator} mr-8`}>
@@ -19,7 +19,7 @@ export default function Header () {
         <button className="base-button default-button mr-8">
           <Link to="/editor" className="clear-default-link-style">写文章</Link>
         </button>
-        <button className="base-button text-button">登录</button>
+        <button className="base-button text-button mr-8">登录</button>
       </div>
       </div>
     </div>

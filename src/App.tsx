@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch } from "react-router-dom";
-import { Provider } from 'react-redux';
-import store from '@/store';
+import { useDispatch, useSelector } from 'react-redux';
 import Authroute from '@/components/base/AuthRoute';
-import Manage from '@/manage/pages/manage';
-import Index from '@/pages';
+import AsyncLoadComponent from './hocs/AsyncLoadComponent';
+import '@/statics/sass/App.scss';
 
 function App() {
+  const dispatch = useDispatch();
+  const routes = useSelector((state: any) => state.routeState);
+
+  useEffect(() => {
+    dispatch({type: 'GET_USER', params: {name: 'beehash'}});
+    return () => {}
+  }, [dispatch]);
+
+  function generateRoutes(routes: RouteConfig[]) {
+    return routes.map((item: RouteConfig, index: number) => {
+      const CurrentComponent = typeof item.component === 'function' ? item.component : AsyncLoadComponent(item.component);
+      if(!item.children || !item?.children?.length) {
+        return (<Authroute exact={item.exact} key={index} path={item.path} component={CurrentComponent}></Authroute>);
+      }
+
+      return (<Authroute exact={item.exact} key={index} path={item.path} render={(props: any) =>
+        <CurrentComponent {...props}>{generateRoutes(item.children || [])}</CurrentComponent>
+      } />);
+    });
+  }
   return (
-    <Provider store={store}>
+    <div className="App">
       <Router>
-        {/* <div className="main-gradient full_gradient js-full-gradient state-full state-complete"></div> */}
         <Switch>
-          {/* MANAGE */}
-          <Authroute path="/manage" component={Manage} />
-          {/* FRONT-END */}
-          <Authroute path="/" component={Index} />
+          {generateRoutes(routes)}
         </Switch>
       </Router>
-    </Provider>
+    </div>
   );
 }
 

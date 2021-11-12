@@ -1,8 +1,9 @@
+import { constantRoutes } from "@/router";
 const payloads = {
   rootState: {
     loading: false,
   },
-  routeState: [],
+  routeState: constantRoutes,
   user: {
     name: 'beehash',
   },

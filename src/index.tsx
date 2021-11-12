@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from '@/store';
 import './index.css';
 import App from './App';
+import Loading from '@/components/base/Loading';
 import reportWebVitals from './reportWebVitals';
 import { CursorSpecialEffects } from './utils/cursor.js';
 
@@ -15,7 +18,10 @@ document.body.className = 'cursor';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App/>
+    <Provider store={store}>
+      <Loading />
+      <App/>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

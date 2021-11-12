@@ -25,6 +25,10 @@ a.clear-default-link-style{
   padding-bottom: 170px;
   min-height: 100vh;
 }
+.index{
+  background-color: #ffffff;
+  min-height: 100vh;
+}
 .cursor{
   cursor: url(../images/panda.svg), crosshair;
 }
@@ -534,4 +538,17 @@ a.clear-default-link-style{
 }
 .blank-none{
   padding: 64px;
+}
+.bidden,
+.not-found{
+  img{
+    display: block;
+    width: 500px;
+    height: 500px;
+    margin: 80px auto;
+  }
+  .prompt-text{
+    color: #999999;
+    text-align: center;
+  }
 }
