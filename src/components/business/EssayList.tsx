@@ -39,7 +39,6 @@ export default function EssayList() {
       dispatch({type: 'SETLOADING', loading: true});
       const {total, ...others} = pagenation;
       const list = await ArticleApi.getArticles(others).then((data) => data);
-      // setPagenation({...pagenation, total: (data && data.length) || 1});
       setList(list);
       dispatch({type: 'SETLOADING', loading: false});
       setUpdated(true);
