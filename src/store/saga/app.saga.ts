@@ -7,7 +7,6 @@ function* getUserInfo(action: SagaActionState<{name: string}>): IterableIterator
     const user = yield UserApi.getUser(action.params);
     yield put({type: 'SETLOADING', loading: false});
     yield put({type: 'SET_USER', user});
-    yield put({type: 'SET_ROUTE', user});
   } catch {
     console.log('获取用户失败！')
   }

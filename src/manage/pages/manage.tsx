@@ -11,7 +11,7 @@ export default function Backend() {
       <div className="side theme theme-bg">
         <SideNav />
       </div>
-      <div className="container">
+      <div className="main-container">
         <Route exact path="/manage/" component={Index}></Route>
         <Route path="/manage/user" component={UserManage}></Route>
       </div>

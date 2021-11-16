@@ -1,4 +1,4 @@
-import { constantRoutes, AsyncRoutes, manageRoutes } from "@/router";
+// import { constantRoutes, AsyncRoutes, manageRoutes } from "@/router";
 
 export function createRoot(rootId: string) {
   const el = document.createElement('div');
@@ -49,33 +49,48 @@ export function timeParser(time: number | string, format: string= 'YYYY-mm-dd HH
   return result;
 }
 
-function hasPermission(myPermission = ['*'], permissions: string[]) {
+export function hasPermission(myPermission = ['*'], permissions: string[]=[]) {
   const result = permissions.some(item => (myPermission.indexOf('*') > -1 || myPermission.includes(item)));
+  console.log('hasPermission', result)
   return result;
 }
 
-function filterRoutes(routes: RouteConfig[], permissions: string[], genroutes: RouteConfig[]) {
-  for(let item of routes) {
-      const { children, ...route } = item;
-      if(!children) {
-        if(hasPermission(item?.meta?.permission, permissions)){
-          !genroutes[genroutes.length - 1].children
-          && (genroutes[genroutes.length - 1].children = []);
-          genroutes[genroutes.length - 1].children?.push(item);
-        }
-      } else {
-        genroutes.push(route);
-        filterRoutes(children, permissions, genroutes);
-      }
-  }
-}
+// function filterRoutes(routes: RouteConfig[], permissions: string[], genroutes: RouteConfig[]) {
+//   for(let item of routes) {
+//       const { children, ...route } = item;
+//       if(!children) {
+//         if(hasPermission(item?.meta?.permission, permissions)){
+//           !genroutes[genroutes.length - 1].children
+//           && (genroutes[genroutes.length - 1].children = []);
+//           genroutes[genroutes.length - 1].children?.push(item);
+//         }
+//       } else {
+//         genroutes.push(route);
+//         filterRoutes(children, permissions, genroutes);
+//       }
+//   }
+// }
 
-export function generateRoutes(permission: string[], adminpermission: string[]): RouteConfig[] {
-  let adminRoutes: RouteConfig[] = [];
-  if(adminpermission.length > 0) {
-    filterRoutes(manageRoutes, adminpermission, adminRoutes);
-  }
-  const routes: RouteConfig[] = [];
-  filterRoutes(AsyncRoutes, permission, routes);
-  return routes.concat(adminRoutes, constantRoutes);
-}
+// export function getAsyncRoutes(permission: string[], adminpermission: string[]): RouteConfig[] {
+//   let adminRoutes: RouteConfig[] = [];
+//   if(adminpermission.length > 0) {
+//     filterRoutes(manageRoutes, adminpermission, adminRoutes);
+//   }
+//   const routes: RouteConfig[] = [];
+//   filterRoutes(AsyncRoutes, permission, routes);
+//   return routes.concat(adminRoutes);
+// }
+
+// export function matchRoutes(path: string, routes: RouteConfig[]): true | undefined {
+//   const allroutes = constantRoutes.concat(routes);
+//   for(let i = 0, l = allroutes.length; i < l; i++) {
+//     const {children = [], path: curpath} = allroutes[i];
+//     if(!children.length) {
+//       if(curpath === path) {
+//         return true;
+//       }
+//     } else {
+//       return matchRoutes(path, children);
+//     }
+//   }
+// }

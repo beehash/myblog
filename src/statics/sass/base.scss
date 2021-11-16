@@ -541,6 +541,7 @@ a.clear-default-link-style{
 }
 .bidden,
 .not-found{
+  overflow: hidden;
   img{
     display: block;
     width: 500px;

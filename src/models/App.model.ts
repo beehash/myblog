@@ -1,7 +1,4 @@
-export interface RootStateCator{
-  loading: boolean,
-}
-
+import {ArticleCator} from './Article.model'
 export interface ThemeCator{
   color: string,
   inColor: string,
@@ -12,8 +9,18 @@ export interface UserParameterCator{
 
 export interface UserCator {
   id: number;
-  permission: [];
+  permissions: [];
   session: string;
   userId: string;
   username: string;
+}
+export interface RootCator {
+  loading: boolean;
+  asyncRoutes: RouteConfig[];
+}
+export interface PayloadsCator{
+  root: RootCator;
+  user: UserCator;
+  article: ArticleCator;
+  theme: ThemeCator;
 }

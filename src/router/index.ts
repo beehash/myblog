@@ -1,3 +1,4 @@
+// import { AsyncRoutes } from '@/router';
 import {lazy} from 'react';
 import manageRoutes from './manage';
 import notFound from '@/pages/404';
@@ -41,6 +42,12 @@ export const constantRoutes: RouteConfig[] = [{
   exact: true,
   meta: {title: 'Bidden'},
   component: bidden,
+},{
+  path: '/*',
+  name: '404',
+  meta: {title: 'Not Found'},
+  component: notFound,
 }];
 
-export { manageRoutes };
+const routes = [...AsyncRoutes, ...manageRoutes, ...constantRoutes];
+export default routes;

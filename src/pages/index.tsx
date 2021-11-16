@@ -6,7 +6,7 @@ import GirlNav from '@/components/business/GirlNav';
 
 export default function Index({children}: any) {
   return (
-    <div className="index center-block">
+    <div className="App">
       {/* Theme */}
       <Theme />
       {/* GirlNav */}

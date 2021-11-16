@@ -1,11 +1,19 @@
+import { PayloadsCator } from '@/models/App.model';
 import { constantRoutes } from "@/router";
-const payloads = {
-  rootState: {
+
+
+
+const payloads: PayloadsCator = {
+  root: {
     loading: false,
+    asyncRoutes: [],
   },
-  routeState: constantRoutes,
   user: {
-    name: 'beehash',
+    id: 0,
+    permissions: [],
+    session: '',
+    userId: '',
+    username: 'beehash',
   },
   article: {
     id: 55,

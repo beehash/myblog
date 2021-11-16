@@ -9,7 +9,7 @@ export default function Loading(props: any) {
     return state.theme;
   });
   const loading = useSelector((state: any) => {
-    return state.rootState.loading;
+    return state.root.loading;
   });
   
   useEffect(() => {
