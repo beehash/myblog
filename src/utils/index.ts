@@ -50,8 +50,12 @@ export function timeParser(time: number | string, format: string= 'YYYY-mm-dd HH
 }
 
 export function hasPermission(myPermission = ['*'], permissions: string[]=[]) {
-  const result = permissions.some(item => (myPermission.indexOf('*') > -1 || myPermission.includes(item)));
-  console.log('hasPermission', result)
+  // console.log(myPermission, permissions);
+  if(myPermission.indexOf('*') > -1) {
+    return true;
+  }
+  const result = permissions.some(item => (myPermission.includes(item)));
+  console.log('hasPermission', result, myPermission, permissions)
   return result;
 }
 

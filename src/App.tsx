@@ -9,9 +9,7 @@ import routes from '@/router';
 import '@/statics/sass/App.scss';
 
 function App(props: any) {
-  console.log(props);
   const dispatch = useDispatch();
-  // const asyncRoutes = useSelector((state: any) => state.root.asyncRoutes);
   const permissions = useSelector((state: any) => state.user.permissions);
   const location = useLocation();
 
@@ -21,26 +19,21 @@ function App(props: any) {
   }, [dispatch]);
 
   useEffect(() => {
-    // if(asyncRoutes.length && !matchRoutes(location.pathname, asyncRoutes)) {
-      
-    // }
   }, [location]);
 
   function generateRoutes(routes: RouteConfig[]) {
-    // const genRoutes = constantRoutes.concat(asyncRoutes);
-
     return routes.map((item: RouteConfig, index: number) => {
       const CurrentComponent = typeof item.component === 'function' ? item.component : AsyncLoadComponent(item.component);
-      
+      const pass = hasPermission(item?.meta?.permission, permissions);
       if(!item.children || !item?.children?.length) {
-        return (<Authroute exact={item.exact} key={index} path={item.path} render={(props:any) => 
-          hasPermission(item?.meta?.permission, permissions)
+        return (<Authroute exact={item.exact} pass key={index} path={item.path} render={(props:any) => 
+          pass
           ? (<CurrentComponent {...props} />)
           : (<Redirect to="/bidden"/>)} />);
       }
 
-      return (<Authroute exact={item.exact} key={index} path={item.path} render={(props: any) =>
-        hasPermission(item?.meta?.permission, permissions)
+      return (<Authroute exact={item.exact} key={index} path={item.path}  pass render={(props: any) =>
+        pass
         ? (<CurrentComponent {...props}>{generateRoutes(item.children || [])}</CurrentComponent>)
         : (<Redirect to="/bidden"/>)
       } />);
