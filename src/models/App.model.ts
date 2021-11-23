@@ -18,7 +18,7 @@ export interface RootCator {
   loading: boolean;
   asyncRoutes: {
     routes: RouteConfig[];
-    success: boolean;
+    complete: boolean;
   };
 }
 export interface PayloadsCator{

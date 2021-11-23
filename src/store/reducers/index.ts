@@ -19,15 +19,15 @@ export default function root (state: RootCator = payLoads.root, action: AnyActio
           routes,
         },
       };
-    case 'GETUSER_SUCCESS': 
-      console.log(action);
-      return {
-        ...state,
-        asyncRouts: {
-          ...state.asyncRoutes,
-          success: action.success,
-        }
+    case 'SET_ROUTESCOMPLETE': 
+    console.log('SET_ROUTESCOMPLETE', action.complete)
+    return {
+      ...state,
+      asyncRoutes: {
+        ...state.asyncRoutes,
+        complete: action.complete,
       }
+    }
     default:
       return state;
   }

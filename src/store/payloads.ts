@@ -5,7 +5,7 @@ const payloads: PayloadsCator = {
     loading: false,
     asyncRoutes: {
       routes: [],
-      success: false,
+      complete: false,
     },
   },
   user: {

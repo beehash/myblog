@@ -4,9 +4,8 @@ import { useLocation, useHistory } from 'react-router-dom';
 import Authroute from '@/components/base/AuthRoute';
 import AsyncLoadComponent from '@/hocs/AsyncLoadComponent';
 import { matchRoutes } from '@/utils';
-import { constantRoutes } from '@/router';
+import { constantRoutes, AsyncRoutes } from '@/router';
 import '@/statics/sass/App.scss';
-import { off } from 'process';
 
 function App() {
   const dispatch = useDispatch();
@@ -20,10 +19,14 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    const matched = matchRoutes(location.pathname, [...constantRoutes, ...asyncRoutes.routes]);
-    console.log(matched);
-    if(asyncRoutes.success && !matched) {
-      history.push('/bidden');
+    if(asyncRoutes.complete) {
+      const found = matchRoutes(location.pathname, [...constantRoutes, ...AsyncRoutes]);
+      if(found) {
+        const authorized = matchRoutes(location.pathname, [...constantRoutes, ...asyncRoutes.routes]);
+        if(!authorized) history.push('/bidden');
+      }else {
+        history.push('/404');
+      }
     }
   }, [asyncRoutes, location, history]);
 
@@ -46,7 +49,7 @@ function App() {
 
   return (
     <div className="container">
-      {generateRoutes([...constantRoutes, ...asyncRoutes.routes])}
+      {asyncRoutes.complete && generateRoutes([...constantRoutes, ...asyncRoutes.routes])}
     </div>
   );
 }
