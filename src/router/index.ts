@@ -1,10 +1,9 @@
-// import { AsyncRoutes } from '@/router';
 import {lazy} from 'react';
 import manageRoutes from './manage';
 import notFound from '@/pages/404';
 import bidden from '@/pages/bidden';
 
-export const AsyncRoutes: RouteConfig[] = [{
+const routes: RouteConfig[] = [{
   path: '/',
   name: 'Index',
   meta: {title: '我的博客', permission: ['home:view', 'editor:view', 'article:view']},
@@ -30,7 +29,7 @@ export const AsyncRoutes: RouteConfig[] = [{
   }]
 }];
 
-export const constantRoutes: RouteConfig[] = [{
+const constantRoutes: RouteConfig[] = [{
   path: '/404',
   name: '404',
   exact: true,
@@ -42,12 +41,7 @@ export const constantRoutes: RouteConfig[] = [{
   exact: true,
   meta: {title: 'Bidden'},
   component: bidden,
-},{
-  path: '/*',
-  name: '404',
-  meta: {title: 'Not Found'},
-  component: notFound,
 }];
 
-const routes = [...AsyncRoutes, ...manageRoutes, ...constantRoutes];
-export default routes;
+const AsyncRoutes = [...routes, ...manageRoutes];
+export {AsyncRoutes, constantRoutes};
