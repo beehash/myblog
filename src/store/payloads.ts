@@ -1,12 +1,12 @@
 import { PayloadsCator } from '@/models/App.model';
-import { constantRoutes } from "@/router";
-
-
 
 const payloads: PayloadsCator = {
   root: {
     loading: false,
-    asyncRoutes: [],
+    asyncRoutes: {
+      routes: [],
+      success: false,
+    },
   },
   user: {
     id: 0,

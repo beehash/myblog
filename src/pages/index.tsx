@@ -5,6 +5,7 @@ import Theme from '@/components/base/Theme';
 import GirlNav from '@/components/business/GirlNav';
 
 export default function Index({children}: any) {
+  // console.log(children);
   return (
     <div className="App">
       {/* Theme */}
