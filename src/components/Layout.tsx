@@ -1,10 +1,10 @@
 import React from 'react';
-import '@/statics/sass/App.scss';
 import Header from '@/components/business/Header';
 import Theme from '@/components/base/Theme';
 import GirlNav from '@/components/business/GirlNav';
 
-export default function Index({children}: any) {
+export default function Layout({children, ...rest}: any) {
+  console.log(rest);
   return (
     <div className="App">
       {/* Theme */}

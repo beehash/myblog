@@ -3,8 +3,6 @@ import type { AnyAction } from 'redux';
 import { RootCator } from '@/models/App.model';
 import payLoads from '../payloads';
 import { getAsyncRoutes } from '@/utils';
-// import { Dispatch } from 'react-redux';
-// import { AsyncRoutes } from '@/router/index';
 
 export default function root (state: RootCator = payLoads.root, action: AnyAction) {
   switch(action.type) {

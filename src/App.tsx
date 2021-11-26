@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, useRouteMatch } from 'react-router-dom';
 import Authroute from '@/components/base/AuthRoute';
 import AsyncLoadComponent from '@/hocs/AsyncLoadComponent';
 import { matchRoutes } from '@/utils';
@@ -20,36 +20,40 @@ function App() {
 
   useEffect(() => {
     if(asyncRoutes.complete) {
-      const found = matchRoutes(location.pathname, [...constantRoutes, ...AsyncRoutes]);
-      if(found) {
-        const authorized = matchRoutes(location.pathname, [...constantRoutes, ...asyncRoutes.routes]);
+      const found = matchRoutes(location.pathname, [...constantRoutes, ...AsyncRoutes], false);
+      if(location.pathname === '/'){
+        history.push('/home');
+      } else if(found) {
+        const authorized = matchRoutes(location.pathname, [...constantRoutes, ...asyncRoutes.routes], false);
         if(!authorized) history.push('/bidden');
-      }else {
+      } else {
         history.push('/404');
       }
     }
-  }, [asyncRoutes, location, history]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [asyncRoutes, location]);
 
-  function generateRoutes(routes: RouteConfig[]) {
+  function generateRoutes(routes: RouteConfig[], ppath?: string) {
     return routes.map((item: RouteConfig, index: number) => {
       const CurrentComponent = typeof item.component === 'function' ? item.component : AsyncLoadComponent(item.component);
       if(!item.children || !item?.children?.length) {
+        console.log(item);
         return (<Authroute exact={item.exact} key={index}
-            path={item.path} component={CurrentComponent}></Authroute>);
+            path={ppath + '/' + item.path} component={CurrentComponent}></Authroute>);
       }
 
       return (
         <Authroute exact={item.exact} key={index} path={item.path} render={(props: any) =>
           <CurrentComponent {...props}>
-            {generateRoutes(item.children || [])}
+            {generateRoutes(item.children || [], item.path)}
           </CurrentComponent>
       } />);
     });
   }
 
   return (
-    <div className="container">
-      {asyncRoutes.complete && generateRoutes([...constantRoutes, ...asyncRoutes.routes])}
+    <div className="main-container">
+      {asyncRoutes.complete && generateRoutes([...asyncRoutes.routes,...constantRoutes])}
     </div>
   );
 }
