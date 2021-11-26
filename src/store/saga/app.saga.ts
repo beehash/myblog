@@ -7,13 +7,10 @@ function* getUserInfo(action: SagaActionState<{name: string}>): IterableIterator
   yield put({type: 'SETLOADING', loading: false});
   yield put({type: 'SET_USER', user});
   yield put({type: 'SET_ASYNCROUTES', user});
+  yield put({type: 'SET_ROUTESCOMPLETE', complete: true });
 }
 
 export function* fetchUserSaga() {
-  try{
-    yield takeLatest('GET_USER', getUserInfo);
-  }finally{
-    yield put({type: 'SET_ROUTESCOMPLETE', complete: true });
-  }
+  yield takeLatest('GET_USER', getUserInfo);
   
 }

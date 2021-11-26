@@ -6,6 +6,7 @@ import showdown from 'showdown';
 import styles from '@/statics/sass/article-detail.module.scss';
 
 export default function ArticleDetail(props: {id: string}) {
+  console.log(1111111111);
   const [htmlc, setHtmlc] = useState('');
   const [title, setTitle] = useState('');
   useScrollToTop();

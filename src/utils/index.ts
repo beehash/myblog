@@ -1,4 +1,5 @@
 import { constantRoutes, AsyncRoutes } from "@/router";
+import {matchPath} from 'react-router';
 
 export function createRoot(rootId: string) {
   const el = document.createElement('div');
@@ -80,16 +81,24 @@ export function getAsyncRoutes(permissions: string[]): RouteConfig[] {
   return routes;
 }
 
-export function matchRoutes(path: string, routes: RouteConfig[]): true | undefined {
+export function matchRoutes(path: string, routes: RouteConfig[], result: boolean, ppath?: string): true | undefined {
   const allroutes = constantRoutes.concat(routes);
   for(let i = 0, l = allroutes.length; i < l; i++) {
     const {children = [], path: curpath} = allroutes[i];
-    if(!children.length) {
-      if(curpath === path) {
+    if(!children?.length || result) {
+        let tpath = ppath + '/' + curpath;
+        if(curpath[0] === '/') {
+          tpath = curpath;
+        }
+        const matched = matchPath(path, {path: tpath, exact: true}); 
+        if(matched) {
+          return true;
+        }
+    } else {
+      const matched = matchRoutes(path, children, result, curpath);
+      if(matched) {
         return true;
       }
-    } else {
-      return matchRoutes(path, children);
     }
   }
 }
