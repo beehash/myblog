@@ -86,7 +86,7 @@ export function matchRoutes(path: string, routes: RouteConfig[], result: boolean
   for(let i = 0, l = allroutes.length; i < l; i++) {
     const {children = [], path: curpath} = allroutes[i];
     if(!children?.length || result) {
-        let tpath = ppath + '/' + curpath;
+        let tpath = (ppath ? ppath + '/' : '') + curpath;
         if(curpath[0] === '/') {
           tpath = curpath;
         }

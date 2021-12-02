@@ -37,9 +37,8 @@ function App() {
     return routes.map((item: RouteConfig, index: number) => {
       const CurrentComponent = typeof item.component === 'function' ? item.component : AsyncLoadComponent(item.component);
       if(!item.children || !item?.children?.length) {
-        console.log(item);
         return (<Authroute exact={item.exact} key={index}
-            path={ppath + '/' + item.path} component={CurrentComponent}></Authroute>);
+            path={(ppath ? ppath+ '/' : '') + item.path} component={CurrentComponent}></Authroute>);
       }
 
       return (
