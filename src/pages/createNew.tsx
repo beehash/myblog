@@ -106,7 +106,7 @@ function CreateNew(props: any) {
           <Editor textc={textc} editor-change={handleChange} />
           <Previewer htmlc={htmlc} />
         </div>
-        <div className="repeat-bg reed" style={{height: '100px', backgroundSize: '10% 100%'}}></div>
+        <div className="repeat-bg reed fixed-bottom" style={{height: '100px', backgroundSize: '10% 100%'}}></div>
       </div>
       {/* 发布设置 */}
       <Modal title="发布设置" visible={visible}

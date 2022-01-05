@@ -22,7 +22,7 @@ a.clear-default-link-style{
   color: #343434;
   font-size: 14px;
   background-color: #969696;
-  padding-bottom: 170px;
+  // padding-bottom: 170px;
   min-height: 100vh;
 }
 .index{
@@ -553,4 +553,10 @@ a.clear-default-link-style{
     color: #999999;
     text-align: center;
   }
+}
+.fixed-bottom{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

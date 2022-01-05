@@ -18,7 +18,6 @@ export default function root (state: RootCator = payLoads.root, action: AnyActio
         },
       };
     case 'SET_ROUTESCOMPLETE': 
-    console.log('SET_ROUTESCOMPLETE', action.complete)
     return {
       ...state,
       asyncRoutes: {

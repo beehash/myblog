@@ -1,8 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import Message from '@/utils/message';
 
-
-
 function responseInterceptorUse(response: AxiosResponse<BlogResp<any>>) {
   if(response.status >= 200 && response.status < 300) {
     const data = response.data;
@@ -41,6 +39,7 @@ class fetch {
   @responseInterceptor
   private static fetchInstance: AxiosInstance = axios.create({
     timeout: 3000000,
+    baseURL: '/blog/api',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
     },
