@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Essay } from '@/models/Essay.model';
 import ArticleApi from '@/apis/article'; 
 import { timeParser } from '@/utils';
@@ -33,6 +33,9 @@ export default function EssayList() {
   const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 10, currentPage: 1, total: 20});
   const [updated, setUpdated] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const theme = useSelector((state: any) => {
+    return state.theme;
+  });
 
   useEffect(() => {
     (async () => {
@@ -68,7 +71,7 @@ export default function EssayList() {
           return (
           <Link to={{pathname: '/article/detail/'+item.essayId}} className="block" key={index}>
             <li className={`${styles['essay-item']} p-12`} key={item.essayId}>
-              <h3 className={'text-left ' + styles['essay-title']}>{ item.title }</h3>
+              <h3 className={'text-left theme ' + styles['essay-title']}>{ item.title }</h3>
               <p className={'text-justify ' + styles['essay-summary']}>{ item.summary }</p>
               <div className={styles['essay-item-footer']+' boxflex mt-16'}>
                 <div className={`${styles.infos}`}>

@@ -37,7 +37,8 @@ a.clear-default-link-style{
 }
 .container{
   padding-top: 72px;
-  overflow: hidden;
+  min-height: 100vh;
+  background-color: #fff;
 }
 /* 旋转logo效果 */
 .logo-box{

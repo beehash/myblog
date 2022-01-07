@@ -51,7 +51,15 @@ function CreateNew(props: any) {
     omitExtraWLInCodeBlocks: true,
     ghCodeBlocks: true,
     requireSpaceBeforeHeadingText: true,
-    rawHeaderId: true,
+    noHeaderId: true,
+    tables: true,
+    strikethrough: true,
+    tasklists: true,
+    openLinksInNewWindow: true,
+    emoji: true,
+    underline: true,
+    simpleLineBreaks: true,
+    splitAdjacentBlockquotes: true,
   });
   
   // handleChange
