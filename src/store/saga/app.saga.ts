@@ -3,7 +3,7 @@ import UserApi from '@/apis/user';
 
 function* getUserInfo(action: SagaActionState<{name: string}>): IterableIterator<any> {
   yield put({type: 'SETLOADING', loading: true});
-  const user = yield UserApi.getUser(action.params);
+  const user = yield UserApi.getUser(action.params).then((res) => res.data);
   yield put({type: 'SETLOADING', loading: false});
   yield put({type: 'SET_USER', user});
   yield put({type: 'SET_ASYNCROUTES', user});

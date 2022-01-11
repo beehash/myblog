@@ -1,7 +1,7 @@
 export interface Essay {
   id: number;
-  essayId: string;
-  essayTag: string;
+  articleId: string;
+  articleTag: string;
   title: string;
   summary: string;
   createTime: string;

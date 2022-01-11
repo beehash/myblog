@@ -40,6 +40,14 @@ class Message {
     }
     return root;
   }
+  // success
+  success(msg: string) {
+    (this.root as HTMLElement).style.display = 'block';
+    (this.root as HTMLElement).innerHTML=`<span class="${styles['msg-box']} msg-info"><span class="${styles['base-icon']}">${icons.success}</span><span>${msg}</span></span>`;
+    setTimeout(() => {
+      (this.root as HTMLElement).style.display = 'none';
+    }, 1000);
+  }
 
   // 信息提示弹窗
   info(msg: string) {
