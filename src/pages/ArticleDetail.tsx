@@ -29,8 +29,8 @@ export default function ArticleDetail(props: {id: string}) {
 
   function getArticleById() {
     ArticleApi.getArticleById({id: params.articleId || 'sn1622627657778800'}).then((res) => {
-      const html = converter.makeHtml(res.content);
-      setTitle(res.title);
+      const html = converter.makeHtml(res.data.content);
+      setTitle(res.data.title);
       setHtmlc(html);
     });
   }

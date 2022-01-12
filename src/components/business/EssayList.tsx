@@ -32,18 +32,10 @@ interface PagenationCator{
 export default function EssayList({keyId}:any) {
   const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 10, currentPage: 1, total: 20});
   const [updated, setUpdated] = useState<boolean>(false);
-  const dispatch = useDispatch();
-  const theme = useSelector((state: any) => {
-    return state.theme;
-  });
   const {total, ...others} = pagenation;
-  const {loading, list} = useFetchList(ArticleApi.getArticles, others);
+  const {loading, list} = useFetchList(ArticleApi.getArticles, others, {usedep: true});
 
-  useEffect(() => {
-    console.log(list);
-    generateListTemplate();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [list]);
+  useEffect(() => {}, [list]);
 
   useEffect(() => {
     setUpdated(true);

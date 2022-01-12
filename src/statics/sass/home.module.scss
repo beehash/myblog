@@ -1,9 +1,12 @@
 .avator{
   display: inline-block;
-  padding: 4px;
+  width: 38px;
+  height: 38px;
   border: 1px solid #cccccc;
   border-radius: 50px;
-  vertical-align: middle;
+  img{
+    vertical-align: sub;
+  }
 }
 .right-bar{
   height: 48px;
@@ -26,8 +29,7 @@
     justify-content: flex-start;
     align-items: center;
     & li{
-      padding-left: 24px;
-      padding-right: 24px;
+      width: 76px;
       text-align: center;
     }
   }
@@ -71,6 +73,7 @@
   top: 0;
   left: 0;
   right: 0;
+  height: 72px;
   color: #343434;
   background: #FBF4E9;
   z-index: 35;
