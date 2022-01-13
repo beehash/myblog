@@ -31,18 +31,16 @@ interface PagenationCator{
 
 export default function EssayList({keyId}:any) {
   const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 10, currentPage: 1, total: 20});
-  const [updated, setUpdated] = useState<boolean>(false);
   const {total, ...others} = pagenation;
-  const {loading, list} = useFetchList(ArticleApi.getArticles, others, {usedep: true});
-
+  const {list, status} = useFetchList(ArticleApi.getArticles, others, {usedep: true});
   useEffect(() => {}, [list]);
 
-  useEffect(() => {
-    setUpdated(true);
-  }, [loading])
 
+  // 列表模板
   function generateListTemplate() {
-    if((!updated)) return '';
+    // 请求前和请求中 展示为空
+    if((status !== 'completed')) return '';
+    // 请求后 数据为空展示效果
     if(!list || !list.length) {
       return (
         <div className="blank-none text-center">
@@ -74,6 +72,7 @@ export default function EssayList({keyId}:any) {
     );
   }
 
+  // 文章图标
   function generateIcons (info: Obj, index: number) {
     return Icons.map((icon, index2) => {
       return (
@@ -87,9 +86,11 @@ export default function EssayList({keyId}:any) {
 
   return (
     <div className={styles.essay + ' clearfix'}>
+      {/* 文章列表 */}
       <div className={styles.essayList}>
         {generateListTemplate()}
       </div>
+      {/* 分页 */}
       <Pagenation
         className='mr-16'
         pageSize={pagenation.pageSize}

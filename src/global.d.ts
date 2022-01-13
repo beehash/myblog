@@ -61,6 +61,7 @@ declare global {
     usedep: boolean;
     deps: [];
     msg: string;
+    useloading: boolean;
   }
 }
 export {}
