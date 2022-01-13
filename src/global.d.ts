@@ -63,5 +63,6 @@ declare global {
     msg: string;
     useloading: boolean;
   }
+  type FetchStatus = 'before' | 'pending' | 'completed';
 }
 export {}

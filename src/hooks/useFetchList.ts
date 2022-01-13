@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import Message from '@/utils/message';
 
 export default function useFetchList<T, R>(fetchFn: FetchFunctionList<T>, params: R, opts: Partial<FetchOpts>={}) {
-  const [status, setStatus] = useState('before');
+  const [status, setStatus] = useState<FetchStatus>('before');
   const [list, setList] = useState<T[]>([]);
   const [total, setTotal] = useState<Pagenation>();
   const dispatch = useDispatch();

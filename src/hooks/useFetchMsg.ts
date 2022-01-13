@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import Message from '@/utils/message';
 
 export default function useFetchMsg<T>(fetchApi: FetchFunction<T>, params: T, opts: Partial<FetchOpts> = {}) {
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<FetchStatus>('before');
   const [data, setData] = useState();
   const {deps=[], msg, usedep} = opts;
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function useFetchMsg<T>(fetchApi: FetchFunction<T>, params: T, op
   }, deps);
 
   function fetchFn() {
-    setLoading(true);
+    setStatus('pending');
     fetchApi(params).then((res) => {
       if(res.success) {
         if(typeof msg === 'string') {
@@ -25,11 +25,11 @@ export default function useFetchMsg<T>(fetchApi: FetchFunction<T>, params: T, op
       } else {
         Message.error(res.message);
       }
-    }).finally(() => setLoading(false));
+    }).finally(() => setStatus('completed'));
   }
 
   return {
-    loading,
+    status,
     data,
     fetchFn,
   }
