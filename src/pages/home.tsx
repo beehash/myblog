@@ -8,9 +8,7 @@ export default function Home() {
   const theme = useSelector((state: any) => {
     return state.theme;
   });
-  useEffect(() => {
-    console.log(111122, theme);
-  }, [theme]);
+  useEffect(() => {}, [theme]);
   return (
     <div className="home">
       <div className={`content ${styles['essay-content']} pos-relative`}>

@@ -16,9 +16,6 @@ const SVGS= {
 };
 
 export default function Icon(props: {name: string, color?: string, className?: string, width?: number, height?: number}) {
-  useEffect(() => {
-    console.log(11111, props.color);
-  }, [props.color]);
   return (
     <span className={'base-icon '+ props.className || ''}>{(SVGS as Obj)[props.name](props.color, props.width, props.height)}</span>
   );

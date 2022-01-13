@@ -1,7 +1,5 @@
-import { Pagenation } from '@/components/base/Pagenation';
 import { FunctionComponent } from 'react';
 import { Action } from 'redux';
-import { Module } from 'webpack';
 declare global {
   interface Obj {
     [key: string]: any;

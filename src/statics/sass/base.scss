@@ -545,6 +545,8 @@ html{
 }
 .bidden,
 .not-found{
+  min-height: 100vh;
+  background-color: #ffffff;
   overflow: hidden;
   img{
     display: block;
