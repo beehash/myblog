@@ -16,7 +16,7 @@ const defaultOptions = {
 
 export default function Modal(props: any=defaultOptions) {
   const modal = useRef(null);
-
+  console.log(props.children);
   useEffect(() => {
     if(props.visible) {
       createRoot('modal-root');
@@ -37,13 +37,14 @@ export default function Modal(props: any=defaultOptions) {
         </div>
         {/* 主体 */}
         <div className={styles.body}>
-          {props.children}
+          <slot>{props.children}</slot>
         </div>
         {/* 底部 */}
         {!props.concealFooter && <div className={styles.footer + ' text-center'}>
           <button className="base-button primary-button mr-16" onClick={props.onConfirm}>确定</button>
           {!props.cancelable && <button className="base-button default-button" onClick={() => props.close()}>取消</button>}
         </div>}
+        <slot name="footer">1q1qew</slot>
       </div>
     </Portal>
   ) : (<div></div>);

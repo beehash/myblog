@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import store from '@/store';
 import './index.css';
 import App from './App';
+import Slot from '@/components/base/Slot';
 import Loading from '@/components/base/Loading';
 import reportWebVitals from './reportWebVitals';
 import { CursorSpecialEffects } from './utils/cursor.js';
@@ -16,6 +17,7 @@ mask.id='modal-root';
 const cursorSpecialEffects = new CursorSpecialEffects();
 cursorSpecialEffects.init();
 document.body.className = 'cursor';
+React.createElement(Slot, null, null);
 
 ReactDOM.render(
   <React.StrictMode>

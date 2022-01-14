@@ -64,5 +64,11 @@ declare global {
     useloading: boolean;
   }
   type FetchStatus = 'before' | 'pending' | 'completed';
+  interface IconCator {
+    name: string;
+    color: string;
+    text: string;
+    key: string;
+  }
 }
 export {}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import useFetchList from '@/hooks/useFetchList';
 import { Essay } from '@/models/Essay.model';
 import ArticleApi from '@/apis/article'; 
@@ -16,21 +16,8 @@ const Icons: IconCator[] = [
   {name: 'comment', color: '#A2B29F', text: '评论数', key: 'comments'}
 ];
 
-interface IconCator {
-  name: string;
-  color: string;
-  text: string;
-  key: string;
-}
-
-interface PagenationCator{
-  pageSize: number;
-  total: number;
-  currentPage: number;
-}
-
 export default function EssayList({keyId}:any) {
-  const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 10, currentPage: 1, total: 20});
+  const [pagenation, setPagenation] = useState<Pagenation>({pageSize: 10, currentPage: 1, total: 20});
   const {total, ...others} = pagenation;
   const {list, status} = useFetchList(ArticleApi.getArticles, others, {usedep: true});
   useEffect(() => {}, [list]);

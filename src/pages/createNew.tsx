@@ -1,5 +1,6 @@
 import React,{ useState, useEffect, BaseSyntheticEvent } from 'react';
 import { useSelector } from 'react-redux'
+// import Slot from '@/components/base/Slot';
 import Editor from '@/components/business/Editor';
 import Previewer from '@/components/business/Previewer';
 import Modal from '@/components/base/Modal';
@@ -85,6 +86,10 @@ function CreateNew(props: any) {
     
     articleApi.addArticle(params).then((res) => {
       console.log('addArticle', res);
+      if(res.success) {
+        setVisible(false);
+        Message.success('文章保存成功！');
+      }
     });
   }
 
@@ -100,6 +105,7 @@ function CreateNew(props: any) {
     <div className="center-block">
       {/* 创建文章 */}
       <div className={styles['create-new']+' mt-56 center-block'}>
+        {/* 标题 */}
         <div className={styles['editor-header']+' w-full boxflex header'}>
           <input type="text" value={title}
           placeholder="请输入标题"
@@ -109,60 +115,70 @@ function CreateNew(props: any) {
             <button className="base-button primary-button"
               onClick={() => setVisible(true)}>保 存</button>
           </div>
-        </div>
+        </div> 
+        {/* 编辑 + 预览 */}
         <div className={styles['editor-box']+' boxflex mt-8'}>
           <Editor textc={textc} editor-change={handleChange} />
           <Previewer htmlc={htmlc} />
         </div>
+        {/* 背景 */}
         <div className="repeat-bg reed fixed-bottom" style={{height: '100px', backgroundSize: '10% 100%'}}></div>
       </div>
       {/* 发布设置 */}
       <Modal title="发布设置" visible={visible}
         close={() => setVisible(false)}
         onConfirm={save}>
-        {/* 简介 */}
-        <div className="row">
-          <TextArea value={formData.summary}
-            field="summary"
-            labelWidth={70}
-            width="300px"
-            maxLength={200}
-            labelText="文章简介"
-            onChange={(model: FormModel) => handleFormChange(model)} />
+        <div className="modal-body">
+          <div className="row">
+            {/* 简介 */}
+            <TextArea value={formData.summary}
+              field="summary"
+              labelWidth={70}
+              width="300px"
+              maxLength={200}
+              labelText="文章简介"
+              onChange={(model: FormModel) => handleFormChange(model)} />
+          </div>
+
+          <div className="row">
+            {/* 公开 */}
+            <Checkbox value={formData.publish}
+              className="mr-32"
+              field="publish"
+              labelWidth={70}
+              labelText="公开"
+              onChange={(model: FormModel) => handleFormChange(model)} />
+
+            {/* 存为草稿 */}
+            <Checkbox value={formData.saveDraft}
+              field="saveDraft"
+              labelWidth={70}
+              labelText="存为草稿"
+              onChange={(model: FormModel) => handleFormChange(model)} />
+          </div>
+          
+          <div className="row">
+            {/* 文章标签 */}
+            <RadioGroup value={formData.essayTag}
+              radioGroup={configService.tagType}
+              field="essayTag"
+              labelText="文章标签"
+              labelKey="name"
+              valueKey="id"
+              onChange={(model: FormModel) => handleFormChange(model)} />
+          </div>
+          
+          <div className="row">
+            {/* 文章类型 */}
+            <CheckboxGroup value={formData.articleType}
+              checkboxGroup={configService.articleType}
+              field="articleType"
+              labelText="文章类型"
+              labelKey="name"
+              valueKey="id"
+              onChange={(model: FormModel) => handleFormChange(model)}/>
+          </div>
         </div>
-
-        {/* checkbox */}
-        <Checkbox value={formData.publish}
-          className="mr-32"
-          field="publish"
-          labelWidth={70}
-          labelText="公开"
-          onChange={(model: FormModel) => handleFormChange(model)} />
-
-        {/* Radio */}
-        <Checkbox value={formData.saveDraft}
-          field="saveDraft"
-          labelWidth={70}
-          labelText="存为草稿"
-          onChange={(model: FormModel) => handleFormChange(model)} />
-
-        {/* RadioGroup */}
-        <RadioGroup value={formData.essayTag}
-          radioGroup={configService.tagType}
-          field="essayTag"
-          labelText="文章标签"
-          labelKey="name"
-          valueKey="id"
-          onChange={(model: FormModel) => handleFormChange(model)} />
-
-        {/* checkboxGroup */}
-        <CheckboxGroup value={formData.articleType}
-          checkboxGroup={configService.articleType}
-          field="articleType"
-          labelText="文章类型"
-          labelKey="name"
-          valueKey="id"
-          onChange={(model: FormModel) => handleFormChange(model)}/>
       </Modal>
     </div>
   );
