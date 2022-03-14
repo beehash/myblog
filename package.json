@@ -7,7 +7,6 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
-  "proxy": "http://www.myserver.com:3003",
   "dependencies": {
     "axios": "^0.21.1",
     "react": "^17.0.2",
@@ -45,6 +44,7 @@
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",

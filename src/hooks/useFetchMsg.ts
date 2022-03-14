@@ -25,7 +25,9 @@ export default function useFetchMsg<T>(fetchApi: FetchFunction<T>, params: T, op
       } else {
         Message.error(res.message);
       }
-    }).finally(() => setStatus('completed'));
+    }).finally(() => {
+      setStatus('completed')
+    });
   }
 
   return {
