@@ -10,8 +10,10 @@ export default function Header () {
     <div className={styles['fix-header'] + ' center-block p-12'}>
       <div className={`${styles['header']} center-block boxflex flexalign-center}`}>
         <div className="left-bar boxflex flexalign-center">
-        <Link to="/"><span className={`${styles.avator} mr-8`}>
-          <img src={logo} alt="avator"/></span>
+        <Link to="/">
+          <span className={`${styles.avator} mr-8`}>
+            <img src={logo} alt="avator"/>
+          </span>
         </Link>
         <NavBar />
       </div>

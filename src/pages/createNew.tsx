@@ -85,7 +85,6 @@ function CreateNew(props: any) {
     };
     
     articleApi.addArticle(params).then((res) => {
-      console.log('addArticle', res);
       if(res.success) {
         setVisible(false);
         Message.success('文章保存成功！');
