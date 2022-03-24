@@ -5,6 +5,7 @@ import Authroute from '@/components/base/AuthRoute';
 import AsyncLoadComponent from '@/hocs/AsyncLoadComponent';
 import { matchRoutes } from '@/utils';
 import { constantRoutes, AsyncRoutes } from '@/router';
+import Footer from '@/components/business/Footer';
 import '@/statics/sass/App.scss';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
   return (
     <div className="main-container">
       {asyncRoutes.complete && generateRoutes([...asyncRoutes.routes,...constantRoutes])}
+      <Footer/>
     </div>
   );
 }
