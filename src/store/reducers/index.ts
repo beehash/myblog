@@ -9,7 +9,7 @@ export default function root (state: RootCator = payLoads.root, action: AnyActio
     case 'SETLOADING':
       return {...state, loading: action.loading};
     case 'SET_ASYNCROUTES':
-      const routes = getAsyncRoutes(action.user.permission);
+      const routes = getAsyncRoutes(action.user?.permission);
       return {
         ...state,
         asyncRoutes: {

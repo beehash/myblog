@@ -3,14 +3,14 @@ import UserApi from '@/apis/user';
 
 function* getUserInfo(action: SagaActionState<{name: string}>): IterableIterator<any> {
   yield put({type: 'SETLOADING', loading: true});
-  console.log(1111)
+  let user = null;
   try {
-    const user = yield UserApi.getUser(action.params).then((res) => res.data);
+    user = yield UserApi.getUser(action.params).then((res) => res.data);
     yield put({type: 'SET_USER', user});
-    yield put({type: 'SET_ASYNCROUTES', user});
   } catch (err) {
     console.log(err, '获取用户失败')
   } finally {
+    yield put({type: 'SET_ASYNCROUTES', user});
     yield put({type: 'SETLOADING', loading: false});
     yield put({type: 'SET_ROUTESCOMPLETE', complete: true });
   }  

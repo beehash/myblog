@@ -54,7 +54,7 @@ function App() {
   return (
     <div className="main-container">
       {asyncRoutes.complete && generateRoutes([...asyncRoutes.routes,...constantRoutes])}
-      <Footer/>
+      {asyncRoutes.complete && <Footer/> }
     </div>
   );
 }
