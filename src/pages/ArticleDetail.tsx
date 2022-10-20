@@ -1,9 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
-import { useScrollToTop } from '@/hooks/scrollTop';
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-08-01 12:54:40
+ */
 import ArticleApi from '@/apis/article';
+import styles from '../statics/sass/article-detail.module.scss';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import showdown from 'showdown';
-import styles from '@/statics/sass/article-detail.module.scss';
+import { useScrollToTop } from '@/hooks/scrollTop';
 
 export default function ArticleDetail(props: {id: string}) {
   const [htmlc, setHtmlc] = useState('');
@@ -28,11 +33,12 @@ export default function ArticleDetail(props: {id: string}) {
   });
 
   function getArticleById() {
-    ArticleApi.getArticleById({id: params.articleId || 'sn1622627657778800'}).then((res) => {
-      const html = converter.makeHtml(res.data.content);
-      setTitle(res.data.title);
-      setHtmlc(html);
-    });
+    ArticleApi.getArticleById({ id: params.articleId || 'sn1622627657778800' })
+      .then((res) => {
+        const html = converter.makeHtml(res.data.content);
+        setTitle(res.data.title);
+        setHtmlc(html);
+      });
   }
 
   useEffect(() => {
@@ -42,14 +48,13 @@ export default function ArticleDetail(props: {id: string}) {
 
   return (
     <div className={styles['article-detail']}>
-      <div className="repeat-bg star"></div>
+      <div className="repeat-bg star" />
       <h1 className="text-center theme pt-48 pb-24">{title}</h1>
-      <div className={styles.content+' center-block'}>
-        <div className={styles.previewer + ' previewer'}>
-          <div className={styles['html-previewer']} dangerouslySetInnerHTML={{__html: htmlc}}></div>
-        </div>
+      <div className={`${styles.content} center-block`}>
+        <div className={`${styles.previewer} previewer`}><div className={styles['html-previewer']} dangerouslySetInnerHTML={{ __html: htmlc }} /></div>
       </div>
-      <div className="repeat-bg flower1"></div>
+      <div className="repeat-bg flower1" />
+
     </div>
   );
 }

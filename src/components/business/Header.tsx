@@ -5,7 +5,7 @@ import '@/statics/sass/App.scss';
 import styles from '@/statics/sass/home.module.scss';
 import NavBar from '@/components/business/Navbar';
 
-export default function Header () {
+export default function Header ({scene}: any) {
   return (
     <div className={styles['fix-header'] + ' center-block p-12'}>
       <div className={`${styles['header']} center-block boxflex flexalign-center}`}>
