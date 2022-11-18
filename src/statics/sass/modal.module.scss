@@ -1,5 +1,5 @@
 .modal-mask{
-  position: absolute;
+  position: fixed;
   top:0;
   left:0;
   bottom: 0;
@@ -22,6 +22,13 @@
       text-align: center;
       color: #343434;
       line-height: 28px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .close {
+      width: 28px;
+      height: 28px;
+      text-align: center;
     }
     .body{
       min-height: 160px;

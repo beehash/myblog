@@ -166,6 +166,7 @@ html{
   outline: 0px;
   border: 1px solid transparent;
   border-radius: 4px;
+  cursor: pointer;
 }
 .base-button.default-button{
   background-color: transparent;
@@ -351,6 +352,9 @@ html{
     & p{
       padding-left: 8px;
     }
+  }
+  img {
+    max-width: 100%;
   }
 }
 .clearfix::after{
@@ -568,4 +572,13 @@ html{
   bottom: 0;
   left: 0;
   right: 0;
+}
+.base-input {
+  width: 240px;
+  height: 28px;
+  padding: 0 8px;
+  line-height: 28px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
 }

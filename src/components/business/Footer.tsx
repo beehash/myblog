@@ -1,6 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
+// import CreateInviteCode from "./CreateInviteCode";
  
 const Footer: FunctionComponent<any> = () => {
+  // const [visible, setVisible] = useState(false);
+  // WeGmhcMsu+WdRnxKR5CWLg==
+
   return ( 
     <div className="footer w-full">
       <div className="disc-list">
@@ -20,7 +24,14 @@ const Footer: FunctionComponent<any> = () => {
             <span className="label-item">地址：</span><span className="text-item">上海市</span>
           </p>
         </div>
+        {/* <div className="flex-center">
+          <p className="disc-item">
+            <span className="label-item">生成邀请码：</span>
+            <button className="base-button text-button" onClick={() => setVisible(true)}>get invitecode</button>
+          </p>
+        </div> */}
       </div>
+      {/* <CreateInviteCode visible={visible} close={() => setVisible(false)}></CreateInviteCode> */}
     </div>
     );
 }

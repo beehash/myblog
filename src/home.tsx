@@ -26,7 +26,7 @@ class Home extends PureComponent<Props, State> {
 
   render(): ReactNode {
     return (
-      <Header scene={this.state.scene}></Header>
+      <Header></Header>
     )
   }
 }

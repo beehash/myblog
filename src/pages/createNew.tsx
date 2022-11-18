@@ -36,16 +36,18 @@ function CreateNew(props: any) {
   const [title, setTitle] = useState('');
   const [visible, setVisible] = useState(false);
   const [formData, setFormData] = useState<articleForm>({...formDataStatic});
+  // user
+  const user = useSelector((state: any) => {
+    return state.user;
+  });
+  const inviteCode = useSelector((state: any) => state.user.inviteCode);
 
   // useEffect
   useEffect(() => {
     console.log(32222);
   }, [formData]);
 
-  // user
-  const user = useSelector((state: any) => {
-    return state.user;
-  });
+  
 
   // converter
   const converter = new showdown.Converter({
@@ -77,6 +79,7 @@ function CreateNew(props: any) {
       content: textc,
       title,
       author: user.name, 
+      inviteCode: inviteCode,
     };
 
     if(!params.title || !params.content || !params.summary) {
@@ -157,7 +160,7 @@ function CreateNew(props: any) {
           </div>
           
           <div className="row">
-            {/* 文章标签 */}
+            {/* 文章标签 UDb9izhpR+KBP9WCjnlGvQ== */}
             <RadioGroup value={formData.essayTag}
               radioGroup={configService.tagType}
               field="essayTag"

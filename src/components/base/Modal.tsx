@@ -12,18 +12,17 @@ const defaultOptions = {
   cancelable: false,
   width: '480px',
   height: 'auto',
+  showClose: true,
 };
 
 export default function Modal(props: any=defaultOptions) {
   const modal = useRef(null);
-  console.log(props.children);
   useEffect(() => {
     if(props.visible) {
       createRoot('modal-root');
     }
   }, [props.visible]);
 
-  // if(!props.visible) return null;
   return props.visible ? (
     <Portal rootId="modal-root" className={styles['modal-mask']} visible={props.visible}>
       <div className={styles['modal-box']} ref={modal}
@@ -31,9 +30,10 @@ export default function Modal(props: any=defaultOptions) {
         {/* 头部 */}
         <div className={styles.header}>
           <p className={styles.title}>{props.title}</p>
-          <span className="close" onClick={() => props.close()}>
+          {!props.showClose && <span className={styles.close} onClick={props.close}>
             <Icon name="close" color="#343434"/>
           </span>
+          }
         </div>
         {/* 主体 */}
         <div className={styles.body}>
@@ -44,7 +44,7 @@ export default function Modal(props: any=defaultOptions) {
           <button className="base-button primary-button mr-16" onClick={props.onConfirm}>确定</button>
           {!props.cancelable && <button className="base-button default-button" onClick={() => props.close()}>取消</button>}
         </div>}
-        <slot name="footer">1q1qew</slot>
+        {/* <slot name="footer">1q1qew</slot> */}
       </div>
     </Portal>
   ) : (<div></div>);
