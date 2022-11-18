@@ -63,8 +63,14 @@ function filterRoutes(routes: RouteConfig[], permissions: string[], parentRoute:
       const { children, ...route } = item;
       if(!children) { 
         if(hasPermission(item?.meta?.permission, permissions)){
-          !parentRoute?.children&& ((parentRoute as any).children = []);
-          parentRoute?.children?.push(item);
+          console.log(parentRoute)
+          if(!parentRoute) {
+            genroutes.push(route);
+          } else {
+            !parentRoute.children&& ((parentRoute as any).children = []);
+            (parentRoute.children as RouteConfig[]).push(item);
+          }
+          
         }
       } else {
         if(hasPermission(item?.meta?.permission, permissions)) { 
@@ -78,6 +84,7 @@ function filterRoutes(routes: RouteConfig[], permissions: string[], parentRoute:
 export function getAsyncRoutes(permissions: string[]): RouteConfig[] {
   const routes: RouteConfig[] = [];
   filterRoutes(AsyncRoutes, permissions, null, routes);
+  console.log(routes);
   return routes;
 }
 
@@ -86,7 +93,7 @@ export function matchRoutes(path: string, routes: RouteConfig[], result: boolean
   for(let i = 0, l = allroutes.length; i < l; i++) {
     const {children = [], path: curpath} = allroutes[i];
     if(!children?.length || result) {
-        let tpath = ppath + '/' + curpath;
+        let tpath = (ppath ? ppath + '/' : '') + curpath;
         if(curpath[0] === '/') {
           tpath = curpath;
         }

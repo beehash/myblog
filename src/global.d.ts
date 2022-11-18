@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
 import { Action } from 'redux';
-import { Module } from 'webpack';
 declare global {
   interface Obj {
     [key: string]: any;
@@ -37,10 +36,39 @@ declare global {
     code: number;
     data?: T;
     message: string;
-    errCode: number;
-    errMessage: string;
+    errCode?: number;
+    errMessage?: string;
   }
+  interface Pagenation {
+    currentPage: number;
+    pageSize?: number;
+    total?: number;
+  }
+  type BlogRespList<T> = Pagenation & { list: T[]; }
+
   type BlogResponse<T> = AxiosResponse<BlogResp<T>>;
+
+  type BlogResponseList<T> = AxiosResponse<BlogResp<BlogRespList<T>>>;
+
+  type FetchResponse<T> = Promise<BlogResponse<T>>;
+
+  type FetchResponseList<T> = Promise<BlogResponseList<T>>;
   
+  type FetchFunction<T> = (...args: any) => FetchResponse<T>;
+
+  type FetchFunctionList<T> = (...args: any) => FetchResponseList<T>;
+  interface FetchOpts {
+    usedep: boolean;
+    deps: [];
+    msg: string;
+    useloading: boolean;
+  }
+  type FetchStatus = 'before' | 'pending' | 'completed';
+  interface IconCator {
+    name: string;
+    color: string;
+    text: string;
+    key: string;
+  }
 }
 export {}

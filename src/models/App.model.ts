@@ -13,6 +13,7 @@ export interface UserCator {
   session: string;
   userId: string;
   username: string;
+  inviteCode: string;
 }
 export interface RootCator {
   loading: boolean;

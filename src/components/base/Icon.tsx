@@ -15,8 +15,10 @@ const SVGS= {
   left: (color: string, width: number = 16, height: number= 16) => (<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width={width} height={height}><path d="M670.977781 808.954249c-5.300726 0-10.596336-2.045589-14.603603-6.126534L368.69006 509.86743c-7.818059-7.961322-7.818059-20.717857 0-28.67918l287.684118-292.960285c7.92039-8.065699 20.877493-8.182356 28.942169-0.26299 8.065699 7.919367 8.182356 20.877493 0.264013 28.942169L411.976936 495.526817l273.603425 278.620695c7.918343 8.064676 7.801686 21.022803-0.264013 28.942169C681.331593 807.002804 676.153664 808.954249 670.977781 808.954249z" fill={color}></path></svg>)
 };
 
-export default function Icon(props: {name: string, color?: string, className?: string, width?: number, height?: number}) {
+export default function Icon(props:
+  {name: string, color?: string, className?: string, width?: number, height?: number, increment?: any}) {
+  
   return (
-    <span className={'base-icon '+ props.className || ''}>{(SVGS as Obj)[props.name](props.color, props.width, props.height)}</span>
+    <span className={'base-icon '+ props.className || ''} onClick={props.increment}>{(SVGS as Obj)[props.name](props.color, props.width, props.height)}</span>
   );
 }

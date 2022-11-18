@@ -7,9 +7,11 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
-  "proxy": "http://www.myserver.com:3003",
   "dependencies": {
+    "antd": "^4.23.6",
     "axios": "^0.21.1",
+    "history": "^5.3.0",
+    "jsencrypt": "^3.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
@@ -45,6 +47,7 @@
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
@@ -91,12 +94,6 @@
     "webpack-dev-server": "3.11.1",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "5.1.4"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

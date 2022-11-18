@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import useFetchList from '@/hooks/useFetchList';
 import { Essay } from '@/models/Essay.model';
 import ArticleApi from '@/apis/article'; 
 import { timeParser } from '@/utils';
@@ -15,44 +16,18 @@ const Icons: IconCator[] = [
   {name: 'comment', color: '#A2B29F', text: '评论数', key: 'comments'}
 ];
 
-interface IconCator {
-  name: string;
-  color: string;
-  text: string;
-  key: string;
-}
+export default function EssayList({keyId}:any) {
+  const [pagenation, setPagenation] = useState<Pagenation>({pageSize: 10, currentPage: 1, total: 20});
+  const {total, ...others} = pagenation;
+  const {list, status} = useFetchList(ArticleApi.getArticles, others, {usedep: true});
+  useEffect(() => {}, [list]);
 
-interface PagenationCator{
-  pageSize: number;
-  total: number;
-  currentPage: number;
-}
 
-export default function EssayList() {
-  const [list, setList] = useState<Essay[]>([]);
-  const [pagenation, setPagenation] = useState<PagenationCator>({pageSize: 10, currentPage: 1, total: 20});
-  const [updated, setUpdated] = useState<boolean>(false);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    (async () => {
-      dispatch({type: 'SETLOADING', loading: true});
-      const {total, ...others} = pagenation;
-      const list = await ArticleApi.getArticles(others).then((data) => data);
-      setList(list);
-      dispatch({type: 'SETLOADING', loading: false});
-      setUpdated(true);
-    })();
-    return (setUpdated(false), setList([]))
-  }, [pagenation, dispatch]);
-
-  useEffect(() => {
-    generateListTemplate();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [list]);
-
+  // 列表模板
   function generateListTemplate() {
-    if((!updated)) return '';
+    // 请求前和请求中 展示为空
+    if((status !== 'completed')) return '';
+    // 请求后 数据为空展示效果
     if(!list || !list.length) {
       return (
         <div className="blank-none text-center">
@@ -66,9 +41,9 @@ export default function EssayList() {
       <ul>
         {list.map((item: Essay, index) => {
           return (
-          <Link to={{pathname: '/article/detail/'+item.essayId}} className="block" key={index}>
-            <li className={`${styles['essay-item']} p-12`} key={item.essayId}>
-              <h3 className={'text-left ' + styles['essay-title']}>{ item.title }</h3>
+          <Link to={{pathname: '/article/detail/'+item.articleId}} className="block" key={index}>
+            <li className={`${styles['essay-item']} p-12`} key={item.articleId}>
+              <h3 className={'text-left theme ' + styles['essay-title']}>{ item.title }</h3>
               <p className={'text-justify ' + styles['essay-summary']}>{ item.summary }</p>
               <div className={styles['essay-item-footer']+' boxflex mt-16'}>
                 <div className={`${styles.infos}`}>
@@ -84,6 +59,7 @@ export default function EssayList() {
     );
   }
 
+  // 文章图标
   function generateIcons (info: Obj, index: number) {
     return Icons.map((icon, index2) => {
       return (
@@ -97,9 +73,11 @@ export default function EssayList() {
 
   return (
     <div className={styles.essay + ' clearfix'}>
+      {/* 文章列表 */}
       <div className={styles.essayList}>
         {generateListTemplate()}
       </div>
+      {/* 分页 */}
       <Pagenation
         className='mr-16'
         pageSize={pagenation.pageSize}

@@ -14,6 +14,7 @@ const payloads: PayloadsCator = {
     session: '',
     userId: '',
     username: 'beehash',
+    inviteCode: '',
   },
   article: {
     id: 55,

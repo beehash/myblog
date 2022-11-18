@@ -41,6 +41,12 @@ const routes: RouteConfig[] = [
       meta: {title: '文章详情', permission: ['article:view']},
       component: lazy(() => import('@/pages/ArticleDetail')),
     }]
+  }, {
+    path: '/test',
+    name: 'Test',
+    exact: true,
+    meta: {title: '测试', permission: ['*']},
+    component: lazy(() => import('@/testPages/test-router')),
   }
 ];
 

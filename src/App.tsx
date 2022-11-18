@@ -1,11 +1,17 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-08-12 11:17:56
+ */
+import { matchRoutes } from '@/utils';
 import React, { useEffect } from 'react';
+import './statics/sass/App.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useHistory, useRouteMatch } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import Authroute from '@/components/base/AuthRoute';
 import AsyncLoadComponent from '@/hocs/AsyncLoadComponent';
-import { matchRoutes } from '@/utils';
 import { constantRoutes, AsyncRoutes } from '@/router';
-import '@/statics/sass/App.scss';
+import Footer from '@/components/business/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,18 +20,18 @@ function App() {
   const asyncRoutes = useSelector((state: any) => state.root.asyncRoutes);
 
   useEffect(() => {
-    dispatch({type: 'GET_USER', params: {name: 'beehash'}});
-    return () => {}
+    dispatch({ type: 'GET_USER', params: { name: 'beehash' } });
+    return () => {};
   }, [dispatch]);
 
   useEffect(() => {
-    if(asyncRoutes.complete) {
+    if (asyncRoutes.complete) {
       const found = matchRoutes(location.pathname, [...constantRoutes, ...AsyncRoutes], false);
-      if(location.pathname === '/'){
+      if (location.pathname === '/') {
         history.push('/home');
-      } else if(found) {
+      } else if (found) {
         const authorized = matchRoutes(location.pathname, [...constantRoutes, ...asyncRoutes.routes], false);
-        if(!authorized) history.push('/bidden');
+        if (!authorized) history.push('/bidden');
       } else {
         history.push('/404');
       }
@@ -36,24 +42,36 @@ function App() {
   function generateRoutes(routes: RouteConfig[], ppath?: string) {
     return routes.map((item: RouteConfig, index: number) => {
       const CurrentComponent = typeof item.component === 'function' ? item.component : AsyncLoadComponent(item.component);
-      if(!item.children || !item?.children?.length) {
-        console.log(item);
-        return (<Authroute exact={item.exact} key={index}
-            path={ppath + '/' + item.path} component={CurrentComponent}></Authroute>);
+      if (!item.children || !item?.children?.length) {
+        return (
+          <Authroute
+            exact={item.exact}
+            key={index}
+            path={(ppath ? `${ppath}/` : '') + item.path}
+            component={CurrentComponent}
+          />
+        );
       }
 
       return (
-        <Authroute exact={item.exact} key={index} path={item.path} render={(props: any) =>
-          <CurrentComponent {...props}>
-            {generateRoutes(item.children || [], item.path)}
-          </CurrentComponent>
-      } />);
+        <Authroute
+          exact={item.exact}
+          key={index}
+          path={item.path}
+          render={(props: any) => (
+            <CurrentComponent {...props}>
+              {generateRoutes(item.children || [], item.path)}
+            </CurrentComponent>
+          )}
+        />
+      );
     });
   }
 
   return (
     <div className="main-container">
-      {asyncRoutes.complete && generateRoutes([...asyncRoutes.routes,...constantRoutes])}
+      {asyncRoutes.complete && generateRoutes([...asyncRoutes.routes, ...constantRoutes])}
+      {asyncRoutes.complete && <Footer /> }
     </div>
   );
 }

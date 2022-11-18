@@ -26,7 +26,9 @@ export function theme(state: any = { color: '#125d98', inColor: '#233e8b'}, acti
 export function user(state: any = {name: 'beehash'}, action: AnyAction) {
   switch (action.type) {
     case 'SET_USER':
-      return action.user;
+      return {...state, ...action.user};
+    case 'SET_INVITECODE': 
+      return {...state, inviteCode: action.inviteCode};
     default:
       return state;
   }

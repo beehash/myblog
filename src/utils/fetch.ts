@@ -1,26 +1,14 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import Message from '@/utils/message';
 
-
-
 function responseInterceptorUse(response: AxiosResponse<BlogResp<any>>) {
   if(response.status >= 200 && response.status < 300) {
-    const data = response.data;
-    if(!data.success) {
-      Message.error(data.message);
-      return {success: false, message: data.message}
-    }
-    return response.data.data;
+    return response.data;
   } else if(response.status > 200 && response.status <500) {
-    const data = response.data;
-    if(!data.success) {
-      Message.error(data.message);
-      return {success: false, message: data.message}
-    }
-    return response.data.data;
-  } else if(response.status === 500) {
+    return response.data;
+  } else if(response.status >= 500) {
     Message.error('服务器错误');
-    return {success: false, message: '服务器错误'};
+    return {status: 500, success: false,  message: '服务器错误', data: 10086 };
   }
 }
 
@@ -41,6 +29,7 @@ class fetch {
   @responseInterceptor
   private static fetchInstance: AxiosInstance = axios.create({
     timeout: 3000000,
+    baseURL: '/blog/api',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
     },

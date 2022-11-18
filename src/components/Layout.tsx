@@ -3,8 +3,7 @@ import Header from '@/components/business/Header';
 import Theme from '@/components/base/Theme';
 import GirlNav from '@/components/business/GirlNav';
 
-export default function Layout({children, ...rest}: any) {
-  console.log(rest);
+export default function Layout({children}: any) {
   return (
     <div className="App">
       {/* Theme */}

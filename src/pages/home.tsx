@@ -1,15 +1,32 @@
-import React from 'react';
+import React, {useEffect, useCallback, useState} from 'react';
+import { useSelector } from 'react-redux';
 import EssayList from '@/components/business/EssayList';
 import Icon from '@/components/base/Icon';
 import styles from '@/statics/sass/home.module.scss';
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+  const theme = useSelector((state: any) => {
+    return state.theme;
+  });
+  useEffect(() => {}, [theme]);
+  const increment = () => {
+    setCount(count+1);
+    // console.log(count)
+  }
+
+  const increment2 = useCallback(() => {
+    setCount(count+1)
+  }, [count]);
+
   return (
     <div className="home">
       <div className={`content ${styles['essay-content']} pos-relative`}>
-        <h3 className="px-8 py-32">首页推荐 <Icon name="heart" color="#FB3640"/></h3>
+        <h3 className="px-8 py-32 theme">首页推荐 <Icon name="heart" color={theme.inColor} /></h3>
         <div className="homebg-pic"></div>
-        <EssayList />
+        <Icon name="heart" color={theme.inColor} increment={increment}/>{count}<br/>
+        <Icon name="heart" color={theme.inColor} increment={increment2}/>{count}
+        <EssayList keyId={theme.inColor}/ >
         <div className={styles.footer}>
           <div className={styles.content+ ' px-32 boxflex'}>
             <div className="leftpic base-bg girl1 flex-value"></div>
