@@ -24,8 +24,6 @@ export default function Home() {
       <div className={`content ${styles['essay-content']} pos-relative`}>
         <h3 className="px-8 py-32 theme">首页推荐 <Icon name="heart" color={theme.inColor} /></h3>
         <div className="homebg-pic"></div>
-        <Icon name="heart" color={theme.inColor} increment={increment}/>{count}<br/>
-        <Icon name="heart" color={theme.inColor} increment={increment2}/>{count}
         <EssayList keyId={theme.inColor}/ >
         <div className={styles.footer}>
           <div className={styles.content+ ' px-32 boxflex'}>

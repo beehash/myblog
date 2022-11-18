@@ -28,12 +28,12 @@ function App() {
     if (asyncRoutes.complete) {
       const found = matchRoutes(location.pathname, [...constantRoutes, ...AsyncRoutes], false);
       if (location.pathname === '/') {
-        history.push('/home');
+        history.replace('/home');
       } else if (found) {
         const authorized = matchRoutes(location.pathname, [...constantRoutes, ...asyncRoutes.routes], false);
         if (!authorized) history.push('/bidden');
       } else {
-        history.push('/404');
+        history.replace('/404');
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
