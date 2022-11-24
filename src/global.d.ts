@@ -59,7 +59,7 @@ declare global {
   type FetchFunctionList<T> = (...args: any) => FetchResponseList<T>;
   interface FetchOpts {
     usedep: boolean;
-    deps: [];
+    deps: any[];
     msg: string;
     useloading: boolean;
   }

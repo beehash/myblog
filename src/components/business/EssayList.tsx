@@ -19,7 +19,7 @@ const Icons: IconCator[] = [
 export default function EssayList({keyId}:any) {
   const [pagenation, setPagenation] = useState<Pagenation>({pageSize: 10, currentPage: 1, total: 20});
   const {total, ...others} = pagenation;
-  const {list, status} = useFetchList(ArticleApi.getArticles, others, {usedep: true});
+  const {list, status} = useFetchList(ArticleApi.getArticles, others, {usedep: true, deps: [pagenation]});
   useEffect(() => {}, [list]);
 
 

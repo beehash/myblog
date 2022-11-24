@@ -78,7 +78,7 @@ function CreateNew(props: any) {
       ...formData,
       content: textc,
       title,
-      author: user.name, 
+      author: user.username, 
       inviteCode: inviteCode,
     };
 
