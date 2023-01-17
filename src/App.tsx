@@ -11,6 +11,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import Authroute from '@/components/base/AuthRoute';
 import AsyncLoadComponent from '@/hocs/AsyncLoadComponent';
 import { constantRoutes, AsyncRoutes } from '@/router';
+import userApi from '@/apis/user';
 import Footer from '@/components/business/Footer';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const asyncRoutes = useSelector((state: any) => state.root.asyncRoutes);
 
   useEffect(() => {
+    setHelloAction();
     dispatch({ type: 'GET_USER', params: { name: 'beehash' } });
     return () => {};
   }, [dispatch]);
@@ -38,6 +40,12 @@ function App() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asyncRoutes, location]);
+
+  function setHelloAction () {
+    userApi.setHello({id: 124}).then(res => {
+      console.log('setHello', res);
+    });
+  }
 
   function generateRoutes(routes: RouteConfig[], ppath?: string) {
     return routes.map((item: RouteConfig, index: number) => {

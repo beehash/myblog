@@ -17,11 +17,20 @@ const defaultOptions = {
 
 export default function Modal(props: any=defaultOptions) {
   const modal = useRef(null);
+
   useEffect(() => {
     if(props.visible) {
       createRoot('modal-root');
     }
   }, [props.visible]);
+
+  function innerClose() {
+    props.close ?
+      props.beforeClose
+        ? props.beforeClose() || props.close()
+        : props.close()
+      : 1;
+  }
 
   return props.visible ? (
     <Portal rootId="modal-root" className={styles['modal-mask']} visible={props.visible}>
@@ -30,7 +39,7 @@ export default function Modal(props: any=defaultOptions) {
         {/* 头部 */}
         <div className={styles.header}>
           <p className={styles.title}>{props.title}</p>
-          {!props.showClose && <span className={styles.close} onClick={props.close}>
+          {!props.showClose && <span className={styles.close} onClick={innerClose}>
             <Icon name="close" color="#343434"/>
           </span>
           }

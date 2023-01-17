@@ -18,6 +18,9 @@ class UserApi {
       console.log('服务器稍忙，请稍后重试！');
     });
   }
+  static setHello(data: Record<string, any>) {
+    return fetch.post('/modifyHello', data, { baseURL: '/hello', params: { currentPage: 1,pageSize: 20 }})
+  } 
 }
 
 export default UserApi;

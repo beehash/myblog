@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import logo from '@/statics/images/logo.svg';
 import '@/statics/sass/App.scss';
@@ -52,6 +52,8 @@ export default function Header () {
       </div>
       <Modal title="请输入邀请码" visible={visible}
         showClose={false}
+        close={() => setVisible(false)}
+        beforeClose={() => setInviteCode('')}
         concealFooter={true}>
         <div className="row" style={{ textAlign: 'center', marginTop: 8 + 'px' }}>
           <input className="base-input =" style={inviteBtnStyle} value={inviteCode} onChange={(e) => setInviteCode(e.target.value) } />

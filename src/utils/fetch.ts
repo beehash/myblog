@@ -38,14 +38,14 @@ class fetch {
     }
   });
 
-  static get<T=any, R=BlogResponse<T>>(url: string, params?: any): Promise<R> {
-    return this.fetchInstance.get(url, {params});
+  static get<T=any, R=BlogResponse<T>>(url: string, params?: any, config?: AxiosRequestConfig): Promise<R> {
+    return this.fetchInstance.get(url, {...config, params});
   }
-  static post<T=any, R=BlogResponse<T>>(url: string, params?: any): Promise<R> {
-    return this.fetchInstance.post(url, params);
+  static post<T=any, R=BlogResponse<T>>(url: string, params?: any, config?: AxiosRequestConfig): Promise<R> {
+    return this.fetchInstance.post(url, params, config);
   }
-  static put<T=any, R=BlogResponse<T>>(url: string, params?: any): Promise<R> {
-    return this.fetchInstance.put(url, params);
+  static put<T=any, R=BlogResponse<T>>(url: string, params?: any,config?: AxiosRequestConfig ): Promise<R> {
+    return this.fetchInstance.put(url, params, config);
   }
   static head<T=any, R=BlogResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
     return this.fetchInstance.head(url, config);
