@@ -7,6 +7,9 @@ export interface UserParameterCator{
   name: string;
 }
 
+/**
+ * User cator
+ */
 export interface UserCator {
   id: number;
   permissions: [];

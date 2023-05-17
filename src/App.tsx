@@ -21,7 +21,7 @@ function App() {
   const asyncRoutes = useSelector((state: any) => state.root.asyncRoutes);
 
   useEffect(() => {
-    setHelloAction();
+    // setHelloAction();
     dispatch({ type: 'GET_USER', params: { name: 'beehash' } });
     return () => {};
   }, [dispatch]);
