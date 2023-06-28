@@ -1,5 +1,11 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-11-18 18:10:05
+ */
 import fetch from '@/utils/fetch';
 import { UserCator } from '@/models/App.model';
+import { aesEncode } from '@/utils';
 
 class UserApi {
   static getUser(params: {name: string}): FetchResponse<UserCator>{
@@ -21,6 +27,9 @@ class UserApi {
   static setHello(data: Record<string, any>) {
     return fetch.post('/modifyHello', data, { baseURL: '/hello', params: { currentPage: 1,pageSize: 20 }})
   } 
+  static loginUser(form: String) {
+    return fetch.post('/loginUser', {screteStr: aesEncode(form)});
+  }
 }
 
 export default UserApi;

@@ -1,4 +1,5 @@
 import { constantRoutes, AsyncRoutes } from "@/router";
+import crypto from 'crypto-js';
 import {matchPath} from 'react-router';
 
 export function createRoot(rootId: string) {
@@ -63,7 +64,6 @@ function filterRoutes(routes: RouteConfig[], permissions: string[], parentRoute:
       const { children, ...route } = item;
       if(!children) { 
         if(hasPermission(item?.meta?.permission, permissions)){
-          console.log(parentRoute)
           if(!parentRoute) {
             genroutes.push(route);
           } else {
@@ -84,7 +84,6 @@ function filterRoutes(routes: RouteConfig[], permissions: string[], parentRoute:
 export function getAsyncRoutes(permissions: string[]): RouteConfig[] {
   const routes: RouteConfig[] = [];
   filterRoutes(AsyncRoutes, permissions, null, routes);
-  console.log(routes);
   return routes;
 }
 
@@ -108,4 +107,26 @@ export function matchRoutes(path: string, routes: RouteConfig[], result: boolean
       }
     }
   }
+}
+const secretKey = crypto.enc.Utf8.parse('7c9090fdb094e43af90d47933460d413');
+const secretIv = crypto.enc.Utf8.parse('d95d4406e8967ab2');
+// aes加密
+export function aesEncode(data: any) {
+  const data2  = crypto.enc.Utf8.parse(JSON.stringify(data));
+  const encrypted = crypto.AES.encrypt(data2, secretKey, {
+    mode: crypto.mode.CBC,
+    iv: secretIv,
+    padding: crypto.pad.Pkcs7,
+  });
+  return encrypted.toString();
+}
+// aes解密
+export function aesDecode(encode: string) {
+  const decrypted = crypto.AES.decrypt(encode, secretKey, {
+    mode: crypto.mode.CBC,
+    iv: secretIv,
+    padding: crypto.pad.Pkcs7,
+  });
+  const data = crypto.enc.Utf8.stringify(decrypted).toString();
+  return JSON.parse(data);
 }

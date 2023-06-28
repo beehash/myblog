@@ -1,3 +1,8 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-11-18 18:10:05
+ */
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -64,7 +69,7 @@ export default function EssayList({keyId}:any) {
     return Icons.map((icon, index2) => {
       return (
         <span key={index2} className="inline-block mr-8">
-          <Icon name={icon.name} className="mr-4" color={icon.color}></Icon>
+          <Icon name={icon.name} className="mr-4" fillColor={icon.color}></Icon>
           {icon.text}({info[icon.key]})
         </span>
       );

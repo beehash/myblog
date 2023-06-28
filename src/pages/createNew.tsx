@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React,{ useState, useEffect, BaseSyntheticEvent } from 'react';
-import { useSelector } from 'react-redux'
+import { useParams, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
 // import Slot from '@/components/base/Slot';
 import Editor from '@/components/business/Editor';
 import Previewer from '@/components/business/Previewer';
@@ -8,11 +10,13 @@ import TextArea from '@/components/base/TextArea';
 import Checkbox from '@/components/base/Checkbox';
 import RadioGroup from '@/components/base/RadioGroup';
 import CheckboxGroup from '@/components/base/CheckboxGroup';
+import UserApi from '@/apis/user';
 import Message from '@/utils/message';
 import styles from '@/statics/sass/editor.module.scss';
 import showdown from 'showdown';
 import articleApi from '@/apis/article';
 import configService from '@/services/config.service';
+import { hasPermission } from '@/utils';
 
 interface articleForm {
   summary: string;
@@ -36,18 +40,34 @@ function CreateNew(props: any) {
   const [title, setTitle] = useState('');
   const [visible, setVisible] = useState(false);
   const [formData, setFormData] = useState<articleForm>({...formDataStatic});
+  const history = useHistory();
+  const dispatch = useDispatch();
   // user
   const user = useSelector((state: any) => {
     return state.user;
   });
-  const inviteCode = useSelector((state: any) => state.user.inviteCode);
+  const { inviteCode } = useParams<{inviteCode: string}>();
 
   // useEffect
   useEffect(() => {
-    console.log(32222);
+    const inviteCode2 = decodeURIComponent(inviteCode);
+    if(inviteCode2 === '1') {
+      const authed = hasPermission(['editor:view'], user.permission);
+      !authed && history.replace('/bidden');
+    } else {
+      verifyInviteCode(inviteCode2);
+    }
   }, [formData]);
 
-  
+  function verifyInviteCode(inviteCode2: string) {
+    UserApi.verifyInviteCode(inviteCode2).then(res => {
+      if(res && res.success) {
+        dispatch({type: 'SET_INVITECODE', inviteCode: inviteCode});
+      } else {
+        history.replace('/bidden');
+      }
+    });
+  }
 
   // converter
   const converter = new showdown.Converter({

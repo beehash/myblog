@@ -1,3 +1,8 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-07-04 13:06:44
+ */
 import React, { useState, BaseSyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import Icon from './Icon';
@@ -48,7 +53,7 @@ export default function Loading(props: any) {
         <input type="color" value={theme} onChange={handleThemeChange}/>
         <div className="theme-box">
           <span className="inline-block w-full text-center">主题</span>
-          <Icon name="theme" className="theme" width={42} height={42}/>
+          <Icon name="theme" className="theme" style={{width: 42+'px',height: 42+'px'}}/>
         </div>
       </div>
       </label>

@@ -1,3 +1,8 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-11-18 18:10:05
+ */
 import React, {useEffect, useCallback, useState} from 'react';
 import { useSelector } from 'react-redux';
 import EssayList from '@/components/business/EssayList';
@@ -12,7 +17,6 @@ export default function Home() {
   useEffect(() => {}, [theme]);
   const increment = () => {
     setCount(count+1);
-    // console.log(count)
   }
 
   const increment2 = useCallback(() => {
@@ -22,7 +26,7 @@ export default function Home() {
   return (
     <div className="home">
       <div className={`content ${styles['essay-content']} pos-relative`}>
-        <h3 className="px-8 py-32 theme">首页推荐 <Icon name="heart" color={theme.inColor} /></h3>
+        <h3 className="px-8 py-32 theme">首页推荐 <Icon name="heart" fillColor={theme.inColor} /></h3>
         <div className="homebg-pic"></div>
         <EssayList keyId={theme.inColor}/ >
         <div className={styles.footer}>

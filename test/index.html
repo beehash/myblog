@@ -9,15 +9,237 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>render tree</title>
+  <style>
+    html *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track{
+      background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      -webkit-box-shadow: inset 0 0 6px #D8D8D8;
+      background-color: #D8D8D8;
+      border-radius: 4px;
+    }
+      
+    ::-webkit-scrollbar-button {
+      background-color: transparent;
+      width: 0;
+      height: 0;
+    }
+      
+    ::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+    .container {
+      display: flex;
+      align-items: flex-start;
+      height: 100vh;
+      padding: 32px 16px;
+    }
+    .node-item {
+      margin-left: 16px;
+      line-height: 24px;
+      overflow: hidden;
+    }
+    .node-item .icon {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin-right: 12px;
+      background-image: url(https://image.zhihuishu.com/zhs/b2cm/base1/202304/d6829d5f895a439dafd6be882910bd58.png);
+      background-size: 100% auto;
+      background-position: center;
+      transform: rotate(90deg);
+      cursor: pointer;
+    }
+    .node-item .icon.bottom {
+      background: none;
+    }
+    .node-item .icon.folded {
+      transform: rotate(0);
+    }
+    .node-item .node-check {
+      width: 14px;
+      height: 14px;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+    .node-item .node-check:checked + .item-name {
+      color: blue;
+    }
+    .node-item .node-name {
+      cursor: pointer;
+    }
+    .node-label {
+      cursor: pointer;
+    }
+    .form-box {
+      height: 100%;
+      width: calc(100% - 400px);
+      overflow-y: scroll;
+      border: 1px solid #f1f1f1;
+      box-sizing: border-box;
+    }
+    .nodes-box {
+      padding: 12px;
+    }
+    .form-btn {
+      width: 80px;
+      height: 44px;
+      margin-left: 16px;
+      margin-top: 16px;
+      line-height: 44px;
+      background-color: #f3f3f3;
+      border-radius: 12px;
+      letter-spacing: 1px;
+      border: 1px solid #000;
+      outline: none;
+      color: #000;
+      cursor: pointer;
+    }
+    .right-box {
+      width: 400px;
+    }
+  </style>
 </head>
 <body>
-  <script>
-     const response = await fetch(input, {
-        ...rest,
-        headers: {accept: 'text/event-stream'},
-        signal: curRequestController.signal,
-      });
-  </script>
+  <div class="container">
+    <form id="formTreeBox" class="form-box">
+      <div class="nodes-box" id="box">
+        loading...
+      </div>
+    </form>
+    <div class="right-box">
+      <button class="form-btn" onclick="submitForm()">确认</button>
+    </div>
+  </div>
+<script>
+let tree = [];
+var html = '';
+var dataIdDict = {};
+fetch('http://192.168.90.106:8000/workflow/dirs-tree', {
+  method: 'post',
+  mode: 'cors',
+  headers: {
+    ['content-type']:"application/json"
+  },
+  body: JSON.stringify({
+    username: '1234',
+    password: '123'
+  })
+}).then((res) => res.json()).then(res => {
+  if(res.code == 200) {
+    tree = Array.isArray(res.data) ? res.data : [];
+    renderTree(tree);
+    box.innerHTML = html;
+  }
+});
+
+function batchDownload(params) {
+  fetch('http://192.168.90.106:8000/workflow/batch-download', {
+    method: 'post',
+    mode: 'cors',
+    headers: {
+      ['content-type']:"application/json"
+    },
+    body: JSON.stringify(params),
+  });
+}
+
+function createNodeItem(item, isbottom, index) {
+  let dataId = item.dataId || 'node-index'+index;
+  dataId = dataIdDict[dataId] ? dataId+'-1' : dataId;
+  const {children_list, ...rest} = item;
+  dataIdDict[dataId] = rest;
+  const icon = '<span data-id="fold-btn" class="icon'+(isbottom ? ' bottom' : '')+'"></span>';
+  const checkbox = `<label data-id="node-name" class="node-label"><input name="nodeCheck" data-id="node-check" class="node-check" type="checkbox" value="${dataId}" /><span data-id="node-name" class="item-name">${item.baseName}</span></label>`;
+  return '<div class="node-item" data-id="'+item.id+'">'+icon+checkbox;
+}
+const formData = { nodeCheck: [] };
+function submitForm() {
+  const nodeCheckeds = [];
+  for(var i = 0, l = formTreeBox.length; i<l; i++) {
+    const item = formTreeBox[i];
+    if(item.type === 'checkbox' && item.checked) {
+      nodeCheckeds.push(item.value);
+    }
+  }
+  // const urls = [];
+  let urls = nodeCheckeds.map((id) => dataIdDict[id].url);
+  urls = urls.filter((item) => item);
+  batchDownload({urls});
+}
+function renderTree(tree) {
+  for(let i =0; i< tree.length; i++){
+    if(tree[i].children_list && tree[i].children_list.length > 0) {
+      const ml = createNodeItem(tree[i], false, i);
+      html+= ml;
+      renderTree(tree[i].children_list, html);
+      html+='</div>';
+    } else {
+      const ml = createNodeItem(tree[i], true, i);
+      html += (ml+'</div>');
+    }
+  }
+}
+box.addEventListener('click', function(event) {
+  const id = event.target.dataset.id;
+  const targetClassName = event.target.className;
+  if(id === 'fold-btn') {
+    const isfold = targetClassName.includes('folded');   
+    if(isfold) {
+      event.target.className = "icon";
+      event.target.parentElement.style.height = 'auto';
+    } else {
+      event.target.className = "icon folded";
+      event.target.parentElement.style.height = 24 + 'px';
+    }
+  }
+  
+  const pid = event.target.parentElement.dataset.id;
+  let checktarget = null;
+  let pchecktarget = null;
+  if(id === 'node-name') {
+    checktarget = event.target.previousSibling;
+    pchecktarget = checktarget.parentElement.parentElement;
+  } else if(id === 'node-check') {
+    checktarget = event.target;
+    pchecktarget = checktarget.parentElement.parentElement;
+  } else if(id === 'node-label') {
+    checktarget = event.target.children[0];
+    pchecktarget = checktarget.parentElement;
+  }
+
+  if(checktarget) {
+    const nextCheck = pchecktarget.nextSibling.children[1].children[0];
+    const curDataId = checktarget.value;
+    const nextDataId = nextCheck.value;
+    setCheckedForm(curDataId, nextDataId, !checktarget.checked);
+  }
+});
+function setCheckedForm(startId, endId, checked) {
+  let flag = false;
+  for(let i = 0, l = formTreeBox.length; i < l; i++) {
+    const curval = formTreeBox[i].value;
+    if(curval === endId) {
+      flag = false;
+      break;
+    }
+    if(curval === startId || flag) {
+      flag = true;
+      formTreeBox[i].checked = checked;
+    } 
+  }
+}
+</script>
 </body>
 </html>

@@ -1,8 +1,16 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-11-18 18:10:05
+ */
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import Message from '@/utils/message';
 
 function responseInterceptorUse(response: AxiosResponse<BlogResp<any>>) {
   if(response.status >= 200 && response.status < 300) {
+    if(response.data.code < 0) {
+      Message.error(response.data.errMessage as string);
+    }
     return response.data;
   } else if(response.status > 200 && response.status <500) {
     return response.data;

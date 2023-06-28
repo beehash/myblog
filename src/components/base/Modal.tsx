@@ -1,3 +1,8 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-11-18 18:10:05
+ */
 import React, {useRef, useEffect} from 'react';
 import Portal from './Portal';
 import { createRoot } from '@/utils/index';
@@ -34,13 +39,13 @@ export default function Modal(props: any=defaultOptions) {
 
   return props.visible ? (
     <Portal rootId="modal-root" className={styles['modal-mask']} visible={props.visible}>
-      <div className={styles['modal-box']} ref={modal}
+      <div className={styles['modal-box']+ (props.className ? ' '+props.className : '')} ref={modal}
         style={{width: props.width, height: props.height}}>
         {/* 头部 */}
         <div className={styles.header}>
           <p className={styles.title}>{props.title}</p>
           {!props.showClose && <span className={styles.close} onClick={innerClose}>
-            <Icon name="close" color="#343434"/>
+            <Icon name="close" fillColor="#343434" style={{width: 24+'px', height: 24+'px', verticalAlign: 'text-top'}}/>
           </span>
           }
         </div>

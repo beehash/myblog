@@ -3,7 +3,8 @@ import React, { FunctionComponent, useState } from "react";
  
 const Footer: FunctionComponent<any> = () => {
   // const [visible, setVisible] = useState(false);
-  // WeGmhcMsu+WdRnxKR5CWLg==
+  // U02SEp6ML8ng/xwqdjGysA==
+  // i1KYvZRQgN9QYrbMlnAymw==
 
   return ( 
     <div className="footer w-full">

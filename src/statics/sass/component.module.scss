@@ -123,6 +123,7 @@ textarea.form-control{
     margin-right: 2px;
     line-height: 28px;
     text-align: center;
+    border: 1px solid #ececec;
     border-radius: 8px;
     cursor: default;
   }
@@ -130,20 +131,16 @@ textarea.form-control{
     border: 1px solid #ececec;
   }
   .right-btn{
-    height: 28px;
-    width: 28px;
+    width: 20px;
+    height: 20px;
     transform: rotateY(180deg);
-    border: 1px solid #ececec;
-    border-radius: 8px;
     & svg{
       vertical-align: sub;
     }
   }
   .left-btn{
-    height: 28px;
-    width: 28px;
-    border: 1px solid #ececec;
-    border-radius: 8px;
+    width: 20px;
+    height: 20px;
     & svg{
       vertical-align: sub;
     }

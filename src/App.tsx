@@ -7,7 +7,7 @@ import { matchRoutes } from '@/utils';
 import React, { useEffect } from 'react';
 import './statics/sass/App.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory  } from 'react-router-dom';
 import Authroute from '@/components/base/AuthRoute';
 import AsyncLoadComponent from '@/hocs/AsyncLoadComponent';
 import { constantRoutes, AsyncRoutes } from '@/router';
@@ -60,7 +60,6 @@ function App() {
           />
         );
       }
-
       return (
         <Authroute
           exact={item.exact}

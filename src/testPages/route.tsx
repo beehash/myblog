@@ -23,7 +23,6 @@ class Route extends Component<any, any> {
 
   render() {
     // const counr = this.context;
-    console.log(111111, this)
     return (
       <div onClick={this.updateState}>
         111222state1: {this.state.count}, state2: {this.state.count2}

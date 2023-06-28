@@ -1,3 +1,8 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-11-18 18:10:05
+ */
 import {lazy} from 'react';
 import manageRoutes from './manage';
 import notFound from '@/pages/404';
@@ -20,13 +25,13 @@ const routes: RouteConfig[] = [
   }, {
     path: '/editor',
     name: 'Editor',
-    meta: {title: '写文章', permission: ['editor:view']},
+    meta: {title: '写文章', permission: ['article:view']},
     component: Layout,
     children: [{
-      path: '',
+      path: ':inviteCode',
       name: 'Editor.New',
       exact: true,
-      meta: {title: '写文章', permission: ['editor:view']},
+      meta: {title: '写文章', permission: ['article:view']},
       component: lazy(() => import('@/pages/createNew')),
     }]
   }, {

@@ -1,3 +1,8 @@
+/*
+ * @Author: Amelia
+ * @email: zhangshan1@able-elec.com
+ * @Date: 2022-07-04 13:06:44
+ */
 import React, { BaseSyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
 import styles from '@/statics/sass/component.module.scss';
@@ -22,7 +27,7 @@ export default function Checkbox({className = '', ...props}: any) {
       </span>
       <span className={styles.checkbox}
         style={props.value ? {backgroundColor: theme.color, borderColor: theme.color}: {}}>
-        {props.value && <Icon name="checked" color="#ffffff"
+        {props.value && <Icon name="checked" fillColor="#ffffff"
           className={props.value ? styles.checked : ''} />}
       </span>
       <input type="checkbox" className={styles['original']}
